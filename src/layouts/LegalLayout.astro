@@ -1,0 +1,104 @@
+---
+import '../styles/globals.css';
+import Seo from '../components/Seo.astro';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  lastUpdated?: string;
+}
+
+const { 
+  title, 
+  description = "Información legal importante sobre nuestros servicios y políticas.",
+  lastUpdated
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <Seo 
+      title={`${title} - Estudio Jurídico`}
+      description={description}
+      noindex={false}
+    />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Viewport meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0E4A69">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+  </head>
+  
+  <body class="min-h-screen bg-background text-foreground font-sans antialiased">
+    <!-- Skip to main content for accessibility -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50"
+    >
+      Saltar al contenido principal
+    </a>
+    
+    <!-- Navigation -->
+    <Navbar client:idle />
+    
+    <!-- Main content -->
+    <main id="main-content" class="min-h-screen">
+      <header class="relative overflow-hidden border-b border-primary-700/20 bg-gradient-to-br from-primary-700 via-primary-600 to-accent-600 text-white">
+        <div class="container-custom py-12 md:py-16">
+          <p class="text-sm uppercase tracking-[0.3em] text-white/70">Marco Legal</p>
+          <h1 class="mt-4 text-3xl md:text-5xl font-semibold leading-tight">{title}</h1>
+          <p class="mt-4 max-w-3xl text-base md:text-lg text-white/80">
+            {description}
+          </p>
+          {lastUpdated && (
+            <p class="mt-6 inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+              Última actualización: <span class="ml-2 font-semibold text-white">{lastUpdated}</span>
+            </p>
+          )}
+        </div>
+      </header>
+
+      <section class="bg-neutral-50 py-12 md:py-16">
+        <div class="container-custom">
+          <nav class="mb-8" aria-label="Breadcrumb">
+            <ol class="flex flex-wrap items-center gap-2 text-sm text-neutral-500">
+              <li><a href="/" class="font-medium text-neutral-600 transition-colors hover:text-primary-600">Inicio</a></li>
+              <li class="flex items-center text-neutral-400">
+                <svg class="mx-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </li>
+              <li class="font-medium text-neutral-900">{title}</li>
+            </ol>
+          </nav>
+
+          <article class="mx-auto max-w-4xl rounded-2xl border border-neutral-200 bg-white p-6 shadow-lg shadow-primary-900/5 md:p-10">
+            <div class="prose prose-lg prose-neutral marker:text-primary-500">
+              <slot />
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    
+    <!-- Footer -->
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,182 @@
+---
+import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Linkedin } from 'lucide-react';
+---
+
+<footer class="bg-primary-700 text-white">
+  <div class="container-custom">
+    <div class="py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Información del Despacho -->
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <div class="h-8 w-8 bg-white rounded-md flex items-center justify-center">
+              <span class="text-primary-600 font-bold text-lg">M</span>
+            </div>
+            <span class="font-bold text-xl">MGM Abogados</span>
+          </div>
+          <p class="text-primary-100 text-sm leading-relaxed">
+            Más de 15 años de experiencia brindando representación legal de calidad 
+            y resultados efectivos para nuestros clientes.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://www.facebook.com/mgm.abogados" class="text-primary-200 hover:text-white transition-colors" aria-label="Facebook">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href="https://twitter.com/mgm_abogados" class="text-primary-200 hover:text-white transition-colors" aria-label="Twitter">
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a href="https://www.linkedin.com/company/mgm-abogados" class="text-primary-200 hover:text-white transition-colors" aria-label="LinkedIn">
+              <Linkedin className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Servicios -->
+        <div class="space-y-4">
+          <h3 class="font-semibold text-lg">Servicios</h3>
+          <ul class="space-y-3 text-sm">
+            <li>
+              <a href="/derecho-laboral" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 6V5a2 2 0 012-2h4a2 2 0 012 2v1h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h2zM8 5a1 1 0 011-1h2a1 1 0 011 1v1H8V5z" clip-rule="evenodd"></path>
+                </svg>
+                Derecho Laboral
+              </a>
+            </li>
+            <li>
+              <a href="/derecho-familiar" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
+                </svg>
+                Derecho Familiar
+              </a>
+            </li>
+            <li>
+              <a href="/derecho-penal" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                Derecho Penal
+              </a>
+            </li>
+            <li>
+              <a href="/derecho-civil" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                </svg>
+                Derecho Civil
+              </a>
+            </li>
+            <li>
+              <a href="/derecho-empresarial" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path>
+                </svg>
+                Derecho Comercial
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Información de Contacto -->
+        <div class="space-y-4">
+          <h3 class="font-semibold text-lg">Contacto</h3>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-start space-x-3">
+              <MapPin className="h-4 w-4 text-primary-200 mt-0.5 flex-shrink-0" />
+              <div>
+                <p class="text-primary-100">13 norte, N° 853, Of. 803, Ed. Boulevard</p>
+                <p class="text-primary-100">Viña del Mar, Chile</p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <Phone className="h-4 w-4 text-primary-200 flex-shrink-0" />
+              <a href="tel:+56323428987" class="text-primary-100 hover:text-white transition-colors">
+                +56 32 3428987
+              </a>
+            </div>
+            <div class="flex items-center space-x-3">
+              <Mail className="h-4 w-4 text-primary-200 flex-shrink-0" />
+              <a href="mailto:contacto@mgm-abogados.cl" class="text-primary-100 hover:text-white transition-colors">
+                contacto@mgm-abogados.cl
+              </a>
+            </div>
+            <div class="flex items-start space-x-3">
+              <Clock className="h-4 w-4 text-primary-200 mt-0.5 flex-shrink-0" />
+              <div class="text-primary-100">
+                <p>Lun - Vie: 9:00 - 18:00</p>
+                <p>Sáb: 9:00 - 13:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enlaces Legales -->
+        <div class="space-y-4">
+          <h3 class="font-semibold text-lg">Información Legal</h3>
+          <ul class="space-y-3 text-sm">
+            <li>
+              <a href="/legal/privacidad" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                </svg>
+                Política de Privacidad
+              </a>
+            </li>
+            <li>
+              <a href="/legal/terminos" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                </svg>
+                Términos de Servicio
+              </a>
+            </li>
+            <li>
+              <a href="/legal/aviso-legal" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                Aviso Legal
+              </a>
+            </li>
+            <li>
+              <a href="/legal/cookies" class="text-primary-100 hover:text-white transition-colors inline-flex items-center group">
+                <svg class="w-4 h-4 mr-2 text-primary-200 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                Política de Cookies
+              </a>
+            </li>
+          </ul>
+          
+          <!-- CTA Button -->
+          <div class="pt-4">
+            <a 
+              href="#contacto" 
+              class="inline-block bg-accent-600 text-white px-6 py-3 rounded-md font-medium hover:bg-accent-700 transition-colors duration-200 text-sm"
+            >
+              Consulta Gratuita
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-primary-600 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div class="text-sm text-primary-200">
+          <p>&copy; 2024 Manriquez Gómez Melo Abogados. Todos los derechos reservados.</p>
+          <p class="mt-1">Viña del Mar, Chile</p>
+        </div>
+        
+        <div class="text-sm text-primary-200">
+          <p>
+            <strong>AVISO LEGAL:</strong> La información en este sitio es solo para fines informativos 
+            y no constituye asesoría legal. Cada situación legal es única y requiere evaluación individual.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

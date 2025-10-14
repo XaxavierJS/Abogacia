@@ -1,0 +1,175 @@
+---
+import '../styles/globals.css';
+import Seo from '../components/Seo.astro';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/legal/CookieConsent';
+import ChatbotWidget from '../components/ChatbotWidget';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const { 
+  title, 
+  description = "Abogado especializado con más de 15 años de experiencia. Consulta gratuita en derecho laboral, familiar y penal. Contacta ahora.",
+  image = "/og-image.jpg",
+  canonical,
+  noindex = false
+} = Astro.props;
+
+const canonicalURL = canonical || Astro.url.href;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <Seo 
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonicalURL}
+      noindex={noindex}
+    />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0E4A69">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <script is:inline>
+      (() => {
+        const STATE = {
+          pending: false,
+          retries: 0,
+          maxRetries: 50,
+          timer: null
+        };
+
+        const clickToggle = () => {
+          const container = document.querySelector('#n8n-chat');
+          if (!container) return false;
+
+          const candidates = Array.from(
+            container.querySelectorAll('button, [role="button"]')
+          );
+
+          const toggle = candidates.find((btn) => {
+            const aria = btn.getAttribute?.('aria-label')?.toLowerCase() ?? '';
+            const dataTest = btn.getAttribute?.('data-test-id') ?? '';
+            const classes = btn.className?.toString().toLowerCase() ?? '';
+
+            if (dataTest.includes('toggle')) return true;
+            if (aria.includes('chat') || aria.includes('abrir') || aria.includes('toggle')) return true;
+            if (classes.includes('toggle')) return true;
+            return false;
+          }) || candidates[0];
+
+          if (!toggle) return false;
+
+          toggle.dispatchEvent(
+            new MouseEvent('click', { bubbles: true, cancelable: true })
+          );
+          return true;
+        };
+
+        const schedule = () => {
+          if (clickToggle()) {
+            STATE.pending = false;
+            STATE.retries = 0;
+            if (STATE.timer) {
+              clearTimeout(STATE.timer);
+              STATE.timer = null;
+            }
+            return;
+          }
+
+          if (STATE.retries >= STATE.maxRetries) {
+            STATE.pending = false;
+            return;
+          }
+
+          STATE.retries += 1;
+          STATE.timer = window.setTimeout(schedule, 200);
+        };
+
+        window.n8nChatOpen = () => {
+          STATE.pending = true;
+          STATE.retries = 0;
+          schedule();
+        };
+
+        window.addEventListener('mgm:chat-ready', () => {
+          if (STATE.pending) {
+            schedule();
+          }
+        });
+
+        document.addEventListener(
+          'click',
+          (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            if (!target.closest('[data-chat-open]')) return;
+
+            event.preventDefault();
+            window.n8nChatOpen();
+          },
+          { passive: false }
+        );
+      })();
+    </script>
+  </head>
+  
+  <body class="min-h-screen bg-background text-foreground font-sans antialiased">
+    <!-- Skip to main content for accessibility -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50"
+    >
+      Saltar al contenido principal
+    </a>
+    
+    <!-- Navigation -->
+    <Navbar client:idle />
+    
+    <!-- Main content -->
+    <main id="main-content" class="min-h-screen">
+      <slot />
+    </main>
+    
+    <!-- Footer -->
+    <Footer />
+    
+    <!-- Legal Components -->
+    <CookieConsent client:idle />
+    
+    <!-- Chatbot Anchor + Widget -->
+    <div id="n8n-chat" class="chatbot-slot" aria-live="polite" aria-label="Asistente virtual"></div>
+    <ChatbotWidget client:idle />
+    
+    <!-- Analytics (se agregará cuando se configure) -->
+    <!-- <script is:inline>
+      // Google Analytics o Vercel Analytics
+    </script> -->
+  </body>
+</html>
