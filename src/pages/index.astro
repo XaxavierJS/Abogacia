@@ -1,16 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { PRACTICE_AREAS, CONTACT_INFO } from '../lib/constants';
-import ContactForm from '../components/business/ContactForm';
+import ContactFormSimple from '../components/business/ContactFormSimple';
 ---
 
 <BaseLayout 
   title="Manriquez Gómez Melo Abogados - Experiencia, Eficiencia y Confianza Garantizada"
-  description="Despacho jurídico especializado en Viña del Mar. Experiencia, Eficiencia y Confianza garantizada en derecho familiar, penal, laboral y civil."
+  description="MGM Abogados - Despacho jurídico especializado en Viña del Mar con más de 15 años de experiencia. Consulta gratuita en derecho familiar, penal, laboral, civil y empresarial. Experiencia, Eficiencia y Confianza garantizada."
 >
   <!-- Hero Section Minimalista -->
-  <section class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center foto">
-    <div class="container-custom py-20">
+  <section class="min-h-screen bg-gradient-to-br from-primary-600 to-primary-700 flex items-center relative overflow-hidden">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+    
+    <div class="container-custom py-20 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
           Manriquez Gómez Melo<br>
@@ -36,10 +39,14 @@ import ContactForm from '../components/business/ContactForm';
             type="button"
             data-chat-open
             class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
-            aria-label="Abrir chat para consulta"
+            aria-label="Abrir chat para consulta legal"
+            aria-describedby="chat-description"
           >
             Consultar por Chat
           </button>
+          <div id="chat-description" class="sr-only">
+            Abre el chat para realizar consultas legales generales y coordinar una reunión con nuestro equipo
+          </div>
         </div>
 
         <!-- Beneficios -->
@@ -119,7 +126,8 @@ import ContactForm from '../components/business/ContactForm';
               <p class="text-slate-600 mb-6">{area.description}</p>
               <a 
                 href={`/${area.id}`} 
-                class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center group-hover:underline"
+                class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center group-hover:underline underline-offset-4"
+                aria-label={`Consultar sobre ${area.name}`}
               >
                 Consultar sobre este servicio
                 <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
@@ -412,7 +420,7 @@ import ContactForm from '../components/business/ContactForm';
           </p>
         </div>
         
-        <ContactForm client:load />
+        <ContactFormSimple client:visible />
       </div>
     </div>
   </section>
@@ -427,8 +435,8 @@ import ContactForm from '../components/business/ContactForm';
           <h3 class="text-2xl font-semibold text-slate-900">¿Prefieres orientación por chat?</h3>
           <p class="text-slate-600 mt-2">Nuestro asistente puede responder consultas generales y coordinar una consulta. No compartas datos sensibles. No constituye asesoría legal.</p>
           <div class="mt-4 flex gap-3">
-            <a href="#contacto" class="btn-primary">Abrir chat y agendar</a>
-            <a href="#contacto" class="border px-4 py-3 rounded-md font-medium text-primary-600 border-primary-200">Usar formulario</a>
+            <a href="#contacto" class="btn-primary" aria-label="Abrir chat y agendar consulta">Abrir chat y agendar</a>
+            <a href="#contacto" class="border px-4 py-3 rounded-md font-medium text-primary-600 border-primary-200 hover:bg-primary-50 transition-colors" aria-label="Usar formulario de contacto">Usar formulario</a>
           </div>
         </div>
         <div class="rounded-2xl border bg-slate-50 p-6 text-slate-600">

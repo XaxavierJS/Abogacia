@@ -51,7 +51,7 @@ export default function Navbar() {
               </a>
             </div>
             <Button asChild className="btn-primary">
-              <a href="#contacto">
+              <a href="#contacto" aria-label="Ir a formulario de contacto para consulta gratuita">
                 Consulta Gratuita
               </a>
             </Button>
@@ -120,7 +120,7 @@ export default function Navbar() {
                     </div>
                     
                     <Button asChild className="w-full btn-primary">
-                      <a href="#contacto" onClick={() => setIsOpen(false)}>
+                      <a href="#contacto" onClick={() => setIsOpen(false)} aria-label="Ir a formulario de contacto para consulta gratuita">
                         Consulta Gratuita
                       </a>
                     </Button>

@@ -57,11 +57,12 @@ const canonicalURL = canonical || Astro.url.href;
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     
     <script is:inline>
+      // Optimized chatbot script with reduced main thread blocking
       (() => {
         const STATE = {
           pending: false,
           retries: 0,
-          maxRetries: 50,
+          maxRetries: 20, // Reduced retries
           timer: null
         };
 
@@ -69,26 +70,18 @@ const canonicalURL = canonical || Astro.url.href;
           const container = document.querySelector('#n8n-chat');
           if (!container) return false;
 
-          const candidates = Array.from(
-            container.querySelectorAll('button, [role="button"]')
-          );
-
-          const toggle = candidates.find((btn) => {
-            const aria = btn.getAttribute?.('aria-label')?.toLowerCase() ?? '';
-            const dataTest = btn.getAttribute?.('data-test-id') ?? '';
-            const classes = btn.className?.toString().toLowerCase() ?? '';
-
-            if (dataTest.includes('toggle')) return true;
-            if (aria.includes('chat') || aria.includes('abrir') || aria.includes('toggle')) return true;
-            if (classes.includes('toggle')) return true;
-            return false;
-          }) || candidates[0];
+          // Use more efficient querySelector
+          const toggle = container.querySelector('[data-test-id*="toggle"], [aria-label*="chat"], [aria-label*="abrir"], .toggle') ||
+                        container.querySelector('button, [role="button"]');
 
           if (!toggle) return false;
 
-          toggle.dispatchEvent(
-            new MouseEvent('click', { bubbles: true, cancelable: true })
-          );
+          // Use requestAnimationFrame to avoid blocking
+          requestAnimationFrame(() => {
+            toggle.dispatchEvent(
+              new MouseEvent('click', { bubbles: true, cancelable: true })
+            );
+          });
           return true;
         };
 
@@ -109,13 +102,18 @@ const canonicalURL = canonical || Astro.url.href;
           }
 
           STATE.retries += 1;
-          STATE.timer = window.setTimeout(schedule, 200);
+          STATE.timer = window.setTimeout(schedule, 100); // Reduced delay
         };
 
         window.n8nChatOpen = () => {
           STATE.pending = true;
           STATE.retries = 0;
-          schedule();
+          // Use requestIdleCallback if available
+          if (window.requestIdleCallback) {
+            window.requestIdleCallback(schedule);
+          } else {
+            schedule();
+          }
         };
 
         window.addEventListener('mgm:chat-ready', () => {
@@ -124,6 +122,7 @@ const canonicalURL = canonical || Astro.url.href;
           }
         });
 
+        // Use passive listener for better performance
         document.addEventListener(
           'click',
           (event) => {

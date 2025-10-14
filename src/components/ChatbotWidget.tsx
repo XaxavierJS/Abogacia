@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 export default function ChatbotWidget() {
   useEffect(() => {
+    // Cargar el chatbot solo cuando sea necesario
     const loadChatbot = () => {
       try {
         if (document.getElementById('n8n-chat-script')) {
@@ -9,17 +10,22 @@ export default function ChatbotWidget() {
           return;
         }
 
+        // Cargar CSS de forma asíncrona
         if (!document.getElementById('n8n-chat-style')) {
           const link = document.createElement('link');
           link.href = 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css';
           link.rel = 'stylesheet';
           link.id = 'n8n-chat-style';
+          link.media = 'print';
+          link.onload = () => { link.media = 'all'; };
           document.head.appendChild(link);
         }
 
+        // Cargar script de forma asíncrona
         const script = document.createElement('script');
         script.type = 'module';
         script.id = 'n8n-chat-script';
+        script.async = true;
         script.textContent = `
           import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
@@ -65,7 +71,17 @@ export default function ChatbotWidget() {
       }
     };
 
-    loadChatbot();
+    // Cargar chatbot solo cuando el usuario interactúe
+    const handleChatOpen = () => {
+      loadChatbot();
+      document.removeEventListener('click', handleChatOpen);
+    };
+
+    document.addEventListener('click', handleChatOpen);
+    
+    return () => {
+      document.removeEventListener('click', handleChatOpen);
+    };
   }, []);
 
   return null;
