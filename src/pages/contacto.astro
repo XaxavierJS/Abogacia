@@ -1,0 +1,271 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT_INFO, URGENCY_LEVELS, CONTACT_METHODS } from '../lib/constants';
+import Disclaimer from '../components/legal/Disclaimer';
+---
+
+<BaseLayout 
+  title="Contacto - Consulta Legal Gratuita"
+  description="Contacta con nuestro despacho jurídico para una consulta legal gratuita. Respuesta en 24 horas. Especialistas en derecho laboral, familiar y penal."
+>
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white">
+    <div class="container-custom">
+      <div class="py-16 md:py-24">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            Consulta Legal Gratuita
+          </h1>
+          <p class="text-xl text-blue-100 mb-8">
+            Contacta con nuestro despacho jurídico y recibe asesoría legal profesional. 
+            Respuesta garantizada en 24 horas.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href={`tel:${CONTACT_INFO.phone}`} 
+              class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-block"
+            >
+              Llamar Ahora
+            </a>
+            <a 
+              href="#contact-form" 
+              class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors inline-block"
+            >
+              Enviar Mensaje
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="section-padding bg-background">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Contact Details -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-3xl font-bold text-foreground mb-6">
+              Información de Contacto
+            </h2>
+            <p class="text-muted-foreground">
+              Estamos disponibles para atenderte en nuestros horarios de atención 
+              o puedes contactarnos por cualquiera de estos medios.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Phone -->
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-foreground mb-1">Teléfono</h3>
+                <a 
+                  href={`tel:${CONTACT_INFO.phone}`} 
+                  class="text-primary-600 hover:text-primary-700 transition-colors"
+                >
+                  {CONTACT_INFO.phone}
+                </a>
+                <p class="text-sm text-muted-foreground mt-1">
+                  Lunes a Viernes: 9:00 - 18:00
+                </p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-foreground mb-1">Email</h3>
+                <a 
+                  href={`mailto:${CONTACT_INFO.email}`} 
+                  class="text-primary-600 hover:text-primary-700 transition-colors"
+                >
+                  {CONTACT_INFO.email}
+                </a>
+                <p class="text-sm text-muted-foreground mt-1">
+                  Respuesta en 24 horas
+                </p>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-foreground mb-1">Dirección</h3>
+                <p class="text-muted-foreground">
+                  {CONTACT_INFO.address.full}
+                </p>
+                <p class="text-sm text-muted-foreground mt-1">
+                  Consultas presenciales con cita previa
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-card border border-border rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-foreground mb-6">
+              Envíanos un Mensaje
+            </h2>
+            
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="form-label">Nombre completo *</label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    required
+                    class="form-input"
+                    placeholder="Tu nombre completo"
+                  />
+                </div>
+                <div>
+                  <label class="form-label">Email *</label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    required
+                    class="form-input"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="form-label">Teléfono *</label>
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    required
+                    class="form-input"
+                    placeholder="+56 9 1234 5678"
+                  />
+                </div>
+                <div>
+                  <label class="form-label">Nivel de Urgencia</label>
+                  <select name="urgency" class="form-input">
+                    <option value="">Selecciona urgencia</option>
+                    {URGENCY_LEVELS.map((level) => (
+                      <option value={level.value}>{level.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="form-label">Asunto *</label>
+                <input 
+                  type="text" 
+                  name="subject"
+                  required
+                  class="form-input"
+                  placeholder="¿En qué podemos ayudarte?"
+                />
+              </div>
+
+              <div>
+                <label class="form-label">Mensaje *</label>
+                <textarea 
+                  name="message"
+                  required
+                  rows="6"
+                  class="form-input"
+                  placeholder="Describe tu consulta legal..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label class="form-label">Método de Contacto Preferido</label>
+                <select name="contactMethod" class="form-input">
+                  <option value="">¿Cómo prefieres que te contactemos?</option>
+                  {CONTACT_METHODS.map((method) => (
+                    <option value={method.value}>{method.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <input 
+                  type="checkbox" 
+                  name="privacy"
+                  required
+                  class="mt-1"
+                />
+                <label class="text-sm text-muted-foreground">
+                  Acepto la{' '}
+                  <a href="/legal/privacidad" class="text-primary-600 hover:underline">
+                    Política de Privacidad
+                  </a>{' '}
+                  y los{' '}
+                  <a href="/legal/terminos" class="text-primary-600 hover:underline">
+                    Términos de Servicio
+                  </a>
+                  *
+                </label>
+              </div>
+
+              <button 
+                type="submit"
+                class="w-full btn-primary"
+              >
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="py-8 bg-muted/30">
+    <div class="container-custom">
+      <Disclaimer type="general" />
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-16 bg-background">
+    <div class="container-custom">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-foreground mb-4">
+          Nuestra Ubicación
+        </h2>
+        <p class="text-muted-foreground">
+          Estamos ubicados en el corazón de Santiago, fácilmente accesible 
+          en transporte público y con estacionamiento disponible.
+        </p>
+      </div>
+      
+      <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+        <div class="text-center">
+          <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+          </svg>
+          <p class="text-gray-600">Mapa interactivo</p>
+          <p class="text-sm text-gray-500">Se integrará con Google Maps</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

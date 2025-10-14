@@ -1,0 +1,445 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PRACTICE_AREAS, CONTACT_INFO } from '../lib/constants';
+import ContactForm from '../components/business/ContactForm';
+---
+
+<BaseLayout 
+  title="Manriquez Gómez Melo Abogados - Experiencia, Eficiencia y Confianza Garantizada"
+  description="Despacho jurídico especializado en Viña del Mar. Experiencia, Eficiencia y Confianza garantizada en derecho familiar, penal, laboral y civil."
+>
+  <!-- Hero Section Minimalista -->
+  <section class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center foto">
+    <div class="container-custom py-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          Manriquez Gómez Melo<br>
+          <span class="text-white/90">Abogados</span>
+        </h1>
+          <p class="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto leading-relaxed">
+            <strong class="text-white">Experiencia, Eficiencia y Confianza garantizada.</strong>
+          </p>
+        <p class="text-lg md:text-xl text-white/85 mb-12 max-w-3xl mx-auto leading-relaxed">
+          Despacho jurídico especializado en Viña del Mar con amplia experiencia en derecho familiar, 
+          penal, laboral y civil. Empleamos herramientas sociales y legales con una mirada inteligente, 
+          comprometida y honesta.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <a 
+            href="#servicios" 
+            class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
+          >
+            Ver Servicios
+          </a>
+          <button 
+            type="button"
+            data-chat-open
+            class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
+            aria-label="Abrir chat para consulta"
+          >
+            Consultar por Chat
+          </button>
+        </div>
+
+        <!-- Beneficios -->
+        <div class="flex flex-wrap justify-center gap-8 text-white/90">
+          <div class="flex items-center space-x-2">
+            <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Servicio y atención de calidad</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Contacto y relación permanente</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Transparencia total en honorarios</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios Integrados -->
+  <section id="servicios" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          Nuestros Servicios Legales
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Especializados en diversas ramas del derecho para brindarte la mejor representación legal
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {PRACTICE_AREAS.map((area, index) => {
+          const icons = [
+            // Derecho Laboral - Briefcase
+            <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6 6V5a2 2 0 012-2h4a2 2 0 012 2v1h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h2zM8 5a1 1 0 011-1h2a1 1 0 011 1v1H8V5z" clip-rule="evenodd"></path>
+            </svg>,
+            // Derecho Familiar - Users
+            <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
+            </svg>,
+            // Derecho Penal - Shield
+            <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>,
+            // Derecho Civil - File Text
+            <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+            </svg>,
+            // Derecho Comercial - Building
+            <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path>
+            </svg>,
+            // Derecho Inmobiliario - Home
+            <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+            </svg>
+          ];
+          
+          return (
+            <div class="bg-white border border-slate-200 rounded-xl p-8 hover:shadow-lg transition-shadow group">
+              <div class="flex items-center space-x-4 mb-6">
+                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center group-hover:bg-primary-600 transition-colors">
+                  {icons[index] || icons[0]}
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900">{area.name}</h3>
+              </div>
+              <p class="text-slate-600 mb-6">{area.description}</p>
+              <a 
+                href={`/${area.id}`} 
+                class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center group-hover:underline"
+              >
+                Consultar sobre este servicio
+                <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre el Despacho -->
+  <section id="sobre-nosotros" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Manriquez Gómez Melo Abogados
+            </h2>
+            <p class="text-xl text-primary-600 font-medium mb-8">
+              Experiencia, Eficiencia y Confianza garantizada
+            </p>
+            <p class="text-lg text-slate-600 mb-6 leading-relaxed text-balance">
+              Somos un estudio jurídico de Viña del Mar que combina experiencia y trato cercano. 
+              Trabajamos con transparencia, comunicación constante y estrategias claras enfocadas en tus objetivos.
+            </p>
+
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed text-balance">
+              Acompañamos a personas y empresas en derecho familiar, laboral, penal y civil. 
+              Te orientamos desde la primera consulta y te mantenemos informado en cada etapa del proceso.
+            </p>
+            
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-slate-900 mb-1">Servicio y atención de calidad</h3>
+                  <p class="text-slate-600">Trato cercano y dedicación en cada caso</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-slate-900 mb-1">Comunicación permanente</h3>
+                  <p class="text-slate-600">Reportes claros y avances periódicos</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-slate-900 mb-1">Experiencia comprobada</h3>
+                  <p class="text-slate-600">Estrategias eficaces en distintas áreas del derecho</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-slate-900 mb-1">Honorarios transparentes</h3>
+                  <p class="text-slate-600">Presupuestos claros antes de iniciar</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="relative">
+            <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <div class="text-center">
+                <div class="w-32 h-32 bg-primary-100 rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <svg class="w-16 h-16 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">MGM Abogados</h3>
+                <p class="text-primary-600 font-medium mb-4">Despacho Jurídico</p>
+                <blockquote class="text-slate-600 italic mb-6">
+                  "Experiencia, Eficiencia y Confianza garantizada en cada caso que manejamos."
+                </blockquote>
+                <div class="space-y-3">
+                  <p class="text-sm text-slate-500">
+                    <strong>Teléfono:</strong> {CONTACT_INFO.phone}
+                  </p>
+                  <p class="text-sm text-slate-500">
+                    <strong>Móvil:</strong> {CONTACT_INFO.phoneMobile}
+                  </p>
+                  <p class="text-sm text-slate-500">
+                    <strong>Email:</strong> {CONTACT_INFO.email}
+                  </p>
+                  <p class="text-sm text-slate-500">
+                    <strong>Dirección:</strong> {CONTACT_INFO.address.full}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso de Trabajo -->
+  <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          Nuestro Proceso de Trabajo
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Un enfoque sistemático y profesional para resolver tu caso legal
+        </p>
+      </div>
+      
+      <div class="max-w-6xl mx-auto">
+        <!-- Desktop Timeline -->
+        <div class="hidden lg:block">
+          <div class="relative">
+            <!-- Timeline Line -->
+            <div class="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-200 via-primary-400 to-primary-200"></div>
+            
+            <div class="grid grid-cols-4 gap-8">
+              <div class="text-center group">
+                <div class="relative">
+                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                    <span class="text-sm font-bold text-primary-600">1</span>
+                  </div>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-4">Consulta Inicial</h3>
+                <p class="text-slate-600 leading-relaxed">Evaluamos tu caso en una consulta gratuita de 30 minutos</p>
+              </div>
+              
+              <div class="text-center group">
+                <div class="relative">
+                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                    <span class="text-sm font-bold text-primary-600">2</span>
+                  </div>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-4">Análisis del Caso</h3>
+                <p class="text-slate-600 leading-relaxed">Estudiamos a fondo tu situación y desarrollamos una estrategia</p>
+              </div>
+              
+              <div class="text-center group">
+                <div class="relative">
+                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                    <span class="text-sm font-bold text-primary-600">3</span>
+                  </div>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-4">Representación</h3>
+                <p class="text-slate-600 leading-relaxed">Te representamos en tribunales y negociaciones</p>
+              </div>
+              
+              <div class="text-center group">
+                <div class="relative">
+                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                    <span class="text-sm font-bold text-primary-600">4</span>
+                  </div>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-4">Seguimiento</h3>
+                <p class="text-slate-600 leading-relaxed">Aseguramos el cumplimiento y te mantenemos informado</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mobile/Tablet Cards -->
+        <div class="lg:hidden space-y-8">
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+            <div class="flex items-start space-x-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center space-x-3 mb-3">
+                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                  <h3 class="text-xl font-semibold text-slate-900">Consulta Inicial</h3>
+                </div>
+                <p class="text-slate-600 leading-relaxed">Evaluamos tu caso en una consulta gratuita de 30 minutos</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+            <div class="flex items-start space-x-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center space-x-3 mb-3">
+                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                  <h3 class="text-xl font-semibold text-slate-900">Análisis del Caso</h3>
+                </div>
+                <p class="text-slate-600 leading-relaxed">Estudiamos a fondo tu situación y desarrollamos una estrategia</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+            <div class="flex items-start space-x-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center space-x-3 mb-3">
+                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                  <h3 class="text-xl font-semibold text-slate-900">Representación</h3>
+                </div>
+                <p class="text-slate-600 leading-relaxed">Te representamos en tribunales y negociaciones</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+            <div class="flex items-start space-x-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center space-x-3 mb-3">
+                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                  <h3 class="text-xl font-semibold text-slate-900">Seguimiento</h3>
+                </div>
+                <p class="text-slate-600 leading-relaxed">Aseguramos el cumplimiento y te mantenemos informado</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario de Contacto -->
+  <section id="contacto" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            ¿Tienes una Consulta Legal?
+          </h2>
+          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+            Completa el formulario y te contactaremos en las próximas 24 horas. 
+            Consulta inicial gratuita de 30 minutos.
+          </p>
+        </div>
+        
+        <ContactForm client:load />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final eliminada por solicitud -->
+
+  <!-- Asesor virtual (sección final) -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div>
+          <h3 class="text-2xl font-semibold text-slate-900">¿Prefieres orientación por chat?</h3>
+          <p class="text-slate-600 mt-2">Nuestro asistente puede responder consultas generales y coordinar una consulta. No compartas datos sensibles. No constituye asesoría legal.</p>
+          <div class="mt-4 flex gap-3">
+            <a href="#contacto" class="btn-primary">Abrir chat y agendar</a>
+            <a href="#contacto" class="border px-4 py-3 rounded-md font-medium text-primary-600 border-primary-200">Usar formulario</a>
+          </div>
+        </div>
+        <div class="rounded-2xl border bg-slate-50 p-6 text-slate-600">
+          <p><strong>Ejemplos que puedes preguntar:</strong></p>
+          <ul class="list-disc pl-5 mt-2 space-y-1">
+            <li>“Me despidieron sin explicación, ¿qué hago ahora?”</li>
+            <li>“¿Qué documents necesito para iniciar un divorcio?”</li>
+            <li>“¿Puedo impugnar esta multa del tránsito?”</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
