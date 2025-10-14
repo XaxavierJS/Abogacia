@@ -1,0 +1,293 @@
+---
+description: Chatbot accesible y ético (no asesoría legal). Implementado como isla React con Radix.
+globs: ["src/components/ChatbotWidget.tsx", "src/components/legal/Disclaimer.tsx"]
+alwaysApply: true
+---
+
+# /wire chatbot - Implementación de Chatbot Legal
+
+## Reglas UX/Ética (CRÍTICAS)
+- **DEBE** mostrar aviso persistente: "Este chatbot NO entrega asesoría legal, no crea relación abogado-cliente, no envíe información confidencial."
+- **DEBE** ofrecer derivación rápida a humano (botón "Hablar con humano" → link/WhatsApp/teléfono).
+- **NUNCA** afirmar resultados, garantías o especialidades no certificadas (ABA 7.1/7.2).
+- **DEBE** incluir link a Política de Privacidad en cada conversación.
+
+## Implementación Técnica
+
+### ChatbotWidget Component
+```tsx
+// src/components/ChatbotWidget.tsx
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
+import { Input } from '@/components/ui/input';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { MessageCircle, X, Send, Phone, Mail } from 'lucide-react';
+import Disclaimer from '@/components/legal/Disclaimer';
+
+interface Message {
+  id: string;
+  text: string;
+  isUser: boolean;
+  timestamp: Date;
+}
+
+export default function ChatbotWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+
+  const predefinedResponses = {
+    'consulta': 'Para consultas legales específicas, te recomiendo agendar una cita con nuestro abogado. ¿Te gustaría programar una consulta gratuita?',
+    'cita': 'Puedes agendar una cita llamando al +56 9 1234 5678 o completando nuestro formulario de contacto. ¿Te ayudo con algo más?',
+    'servicios': 'Ofrecemos servicios en derecho laboral, familiar, penal y civil. Puedes ver más detalles en nuestra página de servicios.',
+    'horarios': 'Nuestros horarios de atención son: Lunes a Viernes 9:00-18:00, Sábados 9:00-13:00. ¿Necesitas información adicional?',
+    'ubicacion': 'Estamos ubicados en Av. Principal 123, Santiago. ¿Te gustaría agendar una cita presencial?'
+  };
+
+  const handleSendMessage = async () => {
+    if (!inputValue.trim()) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      text: inputValue,
+      isUser: true,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+    setIsTyping(true);
+
+    // Simular respuesta del bot
+    setTimeout(() => {
+      const botResponse = getBotResponse(inputValue.toLowerCase());
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: botResponse,
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, botMessage]);
+      setIsTyping(false);
+    }, 1000);
+  };
+
+  const getBotResponse = (input: string): string => {
+    for (const [keyword, response] of Object.entries(predefinedResponses)) {
+      if (input.includes(keyword)) {
+        return response;
+      }
+    }
+    return 'Gracias por tu consulta. Para asesoría legal específica, te recomiendo contactar directamente con nuestro despacho. ¿Te gustaría agendar una consulta?';
+  };
+
+  const clearChat = () => {
+    setMessages([]);
+  };
+
+  return (
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <Button
+          size="lg"
+          className="fixed bottom-6 right-6 rounded-full shadow-lg z-50 bg-accent-600 hover:bg-accent-700"
+          aria-label="Abrir chatbot de consultas"
+        >
+          <MessageCircle className="h-6 w-6" />
+        </Button>
+      </SheetTrigger>
+      
+      <SheetContent className="w-full sm:max-w-md">
+        <SheetHeader>
+          <SheetTitle>Asistente Legal</SheetTitle>
+          <SheetDescription>
+            <Disclaimer type="chatbot" className="mt-2" />
+          </SheetDescription>
+        </SheetHeader>
+
+        <div className="flex flex-col h-full">
+          {/* Chat Messages */}
+          <ScrollArea className="flex-1 p-4">
+            <div className="space-y-4">
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] p-3 rounded-lg ${
+                      message.isUser
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-gray-100 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className="text-xs opacity-70 mt-1">
+                      {message.timestamp.toLocaleTimeString('es-ES', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="bg-gray-100 p-3 rounded-lg">
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </ScrollArea>
+
+          {/* Input Area */}
+          <div className="border-t p-4">
+            <div className="flex space-x-2">
+              <Input
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Escribe tu consulta..."
+                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim() || isTyping}
+                size="sm"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
+            
+            {/* Action Buttons */}
+            <div className="flex justify-between mt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={clearChat}
+                className="text-xs"
+              >
+                Borrar Chat
+              </Button>
+              
+              <div className="flex space-x-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="text-xs"
+                >
+                  <a href="tel:+56912345678">
+                    <Phone className="h-3 w-3 mr-1" />
+                    Llamar
+                  </a>
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="text-xs"
+                >
+                  <a href="mailto:contacto@abogado.com">
+                    <Mail className="h-3 w-3 mr-1" />
+                    Email
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
+```
+
+## Integración en BaseLayout
+```astro
+---
+// src/layouts/BaseLayout.astro
+import ChatbotWidget from '@/components/ChatbotWidget';
+---
+
+<html lang="es">
+  <head>
+    <!-- ... meta tags ... -->
+  </head>
+  <body>
+    <!-- ... contenido ... -->
+    
+    <!-- Chatbot Widget -->
+    <ChatbotWidget client:idle />
+  </body>
+</html>
+```
+
+## Configuración de Accesibilidad
+- **ARIA Labels**: Todos los botones tienen labels descriptivos
+- **Focus Management**: Focus se mantiene en el input después de enviar
+- **Keyboard Navigation**: Soporte completo para navegación con teclado
+- **Screen Reader**: Texto descriptivo para lectores de pantalla
+- **High Contrast**: Colores con contraste adecuado
+
+## Rate Limiting y Seguridad
+```typescript
+// src/lib/chatbot-security.ts
+const RATE_LIMIT = 10; // mensajes por minuto
+const userMessages = new Map<string, number[]>();
+
+export const checkRateLimit = (userId: string): boolean => {
+  const now = Date.now();
+  const userMessageTimes = userMessages.get(userId) || [];
+  
+  // Filtrar mensajes de los últimos 60 segundos
+  const recentMessages = userMessageTimes.filter(time => now - time < 60000);
+  
+  if (recentMessages.length >= RATE_LIMIT) {
+    return false;
+  }
+  
+  recentMessages.push(now);
+  userMessages.set(userId, recentMessages);
+  return true;
+};
+
+export const sanitizeInput = (input: string): string => {
+  return input
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<[^>]*>/g, '')
+    .trim()
+    .substring(0, 500); // Limitar longitud
+};
+```
+
+## Comandos de Implementación
+```bash
+# Crear componente chatbot
+touch src/components/ChatbotWidget.tsx
+
+# Instalar dependencias adicionales
+pnpm add @radix-ui/react-scroll-area
+
+# Verificar implementación
+node scripts/check-chatbot.mjs
+```
+
+## Checklist de Chatbot
+- [ ] Disclaimer legal visible y persistente
+- [ ] Botón de derivación a humano funcionando
+- [ ] Rate limiting implementado
+- [ ] Accesibilidad verificada
+- [ ] Responsive design
+- [ ] Integración con formularios de contacto
+- [ ] Política de privacidad enlazada
+- [ ] Pruebas de funcionalidad completadas 

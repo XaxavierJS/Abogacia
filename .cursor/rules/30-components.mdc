@@ -1,0 +1,25 @@
+---
+description: Kit de componentes con shadcn/ui + Radix. Generar SOLO lo necesario y accesible.
+globs: ["src/components/**/*.{ts,tsx,astro}"]
+alwaysApply: true
+---
+
+# Componentes base (usar shadcn/ui; Radix debajo)
+- **Button**: variantes `primary/secondary/ghost` (usa tokens).
+- **Card**: borde `--border`, sombra sutil; slots: title, description, cta.
+- **Navbar**: sticky; colapsa en móvil; usa Radix `NavigationMenu`.
+- **Accordion**: FAQs y Casos (Radix `Accordion` si lo añades).
+- **Tooltip**: Radix `Tooltip` (solo cuando aporte).
+- **Steps**: proceso en 4–6 pasos (componente propio simple).
+- **Form**: inputs con label visible, `:focus` evidente, mensajes de error.
+
+# Reglas
+- No crear componentes que no se usen en una sección.
+- Añadir tests visuales mínimos (stories o MDX de ejemplo).
+- Preferir `<Component client:idle>` para UI no crítica; `client:visible` en secciones más abajo del pliegue.
+
+# Especificaciones rápidas
+- **Navbar.tsx**: Logo (texto o SVG), menús: Inicio, Áreas, Equipo, Insights, Contacto. CTA “Agenda una consulta”.
+- **PracticeCard.tsx**: título (3–5 palabras), descripción (≤ 120 chars), link “Ver más”.
+- **TestimonialCard.tsx**: cita + nombre + rol/ciudad (sin prometer resultados).
+- **FaqAccordion.tsx**: 6–8 FAQs con respuestas concisas.

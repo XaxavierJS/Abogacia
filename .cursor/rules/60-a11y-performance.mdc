@@ -1,0 +1,23 @@
+---
+description: Checklist de accesibilidad y rendimiento (bloqueante).
+globs:
+alwaysApply: true
+---
+
+# WCAG 2.2 (AA)
+- Contraste: texto ≥4.5:1; texto grande/controles ≥3:1. Verificar tokens y estados hover/focus.
+- Labels visibles; `aria-*` cuando proceda; focus claramente visible.
+- Prueba con WebAIM Contrast Checker y test automatizado (script `scripts/contrast.mjs`).
+
+# Core Web Vitals
+- **LCP ≤ 2.5s:** imagen hero optimizada (`<img loading="eager" fetchpriority="high">` o `Astro <Image>`).
+- **INP < 200ms:** evitar listeners pesados; hidratar tarde; JS mínimo.
+- **CLS ≤ 0.1:** reservar alturas, no cambiar fuentes sin `font-display: swap`.
+
+# Tareas automáticas
+- Añadir script `pnpm run check:contrast` (fallar si AA no se cumple).
+- Lighthouse/Pagespeed: checklist pre-deploy.
+
+# Citas técnicas (referencia)
+- WCAG 2.2 contraste y WebAIM.
+- CWV (LCP, INP, CLS) y transición de FID→INP.

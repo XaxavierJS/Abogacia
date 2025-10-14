@@ -1,0 +1,375 @@
+---
+description: Compliance legal, seguridad y protección de datos para sitios web de abogados.
+globs: ["src/pages/legal/**", "src/components/legal/**", "src/lib/legal/**"]
+alwaysApply: true
+---
+
+# /setup legal - Compliance Legal y Seguridad
+
+## 1. Páginas Legales Obligatorias
+
+### Política de Privacidad (`/legal/privacidad`)
+```astro
+---
+// src/pages/legal/privacidad.astro
+import LegalLayout from '@/layouts/LegalLayout.astro';
+---
+
+<LegalLayout title="Política de Privacidad">
+  <div class="prose max-w-4xl mx-auto">
+    <h1>Política de Privacidad</h1>
+    
+    <h2>1. Información que Recopilamos</h2>
+    <p>Recopilamos información que usted nos proporciona directamente...</p>
+    
+    <h2>2. Uso de la Información</h2>
+    <p>Utilizamos su información para...</p>
+    
+    <h2>3. Compartir Información</h2>
+    <p>No vendemos, alquilamos ni compartimos su información personal...</p>
+    
+    <h2>4. Sus Derechos (GDPR/CCPA)</h2>
+    <p>Usted tiene derecho a acceder, rectificar, eliminar...</p>
+    
+    <h2>5. Cookies</h2>
+    <p>Utilizamos cookies para mejorar su experiencia...</p>
+    
+    <h2>6. Contacto</h2>
+    <p>Para preguntas sobre esta política: contacto@abogado.com</p>
+  </div>
+</LegalLayout>
+```
+
+### Términos de Servicio (`/legal/terminos`)
+```astro
+---
+// src/pages/legal/terminos.astro
+import LegalLayout from '@/layouts/LegalLayout.astro';
+---
+
+<LegalLayout title="Términos de Servicio">
+  <div class="prose max-w-4xl mx-auto">
+    <h1>Términos de Servicio</h1>
+    
+    <h2>1. Aceptación de Términos</h2>
+    <p>Al acceder a este sitio web, acepta estos términos...</p>
+    
+    <h2>2. Uso del Sitio</h2>
+    <p>Este sitio es para fines informativos únicamente...</p>
+    
+    <h2>3. No Constituye Asesoría Legal</h2>
+    <p><strong>IMPORTANTE:</strong> La información en este sitio NO constituye asesoría legal...</p>
+    
+    <h2>4. Relación Abogado-Cliente</h2>
+    <p>No se establece relación abogado-cliente hasta firmar contrato...</p>
+    
+    <h2>5. Limitación de Responsabilidad</h2>
+    <p>No garantizamos resultados específicos...</p>
+  </div>
+</LegalLayout>
+```
+
+### Aviso Legal (`/legal/aviso-legal`)
+```astro
+---
+// src/pages/legal/aviso-legal.astro
+import LegalLayout from '@/layouts/LegalLayout.astro';
+---
+
+<LegalLayout title="Aviso Legal">
+  <div class="prose max-w-4xl mx-auto">
+    <h1>Aviso Legal</h1>
+    
+    <h2>1. Identificación del Titular</h2>
+    <p>Nombre: [Nombre del Abogado/Despacho]<br>
+    Colegiado: [Número de Colegio]<br>
+    Dirección: [Dirección completa]<br>
+    Teléfono: [Teléfono]<br>
+    Email: [Email]</p>
+    
+    <h2>2. Objeto del Sitio</h2>
+    <p>Este sitio web tiene carácter informativo...</p>
+    
+    <h2>3. Propiedad Intelectual</h2>
+    <p>Todo el contenido está protegido por derechos de autor...</p>
+    
+    <h2>4. Exclusión de Garantías</h2>
+    <p>No garantizamos la disponibilidad continua del sitio...</p>
+  </div>
+</LegalLayout>
+```
+
+## 2. Componentes Legales
+
+### Disclaimer Component
+```tsx
+// src/components/legal/Disclaimer.tsx
+import { AlertTriangle } from 'lucide-react';
+
+interface DisclaimerProps {
+  type?: 'general' | 'testimonial' | 'chatbot';
+  className?: string;
+}
+
+export default function Disclaimer({ type = 'general', className = '' }: DisclaimerProps) {
+  const getDisclaimerText = () => {
+    switch (type) {
+      case 'testimonial':
+        return "Los resultados pueden variar. Cada caso es único y no garantizamos resultados específicos.";
+      case 'chatbot':
+        return "Este chatbot NO proporciona asesoría legal. No crea relación abogado-cliente. No envíe información confidencial.";
+      default:
+        return "La información en este sitio es solo para fines informativos y no constituye asesoría legal.";
+    }
+  };
+
+  return (
+    <div className={`bg-amber-50 border-l-4 border-amber-400 p-4 ${className}`}>
+      <div className="flex">
+        <AlertTriangle className="h-5 w-5 text-amber-400 mr-2 flex-shrink-0" />
+        <p className="text-sm text-amber-800">
+          <strong>AVISO LEGAL:</strong> {getDisclaimerText()}
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### Privacy Notice Component
+```tsx
+// src/components/legal/PrivacyNotice.tsx
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
+
+export default function PrivacyNotice() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 bg-primary-700 text-white p-4 z-50">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="flex-1">
+          <p className="text-sm">
+            Utilizamos cookies para mejorar su experiencia. 
+            <a href="/legal/privacidad" className="underline ml-1">
+              Más información
+            </a>
+          </p>
+        </div>
+        <div className="flex gap-2 ml-4">
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => setIsVisible(false)}
+            className="text-white border-white hover:bg-white hover:text-primary-700"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## 3. Configuración de Seguridad
+
+### Headers de Seguridad
+```typescript
+// src/lib/security.ts
+export const securityHeaders = {
+  'X-Frame-Options': 'DENY',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Content-Security-Policy': `
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://vercel.live;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: https:;
+    connect-src 'self' https://vitals.vercel-insights.com;
+  `.replace(/\s+/g, ' ').trim()
+};
+```
+
+### Validación de Formularios
+```typescript
+// src/lib/validations.ts
+import { z } from 'zod';
+
+export const contactFormSchema = z.object({
+  name: z.string().min(2, 'Nombre debe tener al menos 2 caracteres'),
+  email: z.string().email('Email inválido'),
+  phone: z.string().min(10, 'Teléfono debe tener al menos 10 dígitos'),
+  subject: z.string().min(5, 'Asunto debe tener al menos 5 caracteres'),
+  message: z.string().min(20, 'Mensaje debe tener al menos 20 caracteres'),
+  privacy: z.boolean().refine(val => val === true, 'Debe aceptar la política de privacidad')
+});
+
+export const appointmentFormSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(10),
+  service: z.string().min(1, 'Debe seleccionar un servicio'),
+  date: z.string().min(1, 'Debe seleccionar una fecha'),
+  time: z.string().min(1, 'Debe seleccionar una hora'),
+  message: z.string().optional(),
+  privacy: z.boolean().refine(val => val === true)
+});
+```
+
+## 4. Configuración SSL y HTTPS
+
+### Verificación SSL
+```typescript
+// src/lib/ssl.ts
+export const verifySSL = () => {
+  if (typeof window !== 'undefined') {
+    const isHTTPS = window.location.protocol === 'https:';
+    if (!isHTTPS && window.location.hostname !== 'localhost') {
+      console.warn('⚠️ Este sitio debe usar HTTPS en producción');
+    }
+  }
+};
+```
+
+### Redirect HTTP a HTTPS
+```astro
+---
+// src/pages/redirect-https.astro
+if (import.meta.env.PROD && !Astro.url.protocol.includes('https')) {
+  return Astro.redirect(`https://${Astro.url.hostname}${Astro.url.pathname}`, 301);
+}
+---
+```
+
+## 5. Configuración GDPR/CCPA
+
+### Cookie Consent
+```tsx
+// src/components/legal/CookieConsent.tsx
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+
+export default function CookieConsent() {
+  const [showConsent, setShowConsent] = useState(false);
+
+  useEffect(() => {
+    const consent = localStorage.getItem('cookie-consent');
+    if (!consent) {
+      setShowConsent(true);
+    }
+  }, []);
+
+  const acceptCookies = () => {
+    localStorage.setItem('cookie-consent', 'accepted');
+    setShowConsent(false);
+  };
+
+  const rejectCookies = () => {
+    localStorage.setItem('cookie-consent', 'rejected');
+    setShowConsent(false);
+  };
+
+  if (!showConsent) return null;
+
+  return (
+    <Dialog open={showConsent} onOpenChange={setShowConsent}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Uso de Cookies</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Utilizamos cookies para mejorar su experiencia, analizar el tráfico y personalizar contenido.
+          </p>
+          <div className="flex gap-2">
+            <Button onClick={acceptCookies}>Aceptar</Button>
+            <Button variant="outline" onClick={rejectCookies}>Rechazar</Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+## 6. Scripts de Verificación
+
+### Verificar Compliance
+```javascript
+// scripts/check-legal.mjs
+import { readFileSync } from 'fs';
+import { glob } from 'glob';
+
+const requiredPages = [
+  'src/pages/legal/privacidad.astro',
+  'src/pages/legal/terminos.astro',
+  'src/pages/legal/aviso-legal.astro'
+];
+
+const requiredComponents = [
+  'src/components/legal/Disclaimer.tsx',
+  'src/components/legal/PrivacyNotice.tsx'
+];
+
+console.log('🔍 Verificando compliance legal...');
+
+// Verificar páginas legales
+for (const page of requiredPages) {
+  try {
+    const content = readFileSync(page, 'utf-8');
+    console.log(`✅ ${page} existe`);
+  } catch (error) {
+    console.error(`❌ ${page} no encontrada`);
+  }
+}
+
+// Verificar componentes legales
+for (const component of requiredComponents) {
+  try {
+    const content = readFileSync(component, 'utf-8');
+    console.log(`✅ ${component} existe`);
+  } catch (error) {
+    console.error(`❌ ${component} no encontrada`);
+  }
+}
+
+console.log('✅ Verificación de compliance completada');
+```
+
+## 7. Comandos de Implementación
+
+```bash
+# Crear estructura legal
+mkdir -p src/pages/legal src/components/legal src/lib
+
+# Crear páginas legales
+touch src/pages/legal/{privacidad,terminos,aviso-legal}.astro
+
+# Crear componentes legales
+touch src/components/legal/{Disclaimer,PrivacyNotice,CookieConsent}.tsx
+
+# Crear utilidades
+touch src/lib/{security,validations,ssl}.ts
+
+# Verificar compliance
+node scripts/check-legal.mjs
+```
+
+## 8. Checklist de Compliance
+
+- [ ] Política de Privacidad implementada
+- [ ] Términos de Servicio implementados
+- [ ] Aviso Legal implementado
+- [ ] Disclaimers en testimonios y chatbot
+- [ ] Formularios con validación y consentimiento
+- [ ] HTTPS configurado
+- [ ] Headers de seguridad implementados
+- [ ] Cookie consent implementado
+- [ ] Scripts de verificación funcionando
