@@ -26,9 +26,11 @@ export const contactFormSchema = z.object({
   
   urgency: z.enum(['low', 'medium', 'high', 'emergency']).optional(),
   
+  practiceArea: z.string().optional(),
+  
   contactMethod: z.enum(['email', 'phone', 'whatsapp', 'any']).optional(),
   
-  privacy: z.boolean()
+  privacyConsent: z.boolean()
     .refine(val => val === true, 'Debes aceptar la política de privacidad'),
   
   marketing: z.boolean().optional()

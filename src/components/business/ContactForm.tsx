@@ -1,5 +1,15 @@
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { contactFormSchema } from '../../lib/validations';
 import { CONTACT_INFO, PRACTICE_AREAS } from '../../lib/constants';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Checkbox } from '../ui/checkbox';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { AlertCircle, CheckCircle, Phone, Mail, MapPin, Clock, MessageSquare, Send } from 'lucide-react';
 import Disclaimer from '../legal/Disclaimer';
 
 const urgencyLevels = [
