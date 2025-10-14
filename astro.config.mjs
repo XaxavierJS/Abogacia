@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { fileURLToPath, URL } from 'node:url';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
@@ -13,6 +14,11 @@ export default defineConfig({
     inlineStylesheets: 'auto'
   },
   vite: {
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    },
     build: {
       cssMinify: true
     }
