@@ -4,22 +4,22 @@ globs: ["src/components/**/*.{ts,tsx,astro}"]
 alwaysApply: true
 ---
 
-# Componentes base (usar shadcn/ui; Radix debajo)
-- **Button**: variantes `primary/secondary/ghost` (usa tokens).
-- **Card**: borde `--border`, sombra sutil; slots: title, description, cta.
-- **Navbar**: sticky; colapsa en móvil; usa Radix `NavigationMenu`.
-- **Accordion**: FAQs y Casos (Radix `Accordion` si lo añades).
-- **Tooltip**: Radix `Tooltip` (solo cuando aporte).
-- **Steps**: proceso en 4–6 pasos (componente propio simple).
-- **Form**: inputs con label visible, `:focus` evidente, mensajes de error.
+# Componentes base (shadcn/ui + Tailwind tokens)
+- **Button**: usa utilidades `btn-primary`, `outline`, `ghost`. Nada de estilos ad-hoc.
+- **Input/Select/Textarea**: aplicar `form-input` (fondo white, focus ring accesible). El `SelectTrigger` debe tener `bg-white` por defecto.
+- **Card**: borde `--border`, sombra suave (`shadow-primary-900/5`), padding suficiente.
+- **Navbar**: sticky con fondo blanco sólido (`bg-white`) y borde inferior. Items: `Inicio`, `Sobre Nosotros`, `Nuestros Servicios Legales`, `Contacto`. CTA `Consulta Gratuita`.
+- **Footer**: datos de contacto + enlaces legales + disclaimers.
+- **ChatbotWidget**: carga única (`id="n8n-chat-script"`), tema azul corporativo, `showPoweredBy: false`, bienvenida con disclaimers.
+- **Disclaimer/CookieConsent**: obligatorios en flujos sensibles.
 
 # Reglas
 - No crear componentes que no se usen en una sección.
-- Añadir tests visuales mínimos (stories o MDX de ejemplo).
-- Preferir `<Component client:idle>` para UI no crítica; `client:visible` en secciones más abajo del pliegue.
+- Preferir `<Component client:idle>` para UI no crítica; `client:visible` en módulos largos.
+- Mantener props tipadas (`Props`), export default simple, sin lógica innecesaria.
 
 # Especificaciones rápidas
-- **Navbar.tsx**: Logo (texto o SVG), menús: Inicio, Áreas, Equipo, Insights, Contacto. CTA “Agenda una consulta”.
-- **PracticeCard.tsx**: título (3–5 palabras), descripción (≤ 120 chars), link “Ver más”.
-- **TestimonialCard.tsx**: cita + nombre + rol/ciudad (sin prometer resultados).
-- **FaqAccordion.tsx**: 6–8 FAQs con respuestas concisas.
+- **Navbar.tsx**: botón CTA enlaza `#contacto`, teléfono visible en desktop, menú móvil con `Sheet`.
+- **ContactForm.tsx**: validación con Zod, mensajes de éxito/errores visibles, CTA secundaria para volver al estado inicial.
+- **Disclaimer.tsx**: variantes `general`, `chatbot`; sin duplicar texto legal en otras capas.
+- **ChatbotWidget.tsx**: mensaje de bienvenida recuerda que no hay asesoría legal ni relación abogado-cliente; placeholder conversacional.

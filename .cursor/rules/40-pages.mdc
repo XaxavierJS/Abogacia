@@ -5,15 +5,15 @@ alwaysApply: true
 ---
 
 # Layout
-- `src/layouts/BaseLayout.astro`: <html lang="es">, fuente, `<Seo />`, navbar, slot, footer.
-- Container: `max-w-screen-xl`, `px-6` móvil, `px-8 md`, secciones `py-16` móvil, `py-24 lg`.
+- `src/layouts/BaseLayout.astro`: `<html lang="es">`, `<Seo />`, `Navbar`, `Footer`, CookieConsent y Chatbot (`client:idle`).
+- `src/layouts/LegalLayout.astro`: incluir `<meta charset="UTF-8">` y hero gradiente con título/fecha + breadcrumb + artículo `prose` en tarjeta blanca.
+- Usa `container-custom` (`max-w-7xl`, `px-6` móvil, `px-8` >= md); secciones largas `py-16` móvil, `py-24` en desktop.
 
 # Páginas
-- `/` (Hero + Áreas + Credenciales + Perfil + Casos + Testimonios + Proceso + FAQs + Contacto + Chatbot).
-- `/areas` (grid 3x2 de áreas) y `/areas/[slug]` (detalle con FAQ local).
-- `/equipo` (bio, foto real, colegios).
-- `/insights` y `/insights/[slug]` (blog).
-- `/contacto` (form 5 campos + mapa estático + teléfonos/WhatsApp).
+- `/` (Hero confianza + áreas de práctica destacadas + diferenciadores + testimonios + proceso + CTA final).
+- `/contacto` (hero gradiente, datos de contacto, formulario validado, disclaimer + mapa).
+- `/derecho-*.astro` + `/justicia-local.astro` (hero específico, contenidos educativos, `ContactForm client:load` al cierre).
+- `/legal/*` (Aviso Legal, Cookies, Privacidad, Términos) siempre mediante `LegalLayout`.
 
 # Hero (above the fold)
 - H1 (8–12 palabras), subcopy (20–30), CTA primario + secundario; imagen real del abogado/equipo.
@@ -22,3 +22,4 @@ alwaysApply: true
 # Avisos legales
 - Footer: Privacidad, Cookies, Aviso Legal.
 - En Casos/Testimonios: **disclaimer** “Cada caso es distinto; no garantiza resultados” (ABA 7.1).
+- Formularios: checkbox obligatorio aceptando `Política de Privacidad` y `Términos`.

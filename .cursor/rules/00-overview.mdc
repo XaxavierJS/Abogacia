@@ -19,6 +19,7 @@ Sitio web profesional para abogado/despacho jurídico construido con **Astro 5**
 # Arquitectura Técnica
 - **Framework**: Astro 5 (SSG + islas)
 - **UI**: React para interactividad, Tailwind CSS, shadcn/ui (Radix)
+- **Tipografía**: `@tailwindcss/typography` para maquetar políticas y artículos legales
 - **Hidratación**: `client:idle` (no crítica), `client:visible` (below fold), `client:load` (crítica)
 - **Performance**: Core Web Vitals optimizado
 - **SEO**: JSON-LD schema, meta tags, sitemap
@@ -33,23 +34,23 @@ Sitio web profesional para abogado/despacho jurídico construido con **Astro 5**
 # Estructura de Archivos
 ```
 src/
+├── components/
+│   ├── ui/ (shadcn components reutilizables)
+│   ├── business/ (formularios y flujos conversión)
+│   ├── legal/ (avisos, cookie consent)
+│   ├── Navbar.tsx / Footer.astro / ChatbotWidget.tsx
 ├── layouts/
-│   ├── BaseLayout.astro
-│   └── LegalLayout.astro
+│   ├── BaseLayout.astro (estructura global + cookies + chatbot)
+│   └── LegalLayout.astro (hero gradiente + artículo `prose`)
 ├── pages/
 │   ├── index.astro
-│   ├── areas/
-│   ├── equipo/
-│   ├── insights/
 │   ├── contacto.astro
-│   └── legal/ (políticas, términos)
-├── components/
-│   ├── ui/ (shadcn components)
-│   ├── business/ (citas, portal, formularios)
-│   └── legal/ (disclaimers, avisos)
+│   ├── derecho-*.astro (áreas de práctica)
+│   ├── justicia-local.astro
+│   └── legal/ (aviso, cookies, privacidad, términos)
 ├── content/
 │   ├── areas/
 │   └── insights/
 └── styles/
-    └── globals.css
+    └── globals.css (tokens + formularios + overrides n8n)
 ```
