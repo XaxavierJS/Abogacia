@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useForm } from 'node_modules/react-hook-form/dist';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { contactFormSchema } from '@/lib/validations';
-import { CONTACT_INFO, PRACTICE_AREAS } from '@/lib/constants';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { contactFormSchema } from '../../lib/validations';
+import { CONTACT_INFO, PRACTICE_AREAS } from '../../lib/constants';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Checkbox } from '../ui/checkbox';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { AlertCircle, CheckCircle, Phone, Mail, MapPin, Clock, MessageSquare, Send } from 'lucide-react';
-import Disclaimer from '@/components/legal/Disclaimer';
+import Disclaimer from '../legal/Disclaimer';
 
 const urgencyLevels = [
   { value: 'low', label: 'Baja - Puede esperar' },
