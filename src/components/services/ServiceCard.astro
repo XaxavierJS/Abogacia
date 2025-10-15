@@ -1,0 +1,29 @@
+---
+export interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  timeBadge?: string;
+}
+
+const { icon, title, description, timeBadge } = Astro.props;
+---
+
+<div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
+  <div class="flex items-start gap-4">
+    <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
+      <div class="w-5 h-5" set:html={icon}></div>
+    </div>
+    <div class="min-w-0">
+      <div class="flex items-center gap-2">
+        <h3 class="font-semibold text-slate-900">{title}</h3>
+        {timeBadge && (
+          <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
+            {timeBadge}
+          </span>
+        )}
+      </div>
+      <p class="mt-1 text-sm text-slate-600">{description}</p>
+    </div>
+  </div>
+</div>

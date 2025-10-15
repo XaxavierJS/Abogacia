@@ -1,0 +1,165 @@
+---
+alwaysApply: true
+---
+
+# Reglas de Accesibilidad - MGM Abogados
+
+## ♿ Estándares WCAG 2.1 AA
+
+### Contraste de Colores
+- **Texto normal**: Contraste mínimo 4.5:1
+- **Texto grande**: Contraste mínimo 3:1
+- **Elementos interactivos**: Contraste mínimo 3:1
+
+### Colores Accesibles
+```css
+/* ✅ Buenos contrastes */
+.text-slate-900 on .bg-white     /* 15.8:1 */
+.text-primary-600 on .bg-white    /* 4.5:1 */
+.text-white on .bg-primary-600    /* 4.5:1 */
+
+/* ❌ Malos contrastes */
+.text-slate-400 on .bg-white      /* 2.1:1 */
+.text-primary-300 on .bg-white    /* 1.8:1 */
+```
+
+## 🖼️ Imágenes
+
+### Alt Text Obligatorio
+```html
+<!-- ✅ Correcto -->
+<img src="abogado.jpg" alt="Dr. Juan Pérez, abogado especialista en derecho familiar">
+
+<!-- ❌ Incorrecto -->
+<img src="abogado.jpg" alt="imagen">
+<img src="abogado.jpg" alt="">
+<img src="abogado.jpg">
+```
+
+### Tipos de Alt Text
+- **Descriptivo**: Para imágenes informativas
+- **Vacío**: Para imágenes decorativas (`alt=""`)
+- **Funcional**: Para imágenes que son enlaces
+
+## 🔘 Botones
+
+### Aria Labels Obligatorios
+```html
+<!-- ✅ Correcto -->
+<button aria-label="Abrir chat para consulta legal">
+  <ChatIcon />
+</button>
+
+<button aria-describedby="chat-description">
+  Consultar por Chat
+</button>
+<div id="chat-description">Abre el chat para consultas inmediatas</div>
+
+<!-- ❌ Incorrecto -->
+<button>
+  <ChatIcon />
+</button>
+```
+
+### Botones de Icono
+- SIEMPRE usar `aria-label`
+- Describir la acción, no el icono
+- Mantener consistencia en toda la aplicación
+
+## 🔗 Enlaces
+
+### Texto Descriptivo
+```html
+<!-- ✅ Correcto -->
+<a href="/derecho-familiar">Más información sobre derecho familiar</a>
+
+<!-- ❌ Incorrecto -->
+<a href="/derecho-familiar">aquí</a>
+<a href="/derecho-familiar">leer más</a>
+<a href="/derecho-familiar">click aquí</a>
+```
+
+### Enlaces Vacíos
+- NO usar enlaces vacíos
+- Proporcionar contexto claro
+- Usar texto descriptivo
+
+## 📱 Navegación
+
+### Skip Links
+```html
+<a href="#main-content" class="sr-only focus:not-sr-only">
+  Saltar al contenido principal
+</a>
+```
+
+### Navegación por Teclado
+- Todos los elementos interactivos deben ser accesibles por teclado
+- Usar `tabindex="0"` para elementos focusables
+- Usar `tabindex="-1"` para elementos no focusables
+
+### Focus Visible
+```css
+.focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+```
+
+## 📝 Formularios
+
+### Labels Obligatorios
+```html
+<!-- ✅ Correcto -->
+<label for="email">Correo electrónico</label>
+<input type="email" id="email" name="email" required>
+
+<!-- ❌ Incorrecto -->
+<input type="email" placeholder="Email" required>
+```
+
+### Mensajes de Error
+```html
+<!-- ✅ Correcto -->
+<input type="email" id="email" aria-describedby="email-error">
+<div id="email-error" role="alert">Por favor ingresa un email válido</div>
+```
+
+### Campos Requeridos
+- Usar `required` attribute
+- Indicar visualmente con asterisco
+- Proporcionar mensajes de error claros
+
+## 🎯 Objetivos de Accesibilidad
+
+### Navegación
+- Funciona solo con teclado
+- Orden lógico de tabulación
+- Indicadores de foco visibles
+
+### Contenido
+- Texto legible y contrastado
+- Imágenes con alt text descriptivo
+- Enlaces con contexto claro
+
+### Interacción
+- Botones con aria-labels
+- Formularios con labels
+- Mensajes de error claros
+
+## 🔍 Validación
+
+### Herramientas
+```bash
+npm run check:a11y    # Auditoría de accesibilidad
+npm run check:contrast # Verificación de contraste
+```
+
+### Checklist
+- [ ] Todas las imágenes tienen alt text
+- [ ] Todos los botones tienen aria-label
+- [ ] Todos los enlaces tienen texto descriptivo
+- [ ] Contraste mínimo 4.5:1 para texto
+- [ ] Navegación funciona solo con teclado
+- [ ] Formularios tienen labels
+- [ ] Mensajes de error son claros

@@ -1,0 +1,102 @@
+---
+export interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: string;
+  stats: Array<{
+    label: string;
+    value: string;
+  }>;
+  summaryPoints: string[];
+  contactInfo: {
+    phone: string;
+  };
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  icon,
+  stats,
+  summaryPoints,
+  contactInfo
+} = Astro.props;
+---
+
+<!-- Hero Section con sidebar sticky -->
+<section class="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-slate-100">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start max-w-7xl mx-auto">
+      <!-- Columna izquierda: titular + beneficios + CTAs -->
+      <div class="md:col-span-7">
+        <div class="w-16 h-16 bg-primary-100 rounded-lg mb-6 flex items-center justify-center">
+          <div class="text-primary-600" set:html={icon}></div>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight text-balance">
+          {title}
+        </h1>
+        <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-2xl">
+          {subtitle}
+        </p>
+        <p class="mt-4 text-base text-slate-600 max-w-2xl">
+          {description}
+        </p>
+        
+        <!-- Stats Cards -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {stats.map((stat) => (
+            <div class="bg-white border rounded-xl p-4 shadow-sm">
+              <p class="text-sm text-slate-600">{stat.label}</p>
+              <p class="text-lg font-semibold text-slate-900">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+        
+        <!-- CTAs - Solo los esenciales -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="#contacto" class="btn-primary text-lg px-8 py-4">
+            Consulta Gratuita
+          </a>
+          <button 
+            type="button" 
+            data-chat-open 
+            class="btn-secondary text-lg px-8 py-4" 
+            aria-label="Abrir chat para consulta legal"
+          >
+            Consultar por Chat
+          </button>
+        </div>
+      </div>
+      
+      <!-- Columna derecha: tarjeta sticky con resumen y CTA al chat/form -->
+      <aside class="md:col-span-5">
+        <div class="md:sticky md:top-24">
+          <div class="bg-white rounded-2xl p-6 border shadow-md shadow-primary-900/5">
+            <h2 class="text-xl font-semibold text-slate-900">Comienza aquí</h2>
+            <ul class="mt-4 space-y-3 text-sm text-slate-700">
+              {summaryPoints.map((point) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6">
+              <button 
+                type="button" 
+                data-chat-open 
+                class="btn-primary w-full text-center" 
+                aria-label="Abrir chat para consulta legal"
+              >
+                Consultar por Chat
+              </button>
+              <p class="text-xs text-slate-500 text-center mt-3">No constituye asesoría legal ni crea relación abogado‑cliente.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

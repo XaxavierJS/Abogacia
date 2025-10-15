@@ -16,14 +16,14 @@ import Disclaimer from '../components/legal/Disclaimer';
           <h1 class="text-4xl md:text-5xl font-bold mb-6">
             Consulta Legal Gratuita
           </h1>
-          <p class="text-xl text-blue-100 mb-8">
+          <p class="text-xl text-primary-100 mb-8">
             Contacta con nuestro despacho jurídico y recibe asesoría legal profesional. 
             Respuesta garantizada en 24 horas.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href={`tel:${CONTACT_INFO.phone}`} 
-              class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-block"
+              class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-50 transition-colors inline-block"
             >
               Llamar Ahora
             </a>
@@ -227,6 +227,7 @@ import Disclaimer from '../components/legal/Disclaimer';
               <button 
                 type="submit"
                 class="w-full btn-primary"
+                aria-label="Enviar mensaje de contacto"
               >
                 Enviar Mensaje
               </button>
@@ -257,13 +258,13 @@ import Disclaimer from '../components/legal/Disclaimer';
         </p>
       </div>
       
-      <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+      <div class="bg-slate-200 rounded-lg h-96 flex items-center justify-center">
         <div class="text-center">
-          <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="w-16 h-16 text-slate-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
           </svg>
-          <p class="text-gray-600">Mapa interactivo</p>
-          <p class="text-sm text-gray-500">Se integrará con Google Maps</p>
+          <p class="text-slate-600">Mapa interactivo</p>
+          <p class="text-sm text-slate-500">Se integrará con Google Maps</p>
         </div>
       </div>
     </div>

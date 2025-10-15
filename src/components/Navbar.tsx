@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { Menu, Phone, Mail } from 'lucide-react';
+import logo from '../assets/images/logo.png';
 
 const navigation = [
   { name: 'Inicio', href: '/' },
@@ -14,15 +15,17 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white shadow-sm transition-colors">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white shadow-sm transition-colors">
       <div className="container-custom">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2">
-              <div className="h-8 w-8 bg-primary-600 rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-lg">J</span>
-              </div>
+            <a href="/" className="flex items-center space-x-3">
+              <img 
+                src={logo.src} 
+                alt="MGM Abogados" 
+                className="h-10 w-auto"
+              />
               <span className="font-bold text-xl text-foreground">
                 MGM Abogados
               </span>
@@ -35,7 +38,7 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors duration-200"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors duration-200"
               >
                 {item.name}
               </a>
@@ -51,8 +54,8 @@ export default function Navbar() {
               </a>
             </div>
             <Button asChild className="btn-primary">
-              <a href="#contacto" aria-label="Ir a formulario de contacto para consulta gratuita">
-                Consulta Gratuita
+              <a href="#contacto" aria-label="Ir a formulario de contacto para consulta legal">
+                Consulta Legal
               </a>
             </Button>
           </div>
@@ -120,8 +123,8 @@ export default function Navbar() {
                     </div>
                     
                     <Button asChild className="w-full btn-primary">
-                      <a href="#contacto" onClick={() => setIsOpen(false)} aria-label="Ir a formulario de contacto para consulta gratuita">
-                        Consulta Gratuita
+                      <a href="#contacto" onClick={() => setIsOpen(false)} aria-label="Ir a formulario de contacto para consulta legal">
+                        Consulta Legal
                       </a>
                     </Button>
                   </div>

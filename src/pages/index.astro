@@ -2,6 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { PRACTICE_AREAS, CONTACT_INFO } from '../lib/constants';
 import ContactFormSimple from '../components/business/ContactFormSimple';
+import image1 from '../assets/images/1.jpg';
+import image2 from '../assets/images/2.jpg';
+import image3 from '../assets/images/3.jpg';
+import image4 from '../assets/images/4.jpg';
+import image5 from '../assets/images/5.jpg';
+import image6 from '../assets/images/6.jpg';
+import imageA from '../assets/images/a.jpg';
 ---
 
 <BaseLayout 
@@ -9,8 +16,10 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
   description="MGM Abogados - Despacho jurídico especializado en Viña del Mar con más de 15 años de experiencia. Consulta gratuita en derecho familiar, penal, laboral, civil y empresarial. Experiencia, Eficiencia y Confianza garantizada."
 >
   <!-- Hero Section Minimalista -->
-  <section class="min-h-screen bg-gradient-to-br from-primary-600 to-primary-700 flex items-center relative overflow-hidden">
-    <!-- Background pattern -->
+  <section class="min-h-screen flex items-center relative overflow-hidden hero-bg-image">
+    <!-- Dark gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 to-slate-800/70"></div>
+    <!-- Background pattern overlay -->
     <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
     
     <div class="container-custom py-20 relative z-10">
@@ -20,7 +29,7 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
           <span class="text-white/90">Abogados</span>
         </h1>
           <p class="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto leading-relaxed">
-            <strong classgh repo clone XaxavierJS/Abogacia="text-white">Experiencia, Eficiencia y Confianza garantizada.</strong>
+            <strong class="text-white">Experiencia, Eficiencia y Confianza garantizada.</strong>
           </p>
         <p class="text-lg md:text-xl text-white/85 mb-12 max-w-3xl mx-auto leading-relaxed">
           Despacho jurídico especializado en Viña del Mar con amplia experiencia en derecho familiar, 
@@ -31,14 +40,14 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <a 
             href="#servicios" 
-            class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
+            class="btn-primary text-lg px-8 py-4"
           >
             Ver Servicios
           </a>
           <button 
             type="button"
             data-chat-open
-            class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
+            class="btn-secondary text-lg px-8 py-4"
             aria-label="Abrir chat para consulta legal"
             aria-describedby="chat-description"
           >
@@ -116,7 +125,7 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
           ];
           
           return (
-            <div class="bg-white border border-slate-200 rounded-xl p-8 hover:shadow-lg transition-shadow group">
+            <div class="service-card group">
               <div class="flex items-center space-x-4 mb-6">
                 <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center group-hover:bg-primary-600 transition-colors">
                   {icons[index] || icons[0]}
@@ -126,7 +135,7 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
               <p class="text-slate-600 mb-6">{area.description}</p>
               <a 
                 href={`/${area.id}`} 
-                class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center group-hover:underline underline-offset-4"
+                class="text-primary-600 hover:text-accent-600 font-medium inline-flex items-center group-hover:underline underline-offset-4"
                 aria-label={`Consultar sobre ${area.name}`}
               >
                 Consultar sobre este servicio
@@ -137,6 +146,88 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
             </div>
           );
         })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería de Imágenes -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          Nuestro Despacho
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Conoce nuestras instalaciones y el ambiente profesional donde trabajamos para brindarte el mejor servicio legal
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div class="group">
+          <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+            <img 
+              src={image1.src} 
+              alt="Oficina principal del despacho MGM Abogados"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        
+        <div class="group">
+          <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+            <img 
+              src={image2.src} 
+              alt="Sala de reuniones y consultas"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        
+        <div class="group">
+          <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+            <img 
+              src={image3.src} 
+              alt="Área de trabajo y archivo"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        
+        <div class="group">
+          <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+            <img 
+              src={image4.src} 
+              alt="Recepción y atención al cliente"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        
+        <div class="group">
+          <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+            <img 
+              src={image5.src} 
+              alt="Biblioteca jurídica y recursos"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        
+        <div class="group">
+          <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+            <img 
+              src={image6.src} 
+              alt="Espacio de trabajo colaborativo"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -250,164 +341,9 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
   </section>
 
   <!-- Proceso de Trabajo -->
-  <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-          Nuestro Proceso de Trabajo
-        </h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Un enfoque sistemático y profesional para resolver tu caso legal
-        </p>
-      </div>
-      
-      <div class="max-w-6xl mx-auto">
-        <!-- Desktop Timeline -->
-        <div class="hidden lg:block">
-          <div class="relative">
-            <!-- Timeline Line -->
-            <div class="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-200 via-primary-400 to-primary-200"></div>
-            
-            <div class="grid grid-cols-4 gap-8">
-              <div class="text-center group">
-                <div class="relative">
-                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <span class="text-sm font-bold text-primary-600">1</span>
-                  </div>
-                </div>
-                <h3 class="text-xl font-semibold text-slate-900 mb-4">Consulta Inicial</h3>
-                <p class="text-slate-600 leading-relaxed">Evaluamos tu caso en una consulta gratuita de 30 minutos</p>
-              </div>
-              
-              <div class="text-center group">
-                <div class="relative">
-                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <span class="text-sm font-bold text-primary-600">2</span>
-                  </div>
-                </div>
-                <h3 class="text-xl font-semibold text-slate-900 mb-4">Análisis del Caso</h3>
-                <p class="text-slate-600 leading-relaxed">Estudiamos a fondo tu situación y desarrollamos una estrategia</p>
-              </div>
-              
-              <div class="text-center group">
-                <div class="relative">
-                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <span class="text-sm font-bold text-primary-600">3</span>
-                  </div>
-                </div>
-                <h3 class="text-xl font-semibold text-slate-900 mb-4">Representación</h3>
-                <p class="text-slate-600 leading-relaxed">Te representamos en tribunales y negociaciones</p>
-              </div>
-              
-              <div class="text-center group">
-                <div class="relative">
-                  <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <div class="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <span class="text-sm font-bold text-primary-600">4</span>
-                  </div>
-                </div>
-                <h3 class="text-xl font-semibold text-slate-900 mb-4">Seguimiento</h3>
-                <p class="text-slate-600 leading-relaxed">Aseguramos el cumplimiento y te mantenemos informado</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Mobile/Tablet Cards -->
-        <div class="lg:hidden space-y-8">
-          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
-            <div class="flex items-start space-x-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
-                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <div class="flex items-center space-x-3 mb-3">
-                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                  <h3 class="text-xl font-semibold text-slate-900">Consulta Inicial</h3>
-                </div>
-                <p class="text-slate-600 leading-relaxed">Evaluamos tu caso en una consulta gratuita de 30 minutos</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
-            <div class="flex items-start space-x-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
-                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <div class="flex items-center space-x-3 mb-3">
-                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                  <h3 class="text-xl font-semibold text-slate-900">Análisis del Caso</h3>
-                </div>
-                <p class="text-slate-600 leading-relaxed">Estudiamos a fondo tu situación y desarrollamos una estrategia</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
-            <div class="flex items-start space-x-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
-                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <div class="flex items-center space-x-3 mb-3">
-                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">3</span>
-                  <h3 class="text-xl font-semibold text-slate-900">Representación</h3>
-                </div>
-                <p class="text-slate-600 leading-relaxed">Te representamos en tribunales y negociaciones</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
-            <div class="flex items-start space-x-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
-                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div>
-                <div class="flex items-center space-x-3 mb-3">
-                  <span class="w-8 h-8 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-bold">4</span>
-                  <h3 class="text-xl font-semibold text-slate-900">Seguimiento</h3>
-                </div>
-                <p class="text-slate-600 leading-relaxed">Aseguramos el cumplimiento y te mantenemos informado</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Formulario de Contacto -->
-  <section id="contacto" class="py-20 bg-slate-50">
+  <section id="contacto" class="py-20">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
@@ -415,8 +351,7 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
             ¿Tienes una Consulta Legal?
           </h2>
           <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            Completa el formulario y te contactaremos en las próximas 24 horas. 
-            Consulta inicial gratuita de 30 minutos.
+            Completa el formulario y te contactaremos en las próximas 24 horas.
           </p>
         </div>
         
@@ -436,7 +371,7 @@ import ContactFormSimple from '../components/business/ContactFormSimple';
           <p class="text-slate-600 mt-2">Nuestro asistente puede responder consultas generales y coordinar una consulta. No compartas datos sensibles. No constituye asesoría legal.</p>
           <div class="mt-4 flex gap-3">
             <a href="#contacto" class="btn-primary" aria-label="Abrir chat y agendar consulta">Abrir chat y agendar</a>
-            <a href="#contacto" class="border px-4 py-3 rounded-md font-medium text-primary-600 border-primary-200 hover:bg-primary-50 transition-colors" aria-label="Usar formulario de contacto">Usar formulario</a>
+            <a href="#contacto" class="btn-secondary" aria-label="Usar formulario de contacto">Usar formulario</a>
           </div>
         </div>
         <div class="rounded-2xl border bg-slate-50 p-6 text-slate-600">

@@ -1,382 +1,161 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { PRACTICE_AREAS, CONTACT_INFO } from '../lib/constants';
-import ContactForm from '../components/business/ContactForm';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import laboralImage from '../assets/images/1.jpg';
 
-const area = PRACTICE_AREAS.find(a => a.id === 'derecho-laboral');
+const heroData = {
+  title: "Defensa laboral clara y estratégica",
+  subtitle: "Despidos, acoso, finiquitos y más. Actuamos rápido con soluciones prácticas y transparentes.",
+  description: "Especialistas en derecho laboral con amplia experiencia en casos de despidos injustificados, acoso laboral, tutela de derechos fundamentales y asesoría empresarial.",
+  icon: `<svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M6 6V5a2 2 0 012-2h4a2 2 0 012 2v1h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h2zM8 5a1 1 0 011-1h2a1 1 0 011 1v1H8V5z" clip-rule="evenodd"></path>
+  </svg>`,
+  stats: [
+    { label: "Respuesta en", value: "24 horas" },
+    { label: "Consulta inicial", value: "Gratuita" },
+    { label: "Honorarios", value: "Transparentes" }
+  ],
+  summaryPoints: [
+    "Despidos e indemnizaciones: cálculo y demanda/acuerdo.",
+    "Tutela de derechos y acoso laboral.",
+    "Contratos, finiquitos y políticas internas."
+  ]
+};
+
+const services = [
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 011-1h3a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>`,
+    title: "Despidos e indemnizaciones",
+    description: "Revisión de causal, cálculo de finiquito y negociación/demanda estratégica.",
+    timeBadge: "30–90 días"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-9a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path></svg>`,
+    title: "Acoso y tutela de derechos",
+    description: "Medidas inmediatas, denuncia y reparación por vulneración de derechos.",
+    timeBadge: "Urgente"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17 9V7H3v2h14zm0 4v-2H3v2h14z"></path></svg>`,
+    title: "Contratos y finiquitos",
+    description: "Redacción, revisión y negociación para condiciones claras y seguras.",
+    timeBadge: "48–72 h"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16z"></path></svg>`,
+    title: "Licencias y fuero",
+    description: "Defensa en fuero maternal/paternal y licencias médicas. Medidas cautelares.",
+    timeBadge: "Prioridad"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M3 4h14v2H3zM3 9h14v2H3zM3 14h10v2H3z"></path></svg>`,
+    title: "Asesoría empresarial",
+    description: "Políticas internas, cumplimiento y prevención de conflictos para pymes.",
+    timeBadge: "Mensual"
+  }
+];
+
+const valuePropositions = [
+  {
+    title: "Experiencia enfocada",
+    description: "Casos laborales tramitados a diario; conocemos criterios locales y plazos.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    title: "Transparencia y comunicación",
+    description: "Presupuesto claro antes de partir y reportes periódicos de avance.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    title: "Estrategia práctica",
+    description: "Priorizamos acuerdos favorables y, si es necesario, litigamos con firmeza.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  }
+];
+
+const processSteps = [
+  {
+    stepNumber: 1,
+    title: "Evaluación",
+    description: "Revisión de antecedentes y cálculo inicial de indemnizaciones.",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 2,
+    title: "Estrategia",
+    description: "Carta de aviso, mediación o demanda según convenga.",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 3,
+    title: "Representación",
+    description: "Gestión de audiencias y negociación de acuerdos favorables.",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 4,
+    title: "Seguimiento",
+    description: "Cumplimiento de sentencias y pagos; reporte de cierre.",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`
+  }
+];
+
+const faqData = {
+  title: "Casos frecuentes y preguntas",
+  subtitle: "Respuestas rápidas y orientativas (no constituyen asesoría legal)",
+  frequentCases: [
+    "Despido sin causal clara o con cálculo de finiquito dudoso",
+    "Hostigamiento o vulneración de derechos fundamentales en el trabajo",
+    "No pago de horas extra o feriados",
+    "Redacción de contratos y políticas para pymes en crecimiento"
+  ],
+  faqs: [
+    {
+      question: "¿Qué es un despido injustificado?",
+      answer: "Un despido injustificado es aquel que no se basa en las causales establecidas por la ley. Si fuiste despedido sin causa justificada, puedes demandar indemnizaciones y reinstalación."
+    },
+    {
+      question: "¿Cuánto tiempo tengo para demandar?",
+      answer: "Generalmente tienes 60 días hábiles desde que conociste el despido para presentar una demanda de tutela laboral. Es importante actuar rápidamente para no perder tus derechos."
+    },
+    {
+      question: "¿Qué es el fuero maternal?",
+      answer: "El fuero maternal protege a las trabajadoras embarazadas y hasta un año después del parto contra despidos injustificados. Durante este período tienen especial protección legal."
+    },
+    {
+      question: "¿Cómo calculo mis indemnizaciones?",
+      answer: "Las indemnizaciones se calculan según el tipo de despido, años de servicio y última remuneración. Te ayudamos a calcular exactamente cuánto te corresponde según la ley."
+    }
+  ]
+};
+
+const featuredImage = {
+  src: laboralImage,
+  alt: "Abogado especialista en derecho laboral trabajando en caso de despido",
+  title: "Experiencia en Derecho Laboral",
+  description: "Nuestro despacho cuenta con amplia experiencia en casos laborales complejos y una biblioteca jurídica especializada"
+};
+
+const contactTitle = "¿Tienes un Problema Laboral?";
+const contactSubtitle = "Completa el formulario y te contactaremos en las próximas 24 horas.";
+
+const ctaData = {
+  title: "¿Necesitas Defensa Laboral?",
+  subtitle: "No esperes más. Contacta inmediatamente para recibir asesoría legal profesional en derecho laboral.",
+  primaryButton: "Consulta Gratuita",
+  secondaryButton: "Llamar Ahora"
+};
 ---
 
-<BaseLayout 
+<ServiceLayout 
   title="Derecho del Trabajo - Manriquez Gómez Melo Abogados"
   description="Especialistas en derecho laboral en Viña del Mar. Protección de derechos laborales, despidos injustificados y asesoría empresarial. Experiencia, Eficiencia y Confianza garantizada."
->
-  <!-- Hero Section con sidebar sticky -->
-  <section class="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-slate-100">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start max-w-7xl mx-auto">
-        <!-- Columna izquierda: titular + beneficios + CTAs -->
-        <div class="md:col-span-7">
-          <div class="w-16 h-16 bg-primary-100 rounded-lg mb-6 flex items-center justify-center">
-            <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M6 6V5a2 2 0 012-2h4a2 2 0 012 2v1h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h2zM8 5a1 1 0 011-1h2a1 1 0 011 1v1H8V5z" clip-rule="evenodd"></path>
-            </svg>
-          </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight text-balance">
-            Defensa laboral clara y estratégica
-          </h1>
-          <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-2xl">
-            Despidos, acoso, finiquitos y más. Actuamos rápido con soluciones prácticas y transparentes.
-          </p>
-          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-white border rounded-xl p-4 shadow-sm">
-              <p class="text-sm text-slate-600">Respuesta en</p>
-              <p class="text-lg font-semibold text-slate-900">24 horas</p>
-            </div>
-            <div class="bg-white border rounded-xl p-4 shadow-sm">
-              <p class="text-sm text-slate-600">Consulta inicial</p>
-              <p class="text-lg font-semibold text-slate-900">Gratuita</p>
-            </div>
-            <div class="bg-white border rounded-xl p-4 shadow-sm">
-              <p class="text-sm text-slate-600">Honorarios</p>
-              <p class="text-lg font-semibold text-slate-900">Transparentes</p>
-            </div>
-          </div>
-          <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href="#contacto" class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg">Consulta Gratuita</a>
-            <a href={`tel:${CONTACT_INFO.phone}`} class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors text-lg">Llamar Ahora</a>
-            <button type="button" data-chat-open class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors text-lg" aria-label="Abrir chat para consulta">Consultar por Chat</button>
-          </div>
-        </div>
-        <!-- Columna derecha: tarjeta sticky con resumen y CTA al chat/form -->
-        <aside class="md:col-span-5">
-          <div class="md:sticky md:top-24">
-            <div class="bg-white rounded-2xl p-6 border shadow-md shadow-primary-900/5">
-              <h2 class="text-xl font-semibold text-slate-900">Resumen rápido</h2>
-              <ul class="mt-4 space-y-3 text-sm text-slate-700">
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Despidos e indemnizaciones: cálculo y demanda/acuerdo.</li>
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Tutela de derechos y acoso laboral.</li>
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Contratos, finiquitos y políticas internas.</li>
-              </ul>
-              <div class="mt-6 grid grid-cols-1 gap-3">
-                <a href="#contacto" class="btn-primary text-center">Ir al formulario</a>
-                <a href="#contacto" class="text-primary-600 font-medium text-center hover:underline">Agendar por chat</a>
-                <p class="text-xs text-slate-500 text-center">No constituye asesoría legal ni crea relación abogado‑cliente.</p>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick anchor nav removed para reducir ruido visual -->
-
-  <!-- Qué resolvemos -->
-  <section id="servicios" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Qué resolvemos en Derecho Laboral
-          </h2>
-          <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto text-balance">
-            Acciones concretas para los problemas más comunes. Sin rodeos.
-          </p>
-        </div>
-
-        <!-- Tarjetas con icono, etiqueta y badge de tiempo -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 011-1h3a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Despidos e indemnizaciones</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">30–90 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Revisión de causal, cálculo de finiquito y negociación/demanda estratégica.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-9a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Acoso y tutela de derechos</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">Urgente</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Medidas inmediatas, denuncia y reparación por vulneración de derechos.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17 9V7H3v2h14zm0 4v-2H3v2h14z"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Contratos y finiquitos</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">48–72 h</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Redacción, revisión y negociación para condiciones claras y seguras.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16z"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Licencias y fuero</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">Prioridad</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Defensa en fuero maternal/paternal y licencias médicas. Medidas cautelares.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M3 4h14v2H3zM3 9h14v2H3zM3 14h10v2H3z"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Asesoría empresarial</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">Mensual</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Políticas internas, cumplimiento y prevención de conflictos para pymes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cómo te ayudamos (propuesta de valor) -->
-  <section class="py-16 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <!-- Bloques alternados imagen/texto -->
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
-        <div class="order-2 md:order-1">
-          <h3 class="text-2xl font-semibold text-slate-900 mb-3">Problemas típicos</h3>
-          <ul class="list-disc pl-5 text-slate-700 space-y-2">
-            <li>Despido sin causal o cálculo de finiquito incorrecto</li>
-            <li>Hostigamiento o vulneración de derechos fundamentales</li>
-            <li>Negativa de licencias o vulneración de fuero</li>
-          </ul>
-        </div>
-        <div class="order-1 md:order-2">
-          <div class="aspect-video rounded-2xl bg-gradient-to-br from-primary-100 to-accent-100 border" />
-        </div>
-      </div>
-
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <div class="aspect-video rounded-2xl bg-white border shadow-sm" />
-        </div>
-        <div>
-          <h3 class="text-2xl font-semibold text-slate-900 mb-3">Soluciones que aplicamos</h3>
-          <ul class="list-disc pl-5 text-slate-700 space-y-2">
-            <li>Análisis rápido y carta de aviso/mediación cuando conviene</li>
-            <li>Demanda o acuerdo estratégico con cálculo detallado</li>
-            <li>Medidas urgentes (tutela, cautelares) si corresponde</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Propuesta de valor resumida -->
-      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-        <div class="bg-white border rounded-xl p-6 shadow-sm">
-          <h3 class="font-semibold text-slate-900 mb-2">Experiencia enfocada</h3>
-          <p class="text-sm text-slate-600">Casos laborales tramitados a diario; conocemos criterios locales y plazos.</p>
-        </div>
-        <div class="bg-white border rounded-xl p-6 shadow-sm">
-          <h3 class="font-semibold text-slate-900 mb-2">Transparencia y comunicación</h3>
-          <p class="text-sm text-slate-600">Presupuesto claro antes de partir y reportes periódicos de avance.</p>
-        </div>
-        <div class="bg-white border rounded-xl p-6 shadow-sm">
-          <h3 class="font-semibold text-slate-900 mb-2">Estrategia práctica</h3>
-          <p class="text-sm text-slate-600">Priorizamos acuerdos favorables y, si es necesario, litigamos con firmeza.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Proceso con pasos vistosos -->
-  <section id="proceso" class="py-20 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Nuestro Proceso de Trabajo Laboral
-          </h2>
-          <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
-            Pasos claros, tiempos realistas y comunicación constante.
-          </p>
-        </div>
-
-        <!-- Línea de progreso responsiva -->
-        <div class="relative">
-          <!-- Línea decorativa eliminada para una estética más limpia -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center group">
-              <div class="w-20 h-20 bg-white border rounded-full mx-auto mb-6 flex items-center justify-center shadow-sm group-hover:shadow-md transition">
-                <span class="text-primary-600 font-bold text-2xl">1</span>
-              </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Evaluación</h3>
-              <p class="text-slate-600">Revisión de antecedentes y cálculo inicial de indemnizaciones.</p>
-            </div>
-            <div class="text-center group">
-              <div class="w-20 h-20 bg-white border rounded-full mx-auto mb-6 flex items-center justify-center shadow-sm group-hover:shadow-md transition">
-                <span class="text-primary-600 font-bold text-2xl">2</span>
-              </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Estrategia</h3>
-              <p class="text-slate-600">Carta de aviso, mediación o demanda según convenga.</p>
-            </div>
-            <div class="text-center group">
-              <div class="w-20 h-20 bg-white border rounded-full mx-auto mb-6 flex items-center justify-center shadow-sm group-hover:shadow-md transition">
-                <span class="text-primary-600 font-bold text-2xl">3</span>
-              </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Representación</h3>
-              <p class="text-slate-600">Gestión de audiencias y negociación de acuerdos favorables.</p>
-            </div>
-            <div class="text-center group">
-              <div class="w-20 h-20 bg-white border rounded-full mx-auto mb-6 flex items-center justify-center shadow-sm group-hover:shadow-md transition">
-                <span class="text-primary-600 font-bold text-2xl">4</span>
-              </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Seguimiento</h3>
-              <p class="text-slate-600">Cumplimiento de sentencias y pagos; reporte de cierre.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Casos frecuentes + FAQs -->
-  <section id="faqs" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Casos frecuentes y preguntas
-          </h2>
-          <p class="text-xl text-slate-600">
-            Respuestas rápidas y orientativas (no constituyen asesoría legal)
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-primary-50 rounded-xl p-6 border border-primary-100">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">Casos frecuentes</h3>
-            <ul class="list-disc pl-5 text-slate-700 space-y-2">
-              <li>Despido sin causal clara o con cálculo de finiquito dudoso</li>
-              <li>Hostigamiento o vulneración de derechos fundamentales en el trabajo</li>
-              <li>No pago de horas extra o feriados</li>
-              <li>Redacción de contratos y políticas para pymes en crecimiento</li>
-            </ul>
-          </div>
-
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Qué es un despido injustificado?
-            </h3>
-            <p class="text-slate-600">
-              Un despido injustificado es aquel que no se basa en las causales establecidas por la ley. 
-              Si fuiste despedido sin causa justificada, puedes demandar indemnizaciones y reinstalación.
-            </p>
-          </div>
-
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Cuánto tiempo tengo para demandar?
-            </h3>
-            <p class="text-slate-600">
-              Generalmente tienes 60 días hábiles desde que conociste el despido para presentar una demanda 
-              de tutela laboral. Es importante actuar rápidamente para no perder tus derechos.
-            </p>
-          </div>
-
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Qué es el fuero maternal?
-            </h3>
-            <p class="text-slate-600">
-              El fuero maternal protege a las trabajadoras embarazadas y hasta un año después del parto 
-              contra despidos injustificados. Durante este período tienen especial protección legal.
-            </p>
-          </div>
-
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Cómo calculo mis indemnizaciones?
-            </h3>
-            <p class="text-slate-600">
-              Las indemnizaciones se calculan según el tipo de despido, años de servicio y última remuneración. 
-              Te ayudamos a calcular exactamente cuánto te corresponde según la ley.
-            </p>
-          </div>
-          <p class="text-sm text-slate-500 md:col-span-2">Importante: esta información es general y no reemplaza asesoría legal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contacto" class="py-20 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            ¿Tienes un Problema Laboral?
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            Completa el formulario y te contactaremos en las próximas 24 horas. 
-            Consulta inicial gratuita de 30 minutos.
-          </p>
-        </div>
-        
-        <ContactForm client:load />
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-primary-600 text-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">
-        ¿Necesitas Defensa Laboral?
-      </h2>
-      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-        No esperes más. Contacta inmediatamente para recibir asesoría legal profesional 
-        en derecho laboral.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a 
-          href="#contacto" 
-          class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-lg"
-        >
-          Consulta Gratuita
-        </a>
-        <a 
-          href={`tel:${CONTACT_INFO.phone}`} 
-          class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors text-lg"
-        >
-          Llamar Ahora
-        </a>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+  heroData={heroData}
+  services={services}
+  valuePropositions={valuePropositions}
+  processSteps={processSteps}
+  faqData={faqData}
+  featuredImage={featuredImage}
+  contactTitle={contactTitle}
+  contactSubtitle={contactSubtitle}
+  ctaData={ctaData}
+/>

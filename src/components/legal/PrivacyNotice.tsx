@@ -49,17 +49,17 @@ export default function PrivacyNotice() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 opacity-100">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg z-50 opacity-100">
       <div className="container-custom">
         <div className="py-4">
           <div className="flex items-start justify-between">
             <div className="flex-1 pr-4">
               <div className="flex items-center space-x-2 mb-2">
                 <Cookie className="h-5 w-5 text-primary-600" />
-                <h3 className="font-semibold text-gray-900">Uso de Cookies</h3>
+                <h3 className="font-semibold text-slate-900">Uso de Cookies</h3>
               </div>
               
-              <p className="text-sm text-gray-600 mb-3">
+              <p className="text-sm text-slate-600 mb-3">
                 Utilizamos cookies para mejorar su experiencia, analizar el tráfico y personalizar contenido. 
                 Al continuar navegando, acepta nuestro uso de cookies.
               </p>
@@ -68,26 +68,26 @@ export default function PrivacyNotice() {
                 <div className="mt-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <Shield className="h-4 w-4 text-green-600" />
-                      <span className="text-sm text-gray-700">Cookies Necesarias</span>
+                      <Shield className="h-4 w-4 text-success-600" />
+                      <span className="text-sm text-slate-700">Cookies Necesarias</span>
                     </div>
-                    <span className="text-xs text-gray-500">Siempre activas</span>
+                    <span className="text-xs text-slate-500">Siempre activas</span>
                   </div>
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <Settings className="h-4 w-4 text-blue-600" />
-                      <span className="text-sm text-gray-700">Cookies de Análisis</span>
+                      <Settings className="h-4 w-4 text-primary-600" />
+                      <span className="text-sm text-slate-700">Cookies de Análisis</span>
                     </div>
-                    <span className="text-xs text-gray-500">Opcional</span>
+                    <span className="text-xs text-slate-500">Opcional</span>
                   </div>
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <Cookie className="h-4 w-4 text-purple-600" />
-                      <span className="text-sm text-gray-700">Cookies de Marketing</span>
+                      <span className="text-sm text-slate-700">Cookies de Marketing</span>
                     </div>
-                    <span className="text-xs text-gray-500">Opcional</span>
+                    <span className="text-xs text-slate-500">Opcional</span>
                   </div>
                 </div>
               )}
@@ -107,7 +107,8 @@ export default function PrivacyNotice() {
                 </a>
                 <button
                   onClick={() => setShowDetails(!showDetails)}
-                  className="text-sm text-gray-600 hover:text-gray-800"
+                  className="text-sm text-slate-600 hover:text-slate-800"
+                  aria-label="Mostrar más detalles sobre privacidad"
                 >
                   {showDetails ? 'Menos detalles' : 'Más detalles'}
                 </button>
@@ -136,7 +137,7 @@ export default function PrivacyNotice() {
                 onClick={rejectAll}
                 variant="outline"
                 size="sm"
-                className="border-gray-400 text-gray-700 hover:bg-gray-50 font-semibold text-xs px-4 py-2"
+                className="border-slate-400 text-slate-700 hover:bg-slate-50 font-semibold text-xs px-4 py-2"
               >
                 Rechazar
               </Button>
@@ -145,7 +146,7 @@ export default function PrivacyNotice() {
                 onClick={() => setIsVisible(false)}
                 variant="ghost"
                 size="sm"
-                className="text-xs px-2 py-1 text-gray-400 hover:text-gray-600"
+                className="text-xs px-2 py-1 text-slate-400 hover:text-slate-600"
               >
                 <X className="h-3 w-3" />
               </Button>

@@ -6,30 +6,42 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Design tokens del Rule 20
+        // Paleta profesional MGM Abogados
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0E4A69',
-          700: '#083044',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#f0f4f8',
+          100: '#d9e6f2',
+          200: '#b3cce5',
+          300: '#8db3d8',
+          400: '#6799cb',
+          500: '#4180be',
+          600: '#1B365D', // Color principal
+          700: '#0F2438', // Color oscuro
+          800: '#0A1A2A',
+          900: '#051015',
+        },
+        secondary: {
+          50: '#f0f4f8',
+          100: '#d9e6f2',
+          200: '#b3cce5',
+          300: '#8db3d8',
+          400: '#6B8AAB', // Color claro
+          500: '#4A6B8A', // Color secundario
+          600: '#2C4A6B', // Color oscuro
+          700: '#1e3447',
+          800: '#0f1a23',
+          900: '#080f15',
         },
         accent: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0f766e',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
+          50: '#fdf9f0',
+          100: '#faf2d9',
+          200: '#f5e5b3',
+          300: '#f0d88d',
+          400: '#ebcb67',
+          500: '#E6C547', // Color claro
+          600: '#D4AF37', // Color de acento
+          700: '#B8941F', // Color oscuro
+          800: '#9a7a1a',
+          900: '#7c6015',
         },
         neutral: {
           50: '#f8fafc',

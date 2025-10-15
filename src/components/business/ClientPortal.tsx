@@ -142,14 +142,14 @@ export default function ClientPortal() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'bg-blue-100 text-blue-800';
-      case 'pending': return 'bg-yellow-100 text-yellow-800';
-      case 'completed': return 'bg-green-100 text-green-800';
-      case 'on-hold': return 'bg-gray-100 text-gray-800';
-      case 'scheduled': return 'bg-blue-100 text-blue-800';
-      case 'confirmed': return 'bg-green-100 text-green-800';
-      case 'cancelled': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'active': return 'bg-primary-100 text-primary-800';
+      case 'pending': return 'bg-warning-100 text-warning-800';
+      case 'completed': return 'bg-success-100 text-success-800';
+      case 'on-hold': return 'bg-slate-100 text-slate-800';
+      case 'scheduled': return 'bg-primary-100 text-primary-800';
+      case 'confirmed': return 'bg-success-100 text-success-800';
+      case 'cancelled': return 'bg-error-100 text-error-800';
+      default: return 'bg-slate-100 text-slate-800';
     }
   };
 
@@ -171,7 +171,7 @@ export default function ClientPortal() {
       <Card className="max-w-md mx-auto">
         <CardHeader>
           <CardTitle className="text-center">Portal de Clientes</CardTitle>
-          <p className="text-center text-gray-600 text-sm">
+          <p className="text-center text-slate-600 text-sm">
             Accede a tu información de casos y documentos
           </p>
         </CardHeader>
@@ -198,8 +198,8 @@ export default function ClientPortal() {
             </div>
             
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <p className="text-red-600 text-sm">{error}</p>
+              <div className="bg-error-50 border border-error-200 rounded-lg p-3">
+                <p className="text-error-600 text-sm">{error}</p>
               </div>
             )}
             
@@ -213,7 +213,7 @@ export default function ClientPortal() {
           </form>
           
           <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-slate-600">
               ¿No tienes acceso?{' '}
               <a href="/contacto" className="text-primary-600 hover:underline">
                 Contáctanos
@@ -228,8 +228,8 @@ export default function ClientPortal() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Portal de Clientes</h1>
-        <p className="text-gray-600">Gestiona tus casos y documentos de forma segura</p>
+        <h1 className="text-3xl font-bold text-slate-900">Portal de Clientes</h1>
+        <p className="text-slate-600">Gestiona tus casos y documentos de forma segura</p>
       </div>
 
       <Tabs defaultValue="cases" className="space-y-6">
@@ -250,17 +250,17 @@ export default function ClientPortal() {
                     {getStatusText(caseItem.status)}
                   </span>
                 </div>
-                <p className="text-gray-600">{caseItem.description}</p>
+                <p className="text-slate-600">{caseItem.description}</p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-slate-600">
                     <Clock className="h-4 w-4 mr-2" />
                     Última actualización: {new Date(caseItem.lastUpdate).toLocaleDateString('es-ES')}
                   </div>
                   
                   {caseItem.nextAppointment && (
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-slate-600">
                       <Calendar className="h-4 w-4 mr-2" />
                       Próxima cita: {new Date(caseItem.nextAppointment).toLocaleDateString('es-ES')}
                     </div>
@@ -286,22 +286,22 @@ export default function ClientPortal() {
           <Card>
             <CardHeader>
               <CardTitle>Documentos Compartidos</CardTitle>
-              <p className="text-gray-600">Todos los documentos relacionados con tus casos</p>
+              <p className="text-slate-600">Todos los documentos relacionados con tus casos</p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {cases.flatMap(caseItem => 
                   caseItem.documents.map(doc => ({ ...doc, caseTitle: caseItem.title }))
                 ).map((doc) => (
-                  <div key={doc.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                  <div key={doc.id} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
                     <div className="flex items-center space-x-3">
-                      <FileText className="h-5 w-5 text-gray-400" />
+                      <FileText className="h-5 w-5 text-slate-400" />
                       <div>
-                        <p className="font-medium text-gray-900">{doc.name}</p>
-                        <p className="text-sm text-gray-600">
+                        <p className="font-medium text-slate-900">{doc.name}</p>
+                        <p className="text-sm text-slate-600">
                           {doc.caseTitle} • {doc.type} • {doc.size} • {new Date(doc.uploadDate).toLocaleDateString('es-ES')}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-slate-500">
                           Subido por: {doc.uploadedBy === 'lawyer' ? 'Abogado' : 'Cliente'}
                         </p>
                       </div>
@@ -327,28 +327,28 @@ export default function ClientPortal() {
           <Card>
             <CardHeader>
               <CardTitle>Mensajes</CardTitle>
-              <p className="text-gray-600">Comunicación con tu abogado</p>
+              <p className="text-slate-600">Comunicación con tu abogado</p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {messages.map((message) => (
                   <div key={message.id} className={`p-4 rounded-lg ${
-                    message.from === 'lawyer' ? 'bg-blue-50 border-l-4 border-blue-400' : 'bg-gray-50 border-l-4 border-gray-400'
+                    message.from === 'lawyer' ? 'bg-primary-50 border-l-4 border-primary-400' : 'bg-slate-50 border-l-4 border-slate-400'
                   }`}>
                     <div className="flex justify-between items-start mb-2">
                       <span className="font-medium text-sm">
                         {message.from === 'lawyer' ? 'Dr. Juan Pérez' : 'Tú'}
                       </span>
                       <div className="flex items-center space-x-2">
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-slate-500">
                           {new Date(message.timestamp).toLocaleString('es-ES')}
                         </span>
                         {!message.read && message.from === 'lawyer' && (
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
                         )}
                       </div>
                     </div>
-                    <p className="text-gray-700">{message.content}</p>
+                    <p className="text-slate-700">{message.content}</p>
                   </div>
                 ))}
                 
@@ -367,21 +367,21 @@ export default function ClientPortal() {
           <Card>
             <CardHeader>
               <CardTitle>Próximas Citas</CardTitle>
-              <p className="text-gray-600">Citas programadas y confirmadas</p>
+              <p className="text-slate-600">Citas programadas y confirmadas</p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {appointments.map((appointment) => (
-                  <div key={appointment.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                  <div key={appointment.id} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
                     <div className="flex items-center space-x-4">
-                      <Calendar className="h-5 w-5 text-gray-400" />
+                      <Calendar className="h-5 w-5 text-slate-400" />
                       <div>
-                        <p className="font-medium text-gray-900">
+                        <p className="font-medium text-slate-900">
                           {new Date(appointment.date).toLocaleDateString('es-ES')} a las {appointment.time}
                         </p>
-                        <p className="text-sm text-gray-600">{appointment.service}</p>
+                        <p className="text-sm text-slate-600">{appointment.service}</p>
                         {appointment.notes && (
-                          <p className="text-xs text-gray-500">{appointment.notes}</p>
+                          <p className="text-xs text-slate-500">{appointment.notes}</p>
                         )}
                       </div>
                     </div>

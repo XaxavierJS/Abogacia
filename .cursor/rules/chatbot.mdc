@@ -1,0 +1,142 @@
+---
+alwaysApply: true
+---
+
+# Reglas del Chatbot - MGM Abogados
+
+## 🤖 Sistema Unificado
+
+### Event Listeners
+- Usar SOLO el sistema unificado en `BaseLayout.astro`
+- NO crear sistemas duplicados de event listeners
+- NO modificar el script existente sin coordinación
+
+### Botones de Chat
+```html
+<!-- ✅ Correcto -->
+<button 
+  type="button"
+  data-chat-open
+  class="btn-primary"
+  aria-label="Abrir chat para consulta legal"
+>
+  Consultar por Chat
+</button>
+
+<!-- ❌ Incorrecto -->
+<button onclick="openChat()">Chat</button>
+<button id="chat-btn">Chat</button>
+```
+
+## 🔧 Implementación
+
+### BaseLayout.astro
+```html
+<script is:inline>
+  // Sistema unificado de chatbot
+  // NO MODIFICAR sin coordinación
+  document.addEventListener('click', (event) => {
+    const chatButton = event.target.closest('[data-chat-open]');
+    if (chatButton) {
+      event.preventDefault();
+      window.n8nChatOpen();
+    }
+  });
+</script>
+```
+
+### ChatbotWidget.tsx
+```tsx
+// Componente para cargar el chatbot n8n
+// NO MODIFICAR la lógica de carga
+export default function ChatbotWidget() {
+  useEffect(() => {
+    // Cargar CSS y JS del chatbot
+  }, []);
+  
+  return <div id="n8n-chat" />;
+}
+```
+
+## 📍 Ubicación de Botones
+
+### Páginas de Servicio
+- Hero section: Botón principal de chat
+- Sidebar: Botón secundario
+- Footer: Botón de contacto
+
+### Página Principal
+- Hero section: "Consultar por Chat"
+- Sección de contacto: Botón de chat
+
+## 🎨 Estilos
+
+### Clases CSS
+```css
+/* Botón principal de chat */
+.btn-chat-primary {
+  @apply bg-accent-600 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-accent-700 transition-colors;
+}
+
+/* Botón secundario de chat */
+.btn-chat-secondary {
+  @apply border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-md font-medium hover:bg-primary-600 hover:text-white transition-colors;
+}
+```
+
+### Variables CSS
+```css
+:root {
+  --chat-toggle-background: #0E4A69;
+  --chat-toggle-hover: #0c3d57;
+  --chat-toggle-active: #08293a;
+  --chat-window-width: 380px;
+  --chat-window-height: 560px;
+}
+```
+
+## 🔍 Validación
+
+### Checklist
+- [ ] Botón tiene `data-chat-open`
+- [ ] Botón tiene `aria-label`
+- [ ] No hay event listeners duplicados
+- [ ] Estilos consistentes
+- [ ] Funciona en todas las páginas
+
+### Testing
+```bash
+# Verificar que el chatbot funciona
+npm run check:chatbot
+```
+
+## 🚫 Prohibiciones
+
+### NO Hacer
+- ❌ Crear event listeners duplicados
+- ❌ Modificar el script unificado sin coordinación
+- ❌ Usar `onclick` en lugar de `data-chat-open`
+- ❌ Crear sistemas alternativos de chat
+
+### NO Modificar
+- ❌ `BaseLayout.astro` script de chatbot
+- ❌ `ChatbotWidget.tsx` lógica de carga
+- ❌ Variables CSS del chatbot
+- ❌ Configuración de n8n
+
+## 🎯 Objetivos
+
+### Consistencia
+- Mismo comportamiento en todas las páginas
+- Estilos uniformes
+- Funcionalidad predecible
+
+### Accesibilidad
+- Botones con aria-labels
+- Navegación por teclado
+- Indicadores de estado
+
+### Performance
+- Carga asíncrona del chatbot
+- No bloquear el hilo principal
+- Optimización de recursos

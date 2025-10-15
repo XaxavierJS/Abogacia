@@ -57,30 +57,60 @@ const canonicalURL = canonical || Astro.url.href;
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     
     <script is:inline>
-      // Optimized chatbot script with reduced main thread blocking
+      // Unified chatbot script - optimized and robust
       (() => {
         const STATE = {
           pending: false,
           retries: 0,
-          maxRetries: 20, // Reduced retries
-          timer: null
+          maxRetries: 30,
+          timer: null,
+          initialized: false
         };
 
         const clickToggle = () => {
           const container = document.querySelector('#n8n-chat');
-          if (!container) return false;
+          if (!container) {
+            console.log('[Chat] Container not found');
+            return false;
+          }
 
-          // Use more efficient querySelector
-          const toggle = container.querySelector('[data-test-id*="toggle"], [aria-label*="chat"], [aria-label*="abrir"], .toggle') ||
-                        container.querySelector('button, [role="button"]');
+          // Multiple strategies to find the toggle button
+          const selectors = [
+            '[data-test-id*="toggle"]',
+            '[aria-label*="chat"]',
+            '[aria-label*="abrir"]',
+            '.toggle',
+            'button[class*="toggle"]',
+            'button[class*="chat"]',
+            'button[class*="open"]',
+            'button',
+            '[role="button"]'
+          ];
 
-          if (!toggle) return false;
+          let toggle = null;
+          for (const selector of selectors) {
+            toggle = container.querySelector(selector);
+            if (toggle) {
+              console.log(`[Chat] Found toggle with selector: ${selector}`);
+              break;
+            }
+          }
+
+          if (!toggle) {
+            console.log('[Chat] No toggle button found');
+            return false;
+          }
 
           // Use requestAnimationFrame to avoid blocking
           requestAnimationFrame(() => {
-            toggle.dispatchEvent(
-              new MouseEvent('click', { bubbles: true, cancelable: true })
-            );
+            try {
+              toggle.dispatchEvent(
+                new MouseEvent('click', { bubbles: true, cancelable: true })
+              );
+              console.log('[Chat] Toggle clicked successfully');
+            } catch (error) {
+              console.error('[Chat] Error clicking toggle:', error);
+            }
           });
           return true;
         };
@@ -97,44 +127,60 @@ const canonicalURL = canonical || Astro.url.href;
           }
 
           if (STATE.retries >= STATE.maxRetries) {
+            console.log('[Chat] Max retries reached, giving up');
             STATE.pending = false;
             return;
           }
 
           STATE.retries += 1;
-          STATE.timer = window.setTimeout(schedule, 100); // Reduced delay
+          STATE.timer = window.setTimeout(schedule, 150);
         };
 
         window.n8nChatOpen = () => {
+          console.log('[Chat] Opening chat requested');
           STATE.pending = true;
           STATE.retries = 0;
-          // Use requestIdleCallback if available
+          
+          // Use requestIdleCallback if available, otherwise setTimeout
           if (window.requestIdleCallback) {
             window.requestIdleCallback(schedule);
           } else {
-            schedule();
+            setTimeout(schedule, 100);
           }
         };
 
+        // Listen for chat ready event
         window.addEventListener('mgm:chat-ready', () => {
+          console.log('[Chat] Chat ready event received');
+          STATE.initialized = true;
           if (STATE.pending) {
             schedule();
           }
         });
 
-        // Use passive listener for better performance
-        document.addEventListener(
-          'click',
-          (event) => {
-            const target = event.target;
-            if (!(target instanceof Element)) return;
-            if (!target.closest('[data-chat-open]')) return;
+        // Unified click handler for all chat buttons
+        document.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          
+          const chatButton = target.closest('[data-chat-open]');
+          if (!chatButton) return;
 
-            event.preventDefault();
-            window.n8nChatOpen();
-          },
-          { passive: false }
-        );
+          console.log('[Chat] Chat button clicked');
+          event.preventDefault();
+          event.stopPropagation();
+          
+          window.n8nChatOpen();
+        }, { passive: false });
+
+        // Initialize after DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => {
+            console.log('[Chat] DOM ready, chat system initialized');
+          });
+        } else {
+          console.log('[Chat] DOM already ready, chat system initialized');
+        }
       })();
     </script>
   </head>

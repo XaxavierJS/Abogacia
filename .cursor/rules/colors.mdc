@@ -1,0 +1,115 @@
+---
+alwaysApply: true
+---
+
+# Reglas de Colores - MGM Abogados
+
+## 🎨 Paleta Oficial
+
+### Colores Principales
+```css
+/* Azul Marino Profesional */
+--primary: #1B365D
+--primary-light: #2C4A6B  
+--primary-dark: #0F2438
+
+/* Azul Acero */
+--secondary: #4A6B8A
+--secondary-light: #6B8AAB
+--secondary-dark: #2C4A6B
+
+/* Dorado Elegante */
+--accent: #D4AF37
+--accent-light: #E6C547
+--accent-dark: #B8941F
+```
+
+### Colores Neutros
+```css
+--background: #FFFFFF
+--foreground: #1B365D
+--muted: #F8F9FA
+--muted-foreground: #6B7280
+--border: #E5E7EB
+```
+
+### Colores de Estado
+```css
+--success: #059669
+--warning: #D97706
+--destructive: #DC2626
+```
+
+## 🚫 Colores Prohibidos
+
+### Reemplazos Obligatorios
+- `blue-*` → `primary-*`
+- `gray-*` → `slate-*`
+- `neutral-*` → `slate-*`
+- `green-*` → `success-*`
+- `red-*` → `error-*`
+- `yellow-*` → `warning-*`
+
+### Ejemplos de Conversión
+```css
+/* ❌ Incorrecto */
+.text-blue-600 → .text-primary-600
+.bg-gray-100 → .bg-slate-100
+.border-neutral-200 → .border-slate-200
+
+/* ✅ Correcto */
+.text-primary-600
+.bg-slate-100
+.border-slate-200
+```
+
+## 📊 Balance de Colores
+
+### Distribución Recomendada
+- **60-70%**: Slate colors (fondos, texto secundario)
+- **20-25%**: Primary colors (botones, headers, elementos importantes)
+- **5-10%**: Accent colors (CTAs especiales, highlights)
+- **5%**: Estados y badges
+
+### Uso por Sección
+
+#### Heroes y Headers
+- `bg-primary-600` para fondos principales
+- `text-white` para texto sobre fondos oscuros
+- Gradientes: `from-slate-900/80 to-slate-800/70`
+
+#### Contenido y Cards
+- `bg-white` para cards
+- `bg-slate-50` para fondos de secciones alternas
+- `border-slate-200` para bordes
+
+#### Texto
+- `text-slate-900` para títulos principales
+- `text-slate-600` para texto secundario
+- `text-slate-500` para texto terciario
+
+#### Botones y CTAs
+- Primarios: `bg-primary-600 text-white`
+- Secundarios: `border-2 border-primary-600 text-primary-600`
+- Hover: `hover:bg-primary-700`
+- Accent: `bg-accent-600` solo para CTAs especiales
+
+## 🔍 Validación
+
+### Scripts de Auditoría
+```bash
+npm run audit:colors    # Auditoría detallada de colores
+npm run audit:all       # Todas las auditorías
+```
+
+### Errores Comunes
+- Usar `blue-*` en lugar de `primary-*`
+- Usar `gray-*` en lugar de `slate-*`
+- Usar `neutral-*` en lugar de `slate-*`
+- Colores personalizados no documentados
+
+### Corrección Automática
+El script `audit-colors.mjs` detecta automáticamente:
+- Colores prohibidos con sugerencias de reemplazo
+- Balance de colores por archivo
+- Uso excesivo o insuficiente de colores

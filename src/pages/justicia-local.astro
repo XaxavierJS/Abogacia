@@ -1,294 +1,153 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { PRACTICE_AREAS, CONTACT_INFO } from '../lib/constants';
-import ContactForm from '../components/business/ContactForm';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import localImage from '../assets/images/6.jpg';
 
-const area = PRACTICE_AREAS.find(a => a.id === 'justicia-local');
+const heroData = {
+  title: "Representación ágil en justicia local",
+  subtitle: "Tránsito, consumidor, copropiedad y ordenanzas; procesos claros y eficientes.",
+  description: "Especialistas en justicia local con enfoque en gestión eficiente, estrategia clara y honorarios transparentes para casos de tránsito, consumidor y ordenanzas municipales.",
+  icon: `<svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>`,
+  stats: [
+    { label: "Gestión", value: "eficiente" },
+    { label: "Estrategia", value: "clara" },
+    { label: "Honorarios", value: "transparentes" }
+  ],
+  summaryPoints: [
+    "Multas y tránsito.",
+    "Reclamos de consumidor.",
+    "Copropiedad y ordenanzas."
+  ]
+};
+
+const services = [
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>`,
+    title: "Accidentes de tránsito",
+    description: "Representación en juicios de tránsito y defensa de multas.",
+    timeBadge: "30–90 días"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 011-1h3a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>`,
+    title: "Derechos del consumidor",
+    description: "Reclamos por productos defectuosos y servicios deficientes.",
+    timeBadge: "15–60 días"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>`,
+    title: "Ley de copropiedad",
+    description: "Conflictos entre copropietarios y administración de edificios.",
+    timeBadge: "30–120 días"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path></svg>`,
+    title: "Multas municipales",
+    description: "Impugnación de multas por ordenanzas municipales.",
+    timeBadge: "15–45 días"
+  }
+];
+
+const valuePropositions = [
+  {
+    title: "Gestión eficiente",
+    description: "Procesos optimizados para resolver casos de manera rápida y efectiva.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    title: "Estrategia clara",
+    description: "Enfoque directo en la solución más efectiva para cada caso.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    title: "Experiencia local",
+    description: "Conocimiento profundo de los tribunales y procedimientos locales.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  }
+];
+
+const processSteps = [
+  {
+    stepNumber: 1,
+    title: "Evaluación",
+    description: "Analizamos tu caso y evaluamos las mejores opciones legales",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 2,
+    title: "Estrategia",
+    description: "Desarrollamos la mejor estrategia para tu caso específico",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 3,
+    title: "Representación",
+    description: "Te representamos en tribunales y gestiones administrativas",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 4,
+    title: "Seguimiento",
+    description: "Aseguramos el cumplimiento de resoluciones y acuerdos",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`
+  }
+];
+
+const faqData = {
+  title: "Casos frecuentes y preguntas",
+  subtitle: "Respuestas orientativas. No reemplazan asesoría legal.",
+  frequentCases: [
+    "Multas de tránsito y accidentes",
+    "Reclamos por productos defectuosos",
+    "Conflictos en edificios y copropiedad",
+    "Multas por ordenanzas municipales"
+  ],
+  faqs: [
+    {
+      question: "¿Puedo impugnar una multa de tránsito?",
+      answer: "Sí, puedes impugnar multas de tránsito dentro de los plazos establecidos. Te ayudamos a preparar la defensa y gestionar el proceso."
+    },
+    {
+      question: "¿Qué derechos tengo como consumidor?",
+      answer: "Tienes derecho a productos y servicios de calidad, información veraz y protección contra prácticas abusivas. Te ayudamos a hacer valer estos derechos."
+    },
+    {
+      question: "¿Cómo resolver conflictos en mi edificio?",
+      answer: "Los conflictos de copropiedad se pueden resolver mediante mediación, arbitraje o juicio. Te asesoramos sobre la mejor opción para tu caso."
+    },
+    {
+      question: "¿Qué hacer con una multa municipal?",
+      answer: "Puedes impugnar multas municipales si consideras que fueron aplicadas incorrectamente. Te ayudamos a preparar la defensa correspondiente."
+    }
+  ]
+};
+
+const featuredImage = {
+  src: localImage,
+  alt: "Espacio de trabajo colaborativo especializado en justicia local - MGM Abogados",
+  title: "Experiencia en Justicia Local",
+  description: "Nuestro despacho cuenta con amplia experiencia en casos de justicia local y conocimiento profundo de los tribunales locales"
+};
+
+const contactTitle = "¿Tienes una Consulta de Justicia Local?";
+const contactSubtitle = "Completa el formulario y te contactaremos en las próximas 24 horas.";
+
+const ctaData = {
+  title: "¿Necesitas Representación en Justicia Local?",
+  subtitle: "No esperes más. Contacta inmediatamente para recibir asesoría legal profesional en justicia local.",
+  primaryButton: "Consulta Gratuita",
+  secondaryButton: "Llamar Ahora"
+};
 ---
 
-<BaseLayout 
+<ServiceLayout 
   title="Justicia Local - Manriquez Gómez Melo Abogados"
   description="Especialistas en justicia local en Viña del Mar. Accidentes de tránsito, derechos del consumidor, ley de copropiedad y multas municipales. Experiencia, Eficiencia y Confianza garantizada."
->
-  <!-- Hero split + sidebar sticky -->
-  <section class="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-slate-100">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start max-w-7xl mx-auto">
-        <div class="md:col-span-7">
-          <div class="w-16 h-16 bg-primary-100 rounded-lg mb-6 flex items-center justify-center">
-            <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-          </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight text-balance">Representación ágil en justicia local</h1>
-          <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-2xl">Tránsito, consumidor, copropiedad y ordenanzas; procesos claros y eficientes.</p>
-          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-white border rounded-xl p-4 shadow-sm"><p class="text-sm text-slate-600">Gestión</p><p class="text-lg font-semibold text-slate-900">eficiente</p></div>
-            <div class="bg-white border rounded-xl p-4 shadow-sm"><p class="text-sm text-slate-600">Estrategia</p><p class="text-lg font-semibold text-slate-900">clara</p></div>
-            <div class="bg-white border rounded-xl p-4 shadow-sm"><p class="text-sm text-slate-600">Honorarios</p><p class="text-lg font-semibold text-slate-900">transparentes</p></div>
-          </div>
-          <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href="#contacto" class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg">Consulta Gratuita</a>
-            <a href={`tel:${CONTACT_INFO.phone}`} class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors text-lg">Llamar Ahora</a>
-            <button type="button" data-chat-open class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors text-lg" aria-label="Abrir chat para consulta">Consultar por Chat</button>
-          </div>
-        </div>
-        <aside class="md:col-span-5">
-          <div class="md:sticky md:top-24">
-            <div class="bg-white rounded-2xl p-6 border shadow-md shadow-primary-900/5">
-              <h2 class="text-xl font-semibold text-slate-900">Comienza aquí</h2>
-              <ul class="mt-4 space-y-3 text-sm text-slate-700">
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Multas y tránsito.</li>
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Reclamos de consumidor.</li>
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Copropiedad y ordenanzas.</li>
-              </ul>
-              <div class="mt-6 grid grid-cols-1 gap-3">
-                <a href="#contacto" class="btn-primary text-center">Ir al formulario</a>
-                <a href="#contacto" class="text-primary-600 font-medium text-center hover:underline">Agendar por chat</a>
-                <p class="text-xs text-slate-500 text-center">No constituye asesoría legal ni crea relación abogado‑cliente.</p>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="servicios" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Nuestros Servicios en Justicia Local
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            Requieren de seriedad y profesionalismo a la hora de abordarlas. 
-            Te brindamos representación especializada en tribunales locales.
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 011-1h3a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Accidentes de tránsito</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">30–90 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Representación en causas de tránsito y multas municipales.</p>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Derechos del consumidor</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">15–60 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Reclamos ante SERNAC y tribunales de competencia local.</p>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Copropiedad inmobiliaria</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">30–90 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Conflictos en comunidades y cumplimiento de ordenanzas.</p>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001z" clip-rule="evenodd"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Multas municipales</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">15–30 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Impugnación de multas y gestión ante municipalidades.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section class="py-20 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Nuestro Proceso de Trabajo en Justicia Local
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            Un enfoque sistemático y profesional para resolver tu caso en tribunales locales
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">1</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Evaluación</h3>
-            <p class="text-slate-600">Analizamos tu caso y evaluamos las opciones legales</p>
-          </div>
-          
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">2</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Estrategia</h3>
-            <p class="text-slate-600">Desarrollamos la mejor estrategia para tu caso local</p>
-          </div>
-          
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">3</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Representación</h3>
-            <p class="text-slate-600">Te representamos en tribunales de policía local</p>
-          </div>
-          
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">4</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Seguimiento</h3>
-            <p class="text-slate-600">Monitoreamos el cumplimiento de resoluciones</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Casos frecuentes + FAQs -->
-  <section id="faqs" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Casos frecuentes y preguntas
-          </h2>
-          <p class="text-xl text-slate-600">Información general. No reemplaza asesoría legal.</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Qué es un accidente de tránsito?
-            </h3>
-            <p class="text-slate-600">
-              Un accidente de tránsito es un evento que ocurre en la vía pública y que involucra 
-              vehículos motorizados, causando daños materiales o lesiones a las personas.
-            </p>
-          </div>
-          
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Qué son los derechos del consumidor?
-            </h3>
-            <p class="text-slate-600">
-              Son los derechos que tienen los consumidores al adquirir productos o servicios, 
-              incluyendo el derecho a la información, a la seguridad y a la reparación de daños.
-            </p>
-          </div>
-          
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Qué es la ley de copropiedad?
-            </h3>
-            <p class="text-slate-600">
-              Es la ley que regula la administración y funcionamiento de los edificios 
-              y condominios, estableciendo derechos y obligaciones de los copropietarios.
-            </p>
-          </div>
-          
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Cómo puedo impugnar una multa municipal?
-            </h3>
-            <p class="text-slate-600">
-              Puedes impugnar una multa municipal presentando un reclamo ante la municipalidad 
-              correspondiente, siguiendo el procedimiento establecido por la ley.
-            </p>
-          </div>
-          <p class="text-sm text-slate-500 md:col-span-2">Importante: cada caso es distinto; consulta para una orientación específica.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contacto" class="py-20 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            ¿Tienes un Caso de Justicia Local?
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            Completa el formulario y te contactaremos en las próximas 24 horas. 
-            Consulta inicial gratuita de 30 minutos.
-          </p>
-        </div>
-        
-        <ContactForm client:load />
-        
-        <!-- Asesor virtual (sección final del servicio) -->
-        <div class="mt-12 rounded-2xl border bg-white p-6 shadow-sm">
-          <h3 class="text-xl font-semibold text-slate-900">¿Prefieres orientación por chat?</h3>
-          <p class="text-slate-600 mt-2">Nuestro asistente puede responder consultas generales y coordinar una consulta. No compartas datos sensibles.</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a href="#contacto" class="btn-primary">Abrir chat y agendar</a>
-            <a href="#contacto" class="border px-4 py-3 rounded-md font-medium text-primary-600 border-primary-200">Usar formulario</a>
-          </div>
-          <p class="text-xs text-slate-500 mt-2">No constituye asesoría legal ni crea relación abogado‑cliente.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-primary-600 text-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">
-        ¿Necesitas Representación en Justicia Local?
-      </h2>
-      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-        No esperes más. Contacta inmediatamente para recibir asesoría legal profesional 
-        en justicia local.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a 
-          href="#contacto" 
-          class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-lg"
-        >
-          Consulta Gratuita
-        </a>
-        <a 
-          href={`tel:${CONTACT_INFO.phone}`} 
-          class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors text-lg"
-        >
-          Llamar Ahora
-        </a>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+  heroData={heroData}
+  services={services}
+  valuePropositions={valuePropositions}
+  processSteps={processSteps}
+  faqData={faqData}
+  featuredImage={featuredImage}
+  contactTitle={contactTitle}
+  contactSubtitle={contactSubtitle}
+  ctaData={ctaData}
+/>

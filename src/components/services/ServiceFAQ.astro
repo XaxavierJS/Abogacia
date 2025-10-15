@@ -1,0 +1,56 @@
+---
+export interface Props {
+  title: string;
+  subtitle: string;
+  frequentCases: string[];
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+const { title, subtitle, frequentCases, faqs } = Astro.props;
+---
+
+<section id="faqs" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+          {title}
+        </h2>
+        <p class="text-xl text-slate-600">
+          {subtitle}
+        </p>
+      </div>
+      
+      <!-- Casos frecuentes -->
+      <div class="bg-primary-50 rounded-xl p-6 border border-primary-100 mb-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-3">Casos frecuentes</h3>
+        <ul class="list-disc pl-5 text-slate-700 space-y-2">
+          {frequentCases.map((caseItem) => (
+            <li>{caseItem}</li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- FAQs -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqs.map((faq) => (
+          <div class="bg-slate-50 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-slate-900 mb-3">
+              {faq.question}
+            </h3>
+            <p class="text-slate-600">
+              {faq.answer}
+            </p>
+          </div>
+        ))}
+      </div>
+      
+      <p class="text-sm text-slate-500 mt-6 md:col-span-2 text-center">
+        Importante: esta información es general y no reemplaza asesoría legal.
+      </p>
+    </div>
+  </div>
+</section>

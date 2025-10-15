@@ -4,33 +4,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* shadcn variables: tema claro */
+/* Paleta de colores profesional para MGM Abogados */
 :root {
-  --background: #FFFFFF;
-  --foreground: #0B1220;
-  --card: #FFFFFF;
-  --card-foreground: #0B1220;
-  --popover: #FFFFFF;
-  --popover-foreground: #0B1220;
-  --primary: #0E4A69;
+  /* Colores principales - Azul marino profesional */
+  --primary: #1B365D;        /* Azul marino principal */
   --primary-foreground: #FFFFFF;
-  --secondary: #F4F6F8;
-  --secondary-foreground: #0B1220;
-  --muted: #F4F6F8;
-  --muted-foreground: #475569;
-  --accent: #1FA5B8;
-  --accent-foreground: #0B1220;
-  --destructive: #B91C1C;
-  --destructive-foreground: #FFFFFF;
+  --primary-light: #2C4A6B;   /* Azul marino claro */
+  --primary-dark: #0F2438;    /* Azul marino oscuro */
+  
+  /* Colores secundarios - Azul acero */
+  --secondary: #4A6B8A;       /* Azul acero */
+  --secondary-foreground: #FFFFFF;
+  --secondary-light: #6B8AAB; /* Azul acero claro */
+  --secondary-dark: #2C4A6B;  /* Azul acero oscuro */
+  
+  /* Colores de acento - Dorado elegante */
+  --accent: #D4AF37;         /* Dorado elegante */
+  --accent-foreground: #1B365D;
+  --accent-light: #E6C547;   /* Dorado claro */
+  --accent-dark: #B8941F;     /* Dorado oscuro */
+  
+  /* Colores neutros */
+  --background: #FFFFFF;
+  --foreground: #1B365D;
+  --card: #FFFFFF;
+  --card-foreground: #1B365D;
+  --popover: #FFFFFF;
+  --popover-foreground: #1B365D;
+  --muted: #F8F9FA;
+  --muted-foreground: #6B7280;
   --border: #E5E7EB;
   --input: #E5E7EB;
-  --ring: #1FA5B8;
+  --ring: #D4AF37;
   --radius: 0.5rem;
+  
+  /* Colores de estado */
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --success: #059669;
+  --success-foreground: #FFFFFF;
+  --warning: #D97706;
+  --warning-foreground: #FFFFFF;
 
   /* n8n chat overrides */
-  --chat--color--primary: #0E4A69;
-  --chat--color--primary-shade-50: #0c3d57;
-  --chat--color--primary--shade-100: #08293a;
+  --chat--color--primary: #1B365D;
+  --chat--color--primary-shade-50: #0F2438;
+  --chat--color--primary--shade-100: #0A1A2A;
   --chat--color--secondary: #1FA5B8;
   --chat--color-white: #ffffff;
   --chat--color-light: #f2f4f8;
@@ -102,6 +121,19 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Service cards con hover effects */
+.service-card {
+  @apply bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:bg-primary-600 hover:border-primary-700 transition-all duration-300 cursor-pointer;
+}
+
+.service-card h3 {
+  @apply group-hover:text-white transition-colors;
+}
+
+.service-card p {
+  @apply group-hover:text-white/90 transition-colors;
+}
+
 /* Estilos personalizados para el sitio de abogados */
 .hero-gradient {
   background: linear-gradient(135deg, #0E4A69 0%, #1FA5B8 100%);
@@ -146,11 +178,11 @@ textarea.form-input {
 }
 
 .form-label {
-  @apply block text-sm font-medium text-gray-700 mb-2;
+  @apply block text-sm font-medium text-slate-700 mb-2;
 }
 
 .form-error {
-  @apply text-red-500 text-sm mt-1;
+  @apply text-error-500 text-sm mt-1;
 }
 
 /* Estilos para botones */
@@ -159,7 +191,7 @@ textarea.form-input {
 }
 
 .btn-secondary {
-  @apply bg-gray-100 text-gray-900 px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors duration-200;
+  @apply bg-slate-100 text-slate-900 px-6 py-3 rounded-md font-medium hover:bg-slate-200 transition-colors duration-200;
 }
 
 .btn-accent {
@@ -177,7 +209,7 @@ textarea.form-input {
 
 /* Estilos para testimonios */
 .testimonial-card {
-  @apply bg-white border border-gray-200 rounded-lg p-6 shadow-sm;
+  @apply bg-white border border-slate-200 rounded-lg p-6 shadow-sm;
 }
 
 /* Estilos para el chatbot */
@@ -190,7 +222,7 @@ textarea.form-input {
 }
 
 .chatbot-bot {
-  @apply bg-gray-100 text-gray-900;
+  @apply bg-slate-100 text-slate-900;
 }
 
 #n8n-chat {
@@ -233,4 +265,37 @@ textarea.form-input {
   .section-padding {
     @apply py-12;
   }
+}
+
+/* Hero background image */
+.hero-bg-image {
+  background-image: url('/src/assets/images/a.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Botones con hover de color contrario */
+.btn-primary {
+  @apply bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-white text-primary-600 border-2 border-primary-600;
+}
+
+.btn-secondary {
+  @apply border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+}
+
+.btn-secondary:hover {
+  @apply bg-primary-600 text-white;
+}
+
+.btn-outline {
+  @apply border-2 border-slate-300 text-slate-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+}
+
+.btn-outline:hover {
+  @apply bg-slate-700 text-white border-slate-700;
 }

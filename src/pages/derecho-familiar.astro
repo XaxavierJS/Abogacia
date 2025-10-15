@@ -1,320 +1,152 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { PRACTICE_AREAS, CONTACT_INFO } from '../lib/constants';
-import ContactForm from '../components/business/ContactForm';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import familiarImage from '../assets/images/2.jpg';
 
-const area = PRACTICE_AREAS.find(a => a.id === 'derecho-familiar');
+const heroData = {
+  title: "Soluciones claras para tu familia",
+  subtitle: "Divorcios, custodia, alimentos y protección. Acompañamiento cercano y acuerdos justos.",
+  description: "Especialistas en derecho familiar con enfoque en acuerdos que protegen a los niños y familias, priorizando la comunicación constante y transparencia total.",
+  icon: `<svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>`,
+  stats: [
+    { label: "Enfoque", value: "Acuerdos" },
+    { label: "Comunicación", value: "Constante" },
+    { label: "Honorarios", value: "Transparentes" }
+  ],
+  summaryPoints: [
+    "Divorcio con o sin acuerdo.",
+    "Custodia, visitas y alimentos.",
+    "Medidas de protección por VIF."
+  ]
+};
+
+const services = [
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 011-1h3a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>`,
+    title: "Divorcios y acuerdos",
+    description: "Mutuo acuerdo o unilateral. Enfoque en acuerdos justos y ágiles.",
+    timeBadge: "30–90 días"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>`,
+    title: "Custodia y visitas",
+    description: "Cuidado personal, régimen comunicacional y medidas provisionales.",
+    timeBadge: "15–60 días"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path></svg>`,
+    title: "Pensión alimenticia",
+    description: "Fijación, cobro y modificación de alimentos.",
+    timeBadge: "30–60 días"
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001z" clip-rule="evenodd"></path></svg>`,
+    title: "Violencia intrafamiliar",
+    description: "Órdenes de protección y medidas cautelares urgentes.",
+    timeBadge: "Inmediato"
+  }
+];
+
+const valuePropositions = [
+  {
+    title: "Acompañamiento cercano",
+    description: "Priorizamos acuerdos que cuiden a niños y familias.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    title: "Transparencia",
+    description: "Honorarios y etapas claras desde el inicio.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    title: "Experiencia práctica",
+    description: "Gestiones rápidas y soluciones viables.",
+    icon: `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`
+  }
+];
+
+const processSteps = [
+  {
+    stepNumber: 1,
+    title: "Consulta Inicial",
+    description: "Evaluamos tu situación familiar y opciones legales disponibles",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 2,
+    title: "Estrategia Legal",
+    description: "Desarrollamos un plan personalizado para tu caso específico",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 3,
+    title: "Representación",
+    description: "Te representamos en tribunales y negociaciones",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`
+  },
+  {
+    stepNumber: 4,
+    title: "Seguimiento",
+    description: "Aseguramos el cumplimiento de acuerdos y sentencias",
+    icon: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`
+  }
+];
+
+const faqData = {
+  title: "Casos frecuentes y preguntas",
+  subtitle: "Respuestas orientativas. No reemplazan asesoría legal.",
+  frequentCases: [
+    "Divorcio con acuerdo y convenio regulador",
+    "Incumplimiento de pensión y cobro de alimentos",
+    "Medidas de protección por violencia intrafamiliar"
+  ],
+  faqs: [
+    {
+      question: "¿Cuánto tiempo toma un divorcio?",
+      answer: "El tiempo depende del tipo de divorcio y la complejidad del caso. Un divorcio de mutuo acuerdo puede resolverse en 30-60 días, mientras que un divorcio unilateral puede tomar varios meses."
+    },
+    {
+      question: "¿Cómo se determina la pensión alimenticia?",
+      answer: "La pensión alimenticia se determina considerando las necesidades del alimentario, las capacidades económicas del alimentante y otros factores establecidos por la ley."
+    },
+    {
+      question: "¿Qué es la mediación familiar?",
+      answer: "La mediación familiar es un proceso voluntario donde un mediador neutral ayuda a las partes a llegar a acuerdos sobre temas familiares sin necesidad de ir a juicio."
+    },
+    {
+      question: "¿Necesito ir a juicio para resolver mi caso familiar?",
+      answer: "No necesariamente. Muchos casos familiares se resuelven mediante negociación, mediación y acuerdos extrajudiciales. Solo recurrimos a los tribunales cuando es necesario."
+    }
+  ]
+};
+
+const featuredImage = {
+  src: familiarImage,
+  alt: "Sala de consultas del despacho MGM Abogados especializada en derecho familiar",
+  title: "Un Ambiente de Confianza",
+  description: "Nuestro despacho ofrece un espacio acogedor y profesional para abordar los temas más sensibles de tu familia"
+};
+
+const contactTitle = "¿Tienes una Consulta Familiar?";
+const contactSubtitle = "Completa el formulario y te contactaremos en las próximas 24 horas.";
+
+const ctaData = {
+  title: "¿Listo para Resolver tu Caso Familiar?",
+  subtitle: "No esperes más. Agenda tu consulta y recibe asesoría legal profesional en derecho familiar.",
+  primaryButton: "Consulta Gratuita",
+  secondaryButton: "Llamar Ahora"
+};
 ---
 
-<BaseLayout 
+<ServiceLayout 
   title="Derecho de Familia - Manriquez Gómez Melo Abogados"
   description="Especialistas en derecho familiar en Viña del Mar. Divorcios, custodia, pensión alimenticia, violencia intrafamiliar y mediación familiar. Experiencia, Eficiencia y Confianza garantizada."
->
-  <!-- Hero split + sidebar sticky -->
-  <section class="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-slate-100">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start max-w-7xl mx-auto">
-        <div class="md:col-span-7">
-          <div class="w-16 h-16 bg-primary-100 rounded-lg mb-6 flex items-center justify-center">
-            <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>
-          </div>
-          <h1 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight text-balance">Soluciones claras para tu familia</h1>
-          <p class="mt-4 text-lg md:text-xl text-slate-600 max-w-2xl">Divorcios, custodia, alimentos y protección. Acompañamiento cercano y acuerdos justos.</p>
-          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-white border rounded-xl p-4 shadow-sm"><p class="text-sm text-slate-600">Enfoque</p><p class="text-lg font-semibold text-slate-900">Acuerdos</p></div>
-            <div class="bg-white border rounded-xl p-4 shadow-sm"><p class="text-sm text-slate-600">Comunicación</p><p class="text-lg font-semibold text-slate-900">Constante</p></div>
-            <div class="bg-white border rounded-xl p-4 shadow-sm"><p class="text-sm text-slate-600">Honorarios</p><p class="text-lg font-semibold text-slate-900">Transparentes</p></div>
-          </div>
-          <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href="#contacto" class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg">Consulta Gratuita</a>
-            <a href={`tel:${CONTACT_INFO.phone}`} class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors text-lg">Llamar Ahora</a>
-            <button type="button" data-chat-open class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors text-lg" aria-label="Abrir chat para consulta">Consultar por Chat</button>
-          </div>
-        </div>
-        <aside class="md:col-span-5">
-          <div class="md:sticky md:top-24">
-            <div class="bg-white rounded-2xl p-6 border shadow-md shadow-primary-900/5">
-              <h2 class="text-xl font-semibold text-slate-900">Comienza aquí</h2>
-              <ul class="mt-4 space-y-3 text-sm text-slate-700">
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Divorcio con o sin acuerdo.</li>
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Custodia, visitas y alimentos.</li>
-                <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-primary-600"></span> Medidas de protección por VIF.</li>
-              </ul>
-              <div class="mt-6 grid grid-cols-1 gap-3">
-                <a href="#contacto" class="btn-primary text-center">Ir al formulario</a>
-                <a href="#contacto" class="text-primary-600 font-medium text-center hover:underline">Agendar por chat</a>
-                <p class="text-xs text-slate-500 text-center">No constituye asesoría legal ni crea relación abogado‑cliente.</p>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick anchor nav removed para reducir ruido visual -->
-
-  <!-- Qué resolvemos -->
-  <section id="servicios" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Qué resolvemos en Derecho de Familia
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto text-balance">
-            Protegemos a tu familia con acuerdos claros y soluciones prácticas.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 9a1 1 0 011-1h3a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Divorcios y acuerdos</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">30–90 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Mutuo acuerdo o unilateral. Enfoque en acuerdos justos y ágiles.</p>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Custodia y visitas</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">15–60 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Cuidado personal, régimen comunicacional y medidas provisionales.</p>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Pensión alimenticia</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">30–60 días</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Fijación, cobro y modificación de alimentos.</p>
-              </div>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-start gap-4">
-              <div class="h-10 w-10 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001z" clip-rule="evenodd"></path></svg>
-              </div>
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <h3 class="font-semibold text-slate-900">Violencia intrafamiliar</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">Inmediato</span>
-                </div>
-                <p class="mt-1 text-sm text-slate-600">Órdenes de protección y medidas cautelares urgentes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Propuesta de valor -->
-  <section class="py-16 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border rounded-xl p-6 shadow-sm">
-          <h3 class="font-semibold text-slate-900 mb-2">Acompañamiento cercano</h3>
-          <p class="text-sm text-slate-600">Priorizamos acuerdos que cuiden a niños y familias.</p>
-        </div>
-        <div class="bg-white border rounded-xl p-6 shadow-sm">
-          <h3 class="font-semibold text-slate-900 mb-2">Transparencia</h3>
-          <p class="text-sm text-slate-600">Honorarios y etapas claras desde el inicio.</p>
-        </div>
-        <div class="bg-white border rounded-xl p-6 shadow-sm">
-          <h3 class="font-semibold text-slate-900 mb-2">Experiencia práctica</h3>
-          <p class="text-sm text-slate-600">Gestiones rápidas y soluciones viables.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section id="proceso" class="py-20 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Nuestro Proceso de Trabajo
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            Un enfoque sistemático y profesional para resolver tu caso familiar
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">1</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Consulta Inicial</h3>
-            <p class="text-slate-600">Evaluamos tu situación familiar y opciones legales disponibles</p>
-          </div>
-          
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">2</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Estrategia Legal</h3>
-            <p class="text-slate-600">Desarrollamos un plan personalizado para tu caso específico</p>
-          </div>
-          
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">3</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Representación</h3>
-            <p class="text-slate-600">Te representamos en tribunales y negociaciones</p>
-          </div>
-          
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span class="text-white font-bold text-xl">4</span>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-4">Seguimiento</h3>
-            <p class="text-slate-600">Aseguramos el cumplimiento de acuerdos y sentencias</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Casos frecuentes + FAQs -->
-  <section id="faqs" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Casos frecuentes y preguntas
-          </h2>
-          <p class="text-xl text-slate-600">
-            Respuestas orientativas. No reemplazan asesoría legal.
-          </p>
-        </div>
-        
-        <div class="bg-primary-50 rounded-xl p-6 border border-primary-100 mb-6">
-          <h3 class="text-lg font-semibold text-slate-900 mb-3">Casos frecuentes</h3>
-          <ul class="list-disc pl-5 text-slate-700 space-y-2">
-            <li>Divorcio con acuerdo y convenio regulador</li>
-            <li>Incumplimiento de pensión y cobro de alimentos</li>
-            <li>Medidas de protección por violencia intrafamiliar</li>
-          </ul>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Cuánto tiempo toma un divorcio?
-            </h3>
-            <p class="text-slate-600">
-              El tiempo depende del tipo de divorcio y la complejidad del caso. Un divorcio de mutuo acuerdo 
-              puede resolverse en 30-60 días, mientras que un divorcio unilateral puede tomar varios meses.
-            </p>
-          </div>
-          
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Cómo se determina la pensión alimenticia?
-            </h3>
-            <p class="text-slate-600">
-              La pensión alimenticia se determina considerando las necesidades del alimentario, 
-              las capacidades económicas del alimentante y otros factores establecidos por la ley.
-            </p>
-          </div>
-          
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Qué es la mediación familiar?
-            </h3>
-            <p class="text-slate-600">
-              La mediación familiar es un proceso voluntario donde un mediador neutral ayuda a las partes 
-              a llegar a acuerdos sobre temas familiares sin necesidad de ir a juicio.
-            </p>
-          </div>
-          
-          <div class="bg-slate-50 rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-slate-900 mb-3">
-              ¿Necesito ir a juicio para resolver mi caso familiar?
-            </h3>
-            <p class="text-slate-600">
-              No necesariamente. Muchos casos familiares se resuelven mediante negociación, 
-              mediación y acuerdos extrajudiciales. Solo recurrimos a los tribunales cuando es necesario.
-            </p>
-          </div>
-          <p class="text-sm text-slate-500 md:col-span-2">Importante: la información es general y no sustituye asesoría legal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contacto" class="py-20 bg-slate-50">
-    <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            ¿Tienes una Consulta Familiar?
-          </h2>
-          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-            Completa el formulario y te contactaremos en las próximas 24 horas. 
-            Consulta inicial gratuita de 30 minutos.
-          </p>
-        </div>
-        
-        <ContactForm client:load />
-        
-        <!-- Asesor virtual (sección final del servicio) -->
-        <div class="mt-12 rounded-2xl border bg-white p-6 shadow-sm">
-          <h3 class="text-xl font-semibold text-slate-900">¿Prefieres orientación por chat?</h3>
-          <p class="text-slate-600 mt-2">Nuestro asistente puede responder consultas generales y coordinar una consulta. No compartas datos sensibles.</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a href="#contacto" class="btn-primary">Abrir chat y agendar</a>
-            <a href="#contacto" class="border px-4 py-3 rounded-md font-medium text-primary-600 border-primary-200">Usar formulario</a>
-          </div>
-          <p class="text-xs text-slate-500 mt-2">No constituye asesoría legal ni crea relación abogado‑cliente.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-primary-600 text-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">
-        ¿Listo para Resolver tu Caso Familiar?
-      </h2>
-      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-        No esperes más. Agenda tu consulta gratuita y recibe asesoría legal profesional 
-        en derecho familiar.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-
-        <a 
-          href={`tel:${CONTACT_INFO.phone}`} 
-          class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors text-lg"
-        >
-          Llamar Ahora
-        </a>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+  heroData={heroData}
+  services={services}
+  valuePropositions={valuePropositions}
+  processSteps={processSteps}
+  faqData={faqData}
+  featuredImage={featuredImage}
+  contactTitle={contactTitle}
+  contactSubtitle={contactSubtitle}
+  ctaData={ctaData}
+/>

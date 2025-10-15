@@ -86,69 +86,69 @@ export default function CookieConsent() {
           {/* Cookie Types */}
           <div className="space-y-4">
             {/* Necessary Cookies */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-slate-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-2">
-                  <Shield className="h-5 w-5 text-green-600" />
-                  <h3 className="font-semibold text-gray-900">Cookies Necesarias</h3>
+                  <Shield className="h-5 w-5 text-success-600" />
+                  <h3 className="font-semibold text-slate-900">Cookies Necesarias</h3>
                 </div>
                 <Checkbox checked={true} disabled className="opacity-50" />
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 Estas cookies son esenciales para el funcionamiento del sitio web y no pueden ser desactivadas.
                 Incluyen cookies de sesión, seguridad y funcionalidad básica.
               </p>
             </div>
 
             {/* Analytics Cookies */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-slate-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-2">
-                  <BarChart3 className="h-5 w-5 text-blue-600" />
-                  <h3 className="font-semibold text-gray-900">Cookies de Análisis</h3>
+                  <BarChart3 className="h-5 w-5 text-primary-600" />
+                  <h3 className="font-semibold text-slate-900">Cookies de Análisis</h3>
                 </div>
                 <Checkbox 
                   checked={preferences.analytics}
                   onCheckedChange={(checked) => handlePreferenceChange('analytics', checked as boolean)}
                 />
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 Nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web 
                 recopilando información de forma anónima.
               </p>
             </div>
 
             {/* Marketing Cookies */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-slate-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-2">
                   <Target className="h-5 w-5 text-purple-600" />
-                  <h3 className="font-semibold text-gray-900">Cookies de Marketing</h3>
+                  <h3 className="font-semibold text-slate-900">Cookies de Marketing</h3>
                 </div>
                 <Checkbox 
                   checked={preferences.marketing}
                   onCheckedChange={(checked) => handlePreferenceChange('marketing', checked as boolean)}
                 />
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 Se utilizan para mostrar contenido relevante y personalizado, 
                 así como para medir la efectividad de nuestras campañas.
               </p>
             </div>
 
             {/* Functional Cookies */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-slate-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-2">
                   <Settings className="h-5 w-5 text-orange-600" />
-                  <h3 className="font-semibold text-gray-900">Cookies de Funcionalidad</h3>
+                  <h3 className="font-semibold text-slate-900">Cookies de Funcionalidad</h3>
                 </div>
                 <Checkbox 
                   checked={preferences.functional}
                   onCheckedChange={(checked) => handlePreferenceChange('functional', checked as boolean)}
                 />
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 Mejoran la funcionalidad del sitio web recordando sus preferencias 
                 y configuraciones personalizadas.
               </p>
@@ -156,8 +156,8 @@ export default function CookieConsent() {
           </div>
 
           {/* Legal Links */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-600 mb-2">
+          <div className="bg-slate-50 p-4 rounded-lg">
+            <p className="text-sm text-slate-600 mb-2">
               Para más información sobre cómo utilizamos las cookies:
             </p>
             <div className="flex flex-wrap gap-4">
@@ -200,7 +200,7 @@ export default function CookieConsent() {
             <Button 
               onClick={rejectAll}
               variant="outline"
-              className="flex-1 border-gray-400 text-gray-700 hover:bg-gray-50 font-semibold"
+              className="flex-1 border-slate-400 text-slate-700 hover:bg-slate-50 font-semibold"
             >
               Solo Necesarias
             </Button>

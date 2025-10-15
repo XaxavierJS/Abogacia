@@ -27,7 +27,7 @@ export default function Disclaimer({ type = 'general', className = '' }: Disclai
       case 'case-result':
         return <AlertTriangle className="h-5 w-5 text-amber-400 mr-2 flex-shrink-0" />;
       default:
-        return <AlertTriangle className="h-5 w-5 text-blue-400 mr-2 flex-shrink-0" />;
+        return <AlertTriangle className="h-5 w-5 text-primary-400 mr-2 flex-shrink-0" />;
     }
   };
 
@@ -39,7 +39,7 @@ export default function Disclaimer({ type = 'general', className = '' }: Disclai
       case 'case-result':
         return "bg-amber-50 border-l-4 border-amber-400 p-4";
       default:
-        return "bg-blue-50 border-l-4 border-blue-400 p-4";
+        return "bg-primary-50 border-l-4 border-primary-400 p-4";
     }
   };
 
@@ -51,7 +51,7 @@ export default function Disclaimer({ type = 'general', className = '' }: Disclai
       case 'case-result':
         return "text-amber-800";
       default:
-        return "text-blue-800";
+        return "text-primary-800";
     }
   };
 

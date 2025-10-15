@@ -1,0 +1,245 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceHero from '../components/services/ServiceHero.astro';
+import ServiceCard from '../components/services/ServiceCard.astro';
+import ProcessStep from '../components/services/ProcessStep.astro';
+import ValueProposition from '../components/services/ValueProposition.astro';
+import ServiceFAQ from '../components/services/ServiceFAQ.astro';
+import ContactForm from '../components/business/ContactForm';
+import { CONTACT_INFO } from '../lib/constants';
+
+export interface Props {
+  title: string;
+  description: string;
+  heroData: {
+    title: string;
+    subtitle: string;
+    description: string;
+    icon: string;
+    stats: Array<{ label: string; value: string }>;
+    summaryPoints: string[];
+  };
+  services: Array<{
+    icon: string;
+    title: string;
+    description: string;
+    timeBadge?: string;
+  }>;
+  valuePropositions: Array<{
+    title: string;
+    description: string;
+    icon?: string;
+  }>;
+  processSteps: Array<{
+    stepNumber: number;
+    title: string;
+    description: string;
+    icon?: string;
+  }>;
+  faqData: {
+    title: string;
+    subtitle: string;
+    frequentCases: string[];
+    faqs: Array<{ question: string; answer: string }>;
+  };
+  featuredImage?: {
+    src: any;
+    alt: string;
+    title: string;
+    description: string;
+  };
+  contactTitle: string;
+  contactSubtitle: string;
+  ctaData: {
+    title: string;
+    subtitle: string;
+    primaryButton: string;
+    secondaryButton: string;
+  };
+}
+
+const {
+  title,
+  description,
+  heroData,
+  services,
+  valuePropositions,
+  processSteps,
+  faqData,
+  featuredImage,
+  contactTitle,
+  contactSubtitle,
+  ctaData
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <ServiceHero 
+    title={heroData.title}
+    subtitle={heroData.subtitle}
+    description={heroData.description}
+    icon={heroData.icon}
+    stats={heroData.stats}
+    summaryPoints={heroData.summaryPoints}
+    contactInfo={CONTACT_INFO}
+  />
+
+  <!-- Servicios Específicos -->
+  <section id="servicios" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Qué resolvemos en {heroData.title.split(' ')[0]}
+          </h2>
+          <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto text-balance">
+            Acciones concretas para los problemas más comunes. Sin rodeos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service) => (
+            <ServiceCard 
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              timeBadge={service.timeBadge}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Propuesta de Valor -->
+  <section class="py-16 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        {valuePropositions.map((proposition) => (
+          <ValueProposition 
+            title={proposition.title}
+            description={proposition.description}
+            icon={proposition.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Imagen Destacada -->
+  {featuredImage && (
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              {featuredImage.title}
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+              {featuredImage.description}
+            </p>
+          </div>
+          <div class="aspect-video rounded-2xl overflow-hidden shadow-xl">
+            <img 
+              src={featuredImage.src.src} 
+              alt={featuredImage.alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Proceso de Trabajo -->
+  <section id="proceso" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+            Nuestro Proceso de Trabajo
+          </h2>
+          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+            Pasos claros, tiempos realistas y comunicación constante.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {processSteps.map((step) => (
+            <ProcessStep 
+              stepNumber={step.stepNumber}
+              title={step.title}
+              description={step.description}
+              icon={step.icon}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <ServiceFAQ 
+    title={faqData.title}
+    subtitle={faqData.subtitle}
+    frequentCases={faqData.frequentCases}
+    faqs={faqData.faqs}
+  />
+
+  <!-- Formulario de Contacto -->
+  <section id="contacto" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+            {contactTitle}
+          </h2>
+          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+            {contactSubtitle}
+          </p>
+        </div>
+        
+        <ContactForm client:load />
+        
+        <!-- Asesor virtual -->
+        <div class="mt-12 rounded-2xl border bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900">¿Prefieres orientación por chat?</h3>
+          <p class="text-slate-600 mt-2">Nuestro asistente puede responder consultas generales y coordinar una consulta. No compartas datos sensibles.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="#contacto" class="btn-primary">Abrir chat y agendar</a>
+            <a href="#contacto" class="border px-4 py-3 rounded-md font-medium text-primary-600 border-primary-200">Usar formulario</a>
+          </div>
+          <p class="text-xs text-slate-500 mt-2">No constituye asesoría legal ni crea relación abogado‑cliente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="py-20 bg-primary-600 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        {ctaData.title}
+      </h2>
+      <p class="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
+        {ctaData.subtitle}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="#contacto" 
+          class="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-primary-50 transition-colors text-lg"
+        >
+          {ctaData.primaryButton}
+        </a>
+        <a 
+          href={`tel:${CONTACT_INFO.phone}`} 
+          class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors text-lg"
+        >
+          {ctaData.secondaryButton}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

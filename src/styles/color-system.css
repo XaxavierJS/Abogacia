@@ -1,0 +1,191 @@
+/* 
+ * Color System CSS - MGM Abogados
+ * Variables CSS documentadas para uso consistente
+ */
+
+:root {
+  /* Colores principales - Azul marino profesional */
+  --primary: #1B365D;        /* Azul marino principal */
+  --primary-foreground: #FFFFFF;
+  --primary-light: #2C4A6B;   /* Azul marino claro */
+  --primary-dark: #0F2438;    /* Azul marino oscuro */
+  
+  /* Colores secundarios - Azul acero */
+  --secondary: #4A6B8A;       /* Azul acero */
+  --secondary-foreground: #FFFFFF;
+  --secondary-light: #6B8AAB; /* Azul acero claro */
+  --secondary-dark: #2C4A6B;  /* Azul acero oscuro */
+  
+  /* Colores de acento - Dorado elegante */
+  --accent: #D4AF37;         /* Dorado elegante */
+  --accent-foreground: #1B365D;
+  --accent-light: #E6C547;   /* Dorado claro */
+  --accent-dark: #B8941F;     /* Dorado oscuro */
+  
+  /* Colores neutros */
+  --background: #FFFFFF;
+  --foreground: #1B365D;
+  --card: #FFFFFF;
+  --card-foreground: #1B365D;
+  --popover: #FFFFFF;
+  --popover-foreground: #1B365D;
+  --muted: #F8F9FA;
+  --muted-foreground: #6B7280;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #D4AF37;
+  --radius: 0.5rem;
+  
+  /* Colores de estado */
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --success: #059669;
+  --success-foreground: #FFFFFF;
+  --warning: #D97706;
+  --warning-foreground: #FFFFFF;
+
+  /* n8n chat overrides */
+  --chat--color--primary: #1B365D;
+  --chat--color--primary-shade-50: #0F2438;
+  --chat--color--primary--shade-100: #0A1A2A;
+  --chat--color--secondary: #1FA5B8;
+  --chat--color-white: #ffffff;
+  --chat--color-light: #f2f4f8;
+  --chat--color-dark: #061523;
+  --chat--color-typing: #475569;
+  --chat--toggle--background: #0E4A69;
+  --chat--toggle--hover--background: #0c3d57;
+  --chat--toggle--active--background: #08293a;
+  --chat--toggle--color: #ffffff;
+  --chat--window--width: 380px;
+  --chat--window--height: 560px;
+  --chat--border-radius: 0.875rem;
+}
+
+/* Tema oscuro */
+.dark {
+  --background: #0B1220;
+  --foreground: #F7FAFC;
+  --card: #121A2A;
+  --card-foreground: #F7FAFC;
+  --popover: #121A2A;
+  --popover-foreground: #F7FAFC;
+  --primary: #1FA5B8;
+  --primary-foreground: #061923;
+  --secondary: #121A2A;
+  --secondary-foreground: #E2E8F0;
+  --muted: #0F1828;
+  --muted-foreground: #94A3B8;
+  --accent: #0E4A69;
+  --accent-foreground: #E6F7FA;
+  --destructive: #B91C1C;
+  --destructive-foreground: #F8FAFC;
+  --border: #1E293B;
+  --input: #1E293B;
+  --ring: #1FA5B8;
+}
+
+/* Clases utilitarias para colores */
+.text-primary { color: var(--primary); }
+.text-primary-light { color: var(--primary-light); }
+.text-primary-dark { color: var(--primary-dark); }
+.text-secondary { color: var(--secondary); }
+.text-accent { color: var(--accent); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-destructive { color: var(--destructive); }
+
+.bg-primary { background-color: var(--primary); }
+.bg-primary-light { background-color: var(--primary-light); }
+.bg-primary-dark { background-color: var(--primary-dark); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-accent { background-color: var(--accent); }
+.bg-success { background-color: var(--success); }
+.bg-warning { background-color: var(--warning); }
+.bg-destructive { background-color: var(--destructive); }
+
+.border-primary { border-color: var(--primary); }
+.border-secondary { border-color: var(--secondary); }
+.border-accent { border-color: var(--accent); }
+
+/* Clases para gradientes recomendados */
+.gradient-hero {
+  background: linear-gradient(135deg, rgba(15, 36, 56, 0.8) 0%, rgba(44, 74, 107, 0.7) 100%);
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+}
+
+/* Clases para estados de hover */
+.hover-primary:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-foreground);
+}
+
+.hover-secondary:hover {
+  background-color: var(--secondary-light);
+  color: var(--secondary-foreground);
+}
+
+.hover-accent:hover {
+  background-color: var(--accent-light);
+  color: var(--accent-foreground);
+}
+
+/* Clases para badges y estados */
+.badge-info {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.badge-success {
+  background-color: var(--success);
+  color: var(--success-foreground);
+}
+
+.badge-warning {
+  background-color: var(--warning);
+  color: var(--warning-foreground);
+}
+
+.badge-destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+/* Clases para botones estándar */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: 1px solid var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  border: 1px solid var(--accent);
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-light);
+}

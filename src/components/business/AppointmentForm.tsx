@@ -71,22 +71,22 @@ export default function AppointmentForm() {
 
   if (submitStatus === 'success') {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+      <div className="bg-success-50 border border-success-200 rounded-lg p-6">
         <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center">
-            <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <div className="w-16 h-16 bg-success-100 rounded-full mx-auto flex items-center justify-center">
+            <svg className="w-8 h-8 text-success-600" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
             </svg>
           </div>
-          <h3 className="text-2xl font-bold text-green-700">¡Cita Solicitada!</h3>
-          <p className="text-green-600">
+          <h3 className="text-2xl font-bold text-success-700">¡Cita Solicitada!</h3>
+          <p className="text-success-600">
             Hemos recibido tu solicitud de cita. Te contactaremos en las próximas 24 horas 
             para confirmar la fecha y hora.
           </p>
           <Button 
             onClick={() => setSubmitStatus('idle')} 
             variant="outline"
-            className="border-green-300 text-green-700 hover:bg-green-50"
+            className="border-success-300 text-success-700 hover:bg-success-50"
           >
             Solicitar Otra Cita
           </Button>
@@ -96,18 +96,18 @@ export default function AppointmentForm() {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6">
+    <div className="bg-white border border-slate-200 rounded-lg p-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Agenda tu Consulta</h2>
-        <p className="text-gray-600">
-          Completa el formulario para solicitar una consulta legal gratuita de 30 minutos.
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">Agenda tu Consulta</h2>
+        <p className="text-slate-600">
+          Completa el formulario para solicitar una consulta legal.
         </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Información Personal */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center">
             <User className="h-5 w-5 mr-2 text-primary-600" />
             Información Personal
           </h3>
@@ -118,7 +118,7 @@ export default function AppointmentForm() {
               <Input
                 {...register('name')}
                 placeholder="Tu nombre completo"
-                className={errors.name ? 'border-red-500' : ''}
+                className={errors.name ? 'border-error-500' : ''}
               />
               {errors.name && (
                 <p className="form-error">{errors.name.message}</p>
@@ -131,7 +131,7 @@ export default function AppointmentForm() {
                 type="email"
                 {...register('email')}
                 placeholder="tu@email.com"
-                className={errors.email ? 'border-red-500' : ''}
+                className={errors.email ? 'border-error-500' : ''}
               />
               {errors.email && (
                 <p className="form-error">{errors.email.message}</p>
@@ -145,7 +145,7 @@ export default function AppointmentForm() {
               type="tel"
               {...register('phone')}
               placeholder="+56 9 1234 5678"
-              className={errors.phone ? 'border-red-500' : ''}
+              className={errors.phone ? 'border-error-500' : ''}
             />
             {errors.phone && (
               <p className="form-error">{errors.phone.message}</p>
@@ -155,7 +155,7 @@ export default function AppointmentForm() {
 
         {/* Detalles de la Cita */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center">
             <CalendarIcon className="h-5 w-5 mr-2 text-primary-600" />
             Detalles de la Cita
           </h3>
@@ -164,7 +164,7 @@ export default function AppointmentForm() {
             <div>
               <label className="form-label">Servicio *</label>
               <Select onValueChange={(value) => setValue('service', value)}>
-                <SelectTrigger className={errors.service ? 'border-red-500' : ''}>
+                <SelectTrigger className={errors.service ? 'border-error-500' : ''}>
                   <SelectValue placeholder="Selecciona un servicio" />
                 </SelectTrigger>
                 <SelectContent>
@@ -187,7 +187,7 @@ export default function AppointmentForm() {
                   <Button
                     variant="outline"
                     className={`w-full justify-start text-left font-normal ${
-                      errors.date ? 'border-red-500' : ''
+                      errors.date ? 'border-error-500' : ''
                     }`}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
@@ -216,7 +216,7 @@ export default function AppointmentForm() {
           <div>
             <label className="form-label">Hora *</label>
             <Select onValueChange={(value) => setValue('time', value)}>
-              <SelectTrigger className={errors.time ? 'border-red-500' : ''}>
+              <SelectTrigger className={errors.time ? 'border-error-500' : ''}>
                 <SelectValue placeholder="Selecciona hora" />
               </SelectTrigger>
               <SelectContent>
@@ -235,7 +235,7 @@ export default function AppointmentForm() {
 
         {/* Información Adicional */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center">
             <FileText className="h-5 w-5 mr-2 text-primary-600" />
             Información Adicional
           </h3>
@@ -256,9 +256,9 @@ export default function AppointmentForm() {
             <Checkbox
               id="privacy"
               {...register('privacy')}
-              className={errors.privacy ? 'border-red-500' : ''}
+              className={errors.privacy ? 'border-error-500' : ''}
             />
-            <label htmlFor="privacy" className="text-sm text-gray-600">
+            <label htmlFor="privacy" className="text-sm text-slate-600">
               Acepto la{' '}
               <a href="/legal/privacidad" className="text-primary-600 hover:underline">
                 Política de Privacidad
@@ -285,8 +285,8 @@ export default function AppointmentForm() {
         </Button>
 
         {submitStatus === 'error' && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <p className="text-red-600 text-sm">
+          <div className="bg-error-50 border border-error-200 rounded-lg p-4">
+            <p className="text-error-600 text-sm">
               Error al enviar la solicitud. Por favor, inténtalo de nuevo o contacta directamente.
             </p>
           </div>

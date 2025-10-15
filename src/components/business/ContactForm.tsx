@@ -80,11 +80,11 @@ export default function ContactForm() {
       <Card className="max-w-2xl mx-auto">
         <CardContent className="pt-6">
           <div className="text-center space-y-4">
-            <div className="w-16 h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+            <div className="w-16 h-16 bg-success-100 rounded-full mx-auto flex items-center justify-center">
+              <CheckCircle className="h-8 w-8 text-success-600" />
             </div>
-            <h3 className="text-2xl font-bold text-green-700">¡Mensaje Enviado!</h3>
-            <p className="text-gray-600">
+            <h3 className="text-2xl font-bold text-success-700">¡Mensaje Enviado!</h3>
+            <p className="text-slate-600">
               Hemos recibido tu consulta. Te contactaremos en las próximas 24 horas 
               según tu método de contacto preferido.
             </p>
@@ -123,21 +123,21 @@ export default function ContactForm() {
                 <Phone className="h-5 w-5 text-primary-600" />
                 <div>
                   <p className="font-medium">Teléfono</p>
-                  <p className="text-sm text-gray-600">{CONTACT_INFO.phone}</p>
+                  <p className="text-sm text-slate-600">{CONTACT_INFO.phone}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary-600" />
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-sm text-gray-600">{CONTACT_INFO.email}</p>
+                  <p className="text-sm text-slate-600">{CONTACT_INFO.email}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-primary-600" />
                 <div>
                   <p className="font-medium">Dirección</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-slate-600">
                     {CONTACT_INFO.address.full}
                   </p>
                 </div>
@@ -164,11 +164,11 @@ export default function ContactForm() {
                 </div>
                 <div className="flex justify-between">
                   <span>Domingos</span>
-                  <span className="text-gray-500">Cerrado</span>
+                  <span className="text-slate-500">Cerrado</span>
                 </div>
               </div>
-              <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-800">
+              <div className="mt-4 p-3 bg-primary-50 rounded-lg">
+                <p className="text-sm text-primary-800">
                   <strong>Emergencias:</strong> Disponible 24/7 para casos urgentes
                 </p>
               </div>
@@ -180,8 +180,8 @@ export default function ContactForm() {
               <CardTitle>Consulta Gratuita</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-600 mb-4">
-                Ofrecemos una consulta inicial gratuita de 30 minutos para evaluar tu caso.
+              <p className="text-sm text-slate-600 mb-4">
+                Completa el formulario y te contactaremos para evaluar tu caso.
               </p>
               <Button asChild className="w-full">
                 <a href="/contacto#appointment">Agendar Consulta</a>
@@ -195,7 +195,7 @@ export default function ContactForm() {
           <Card>
             <CardHeader>
               <CardTitle>Envíanos un Mensaje</CardTitle>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 Completa el formulario y te contactaremos pronto. Todos los campos marcados con * son obligatorios.
               </p>
             </CardHeader>
@@ -203,7 +203,7 @@ export default function ContactForm() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Información Personal */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Información Personal</h3>
+                  <h3 className="text-lg font-semibold text-slate-900">Información Personal</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -211,7 +211,7 @@ export default function ContactForm() {
                       <Input
                         {...register('name')}
                         placeholder="Tu nombre completo"
-                        className={errors.name ? 'border-red-500' : ''}
+                        className={errors.name ? 'border-error-500' : ''}
                       />
                       {errors.name && (
                         <p className="form-error">{errors.name.message}</p>
@@ -224,7 +224,7 @@ export default function ContactForm() {
                         type="email"
                         {...register('email')}
                         placeholder="tu@email.com"
-                        className={errors.email ? 'border-red-500' : ''}
+                        className={errors.email ? 'border-error-500' : ''}
                       />
                       {errors.email && (
                         <p className="form-error">{errors.email.message}</p>
@@ -238,7 +238,7 @@ export default function ContactForm() {
                       type="tel"
                       {...register('phone')}
                       placeholder="+56 9 1234 5678"
-                      className={errors.phone ? 'border-red-500' : ''}
+                      className={errors.phone ? 'border-error-500' : ''}
                     />
                     {errors.phone && (
                       <p className="form-error">{errors.phone.message}</p>
@@ -248,7 +248,7 @@ export default function ContactForm() {
 
                 {/* Detalles de la Consulta */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Detalles de la Consulta</h3>
+                  <h3 className="text-lg font-semibold text-slate-900">Detalles de la Consulta</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -289,7 +289,7 @@ export default function ContactForm() {
                     <Input
                       {...register('subject')}
                       placeholder="¿En qué podemos ayudarte?"
-                      className={errors.subject ? 'border-red-500' : ''}
+                      className={errors.subject ? 'border-error-500' : ''}
                     />
                     {errors.subject && (
                       <p className="form-error">{errors.subject.message}</p>
@@ -302,7 +302,7 @@ export default function ContactForm() {
                       {...register('message')}
                       placeholder="Describe tu consulta legal de manera detallada..."
                       rows={6}
-                      className={errors.message ? 'border-red-500' : ''}
+                      className={errors.message ? 'border-error-500' : ''}
                     />
                     {errors.message && (
                       <p className="form-error">{errors.message.message}</p>
@@ -312,7 +312,7 @@ export default function ContactForm() {
 
                 {/* Preferencias de Contacto */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Preferencias de Contacto</h3>
+                  <h3 className="text-lg font-semibold text-slate-900">Preferencias de Contacto</h3>
                   
                   <div>
                     <label className="form-label">Método de Contacto Preferido</label>
@@ -337,9 +337,9 @@ export default function ContactForm() {
                     <Checkbox
                       id="privacy"
                       {...register('privacyConsent')}
-                      className={errors.privacyConsent ? 'border-red-500' : ''}
+                      className={errors.privacyConsent ? 'border-error-500' : ''}
                     />
-                    <label htmlFor="privacy" className="text-sm text-gray-600">
+                    <label htmlFor="privacy" className="text-sm text-slate-600">
                       Acepto la{' '}
                       <a href="/legal/privacidad" className="text-primary-600 hover:underline">
                         Política de Privacidad
@@ -376,8 +376,8 @@ export default function ContactForm() {
                 </Button>
 
                 {submitStatus === 'error' && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <div className="flex items-center space-x-2 text-red-600">
+                  <div className="bg-error-50 border border-error-200 rounded-lg p-4">
+                    <div className="flex items-center space-x-2 text-error-600">
                       <AlertCircle className="h-4 w-4" />
                       <p className="text-sm">Error al enviar el mensaje. Inténtalo de nuevo o contacta directamente.</p>
                     </div>
