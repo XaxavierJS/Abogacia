@@ -15,10 +15,39 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.local
 .env.production
+.env.*.local
 
 # macOS-specific files
 .DS_Store
+.AppleDouble
+.LSOverride
 
-# jetbrains setting folder
+# Windows specific
+Thumbs.db
+ehthumbs.db
+
+# Linux specific
+*~
+
+# IDE/Editor
 .idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Testing
+coverage/
+.nyc_output/
+
+# Lighthouse reports
+lighthouse-report.html
+lighthouse-report.json
+
+# Misc
+*.log
+*.tmp
+*.temp

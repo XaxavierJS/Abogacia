@@ -8,7 +8,8 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [react(), tailwind()],
   output: 'static',
-  site: 'https://tu-dominio.com',
+  site: 'https://tu-usuario.github.io',
+  base: '/tu-repositorio',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script de Auditoría de Colores - MGM Abogados
+ * Script de Auditoría de Colores - Despacho Legal
  * Analiza el uso de colores en el proyecto y genera reportes
  */
 

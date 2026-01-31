@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script de Verificación de Páginas de Servicio - MGM Abogados
+ * Script de Verificación de Páginas de Servicio - Despacho Legal
  * Valida que todas las páginas de servicio tengan estructura consistente
  */
 

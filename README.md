@@ -1,46 +1,62 @@
-# Astro Starter Kit: Basics
+# Sitio Web - Despacho Legal
 
-```sh
-npm create astro@latest -- --template basics
+Sitio web profesional para despachos de abogados construido con Astro, React y TailwindCSS.
+
+## Instalación
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Comandos
 
-## 🚀 Project Structure
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Servidor de desarrollo en `localhost:4321` |
+| `npm run build` | Genera sitio en `./dist/` |
+| `npm run preview` | Vista previa del build |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Personalización
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+Edita `src/lib/constants.ts` con tu información:
+
+```typescript
+export const SITE_CONFIG = {
+  name: "Tu Despacho",
+  url: "https://tu-dominio.com",
+};
+
+export const CONTACT_INFO = {
+  phone: "+XX XXX XXXXXXX",
+  email: "contacto@tu-dominio.com",
+  // ...
+};
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Deploy en GitHub Pages
 
-## 🧞 Commands
+1. En `astro.config.mjs`, configura:
+   ```javascript
+   site: 'https://TU-USUARIO.github.io',
+   base: '/TU-REPOSITORIO',
+   ```
 
-All commands are run from the root of the project, from a terminal:
+2. Ve a **Settings > Pages > Source: GitHub Actions**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+3. Push a `main` y el deploy es automático
 
-## 👀 Want to learn more?
+## Estructura
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```
+src/
+├── components/    # Componentes UI
+├── layouts/       # Layouts de página
+├── lib/           # Constantes y utilidades
+├── pages/         # Páginas del sitio
+└── styles/        # Estilos globales
+```
+
+## Licencia
+
+MIT

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 
-interface MGMChatInstance {
+interface ChatInstance {
   open?: () => void;
 }
 
 declare global {
   interface Window {
-    mgmChatInstance?: MGMChatInstance;
+    chatInstance?: ChatInstance;
     n8nChatOpen?: () => void;
   }
 }
@@ -135,15 +135,15 @@ const sanitizeChatResponse = (value: unknown): string => {
 const createChatConfig = () => ({
   webhookUrl: CHAT_WEBHOOK_URL,
   target: `#${CHAT_CONTAINER_ID}`,
-  metadata: { source: 'mgm-abogados-web' },
+  metadata: { source: 'despacho-legal-web' },
   defaultLanguage: 'es',
   showWelcomeScreen: false,
   initialMessages: [
-    '¡Hola! Soy el asistente virtual de MGM Abogados. ¿En qué puedo ayudarte hoy?'
+    '¡Hola! Soy el asistente virtual del despacho. ¿En qué puedo ayudarte hoy?'
   ],
   i18n: {
     es: {
-      title: 'Asistente MGM Abogados',
+      title: 'Asistente Legal',
       subtitle: 'Orientación inicial y consultas.',
       footer:
         'La información compartida es confidencial y no reemplaza asesoría legal formal.',
@@ -152,7 +152,7 @@ const createChatConfig = () => ({
       sendMessage: 'Enviar',
       typing: 'Escribiendo...',
       closeButtonTooltip: 'Cerrar chat',
-      welcomeMessage: '¡Hola! Soy el asistente virtual de MGM Abogados. ¿En qué puedo ayudarte hoy?'
+      welcomeMessage: '¡Hola! Soy el asistente virtual del despacho. ¿En qué puedo ayudarte hoy?'
     }
   },
   theme: {
@@ -196,14 +196,14 @@ export default function ChatbotWidget() {
       try {
         ensureChatStyles();
 
-        if (window.mgmChatInstance) {
-          window.dispatchEvent(new CustomEvent('mgm:chat-ready'));
+        if (window.chatInstance) {
+          window.dispatchEvent(new CustomEvent('chat:ready'));
           return;
         }
 
         const { createChat } = (await import(
           /* @vite-ignore */ CHAT_MODULE_URL
-        )) as { createChat: (config: Record<string, unknown>) => MGMChatInstance };
+        )) as { createChat: (config: Record<string, unknown>) => ChatInstance };
 
         if (!isMounted) {
           return;
@@ -211,14 +211,14 @@ export default function ChatbotWidget() {
 
         const chatInstance = createChat(createChatConfig());
 
-        window.mgmChatInstance = chatInstance;
+        window.chatInstance = chatInstance;
         window.n8nChatOpen = () => {
-          if (window.mgmChatInstance?.open) {
-            window.mgmChatInstance.open();
+          if (window.chatInstance?.open) {
+            window.chatInstance.open();
           }
         };
 
-        window.dispatchEvent(new CustomEvent('mgm:chat-ready'));
+        window.dispatchEvent(new CustomEvent('chat:ready'));
       } catch (error) {
         console.error('Error cargando chatbot:', error);
       }

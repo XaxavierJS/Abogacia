@@ -150,7 +150,7 @@ const canonicalURL = canonical || Astro.url.href;
         };
 
         // Listen for chat ready event
-        window.addEventListener('mgm:chat-ready', () => {
+        window.addEventListener('chat:ready', () => {
           console.log('[Chat] Chat ready event received');
           STATE.initialized = true;
           if (STATE.pending) {

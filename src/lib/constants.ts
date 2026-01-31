@@ -1,27 +1,27 @@
 // Site Configuration
 export const SITE_CONFIG = {
-  name: "Manriquez Gómez Melo Abogados",
-  description: "Experiencia, Eficiencia y Confianza garantizada. Despacho jurídico especializado en Viña del Mar con amplia experiencia en derecho familiar, penal, laboral y civil.",
-  url: "https://mgm-abogados.cl",
+  name: "Tu Despacho Legal",
+  description: "Experiencia, Eficiencia y Confianza garantizada. Despacho jurídico especializado con amplia experiencia en derecho familiar, penal, laboral y civil.",
+  url: "https://tu-despacho-legal.com",
   ogImage: "/og-image.jpg",
   links: {
-    twitter: "https://twitter.com/mgm_abogados",
-    linkedin: "https://www.linkedin.com/company/mgm-abogados",
-    facebook: "https://www.facebook.com/mgm.abogados"
+    twitter: "https://twitter.com/tu_despacho",
+    linkedin: "https://www.linkedin.com/company/tu-despacho",
+    facebook: "https://www.facebook.com/tu.despacho"
   }
 } as const;
 
 // Contact Information
 export const CONTACT_INFO = {
-  phone: "+56 32 3428987",
-  phoneMobile: "+56 9 72918986",
-  email: "contacto@mgm-abogados.cl",
+  phone: "+00 000 0000000",
+  phoneMobile: "+00 0 00000000",
+  email: "contacto@tu-despacho.com",
   address: {
-    street: "13 norte, N° 853, Of. 803",
-    building: "Ed. Boulevard",
-    city: "Viña del Mar",
-    country: "Chile",
-    full: "13 norte, N° 853, Of. 803, Ed. Boulevard, Viña del Mar"
+    street: "Calle Principal #123",
+    building: "Edificio Centro Legal",
+    city: "Tu Ciudad",
+    country: "País",
+    full: "Calle Principal #123, Edificio Centro Legal, Tu Ciudad"
   },
   hours: {
     weekdays: "9:00 - 18:00",
@@ -205,21 +205,21 @@ export const CONTACT_METHODS = [
 
 // Social Media Links
 export const SOCIAL_LINKS = {
-  facebook: "https://www.facebook.com/abogado.perez",
-  twitter: "https://twitter.com/abogado_perez",
-  linkedin: "https://www.linkedin.com/in/abogado-perez",
-  instagram: "https://www.instagram.com/abogado.perez"
+  facebook: "https://www.facebook.com/tu.despacho",
+  twitter: "https://twitter.com/tu_despacho",
+  linkedin: "https://www.linkedin.com/company/tu-despacho",
+  instagram: "https://www.instagram.com/tu.despacho"
 } as const;
 
 // SEO Keywords
 export const SEO_KEYWORDS = {
-  primary: ["abogado viña del mar", "despacho jurídico viña del mar", "consulta legal gratuita"],
-  laboral: ["abogado laboral viña del mar", "despido injustificado", "derechos del trabajador"],
-  familiar: ["abogado familiar viña del mar", "divorcio viña del mar", "custodia de hijos"],
-  penal: ["abogado penal viña del mar", "defensa penal", "delitos económicos"],
-  civil: ["abogado civil viña del mar", "contratos", "responsabilidad civil"],
-  empresarial: ["abogado empresarial viña del mar", "constitución sociedades", "contratos comerciales"],
-  local: ["abogado justicia local viña del mar", "accidentes tránsito", "derechos consumidor"]
+  primary: ["abogado", "despacho jurídico", "consulta legal"],
+  laboral: ["abogado laboral", "despido injustificado", "derechos del trabajador"],
+  familiar: ["abogado familiar", "divorcio", "custodia de hijos"],
+  penal: ["abogado penal", "defensa penal", "delitos económicos"],
+  civil: ["abogado civil", "contratos", "responsabilidad civil"],
+  empresarial: ["abogado empresarial", "constitución sociedades", "contratos comerciales"],
+  local: ["abogado justicia local", "accidentes tránsito", "derechos consumidor"]
 } as const;
 
 // Form Validation Messages

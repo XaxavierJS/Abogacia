@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script de Validación de Consistencia - MGM Abogados
+ * Script de Validación de Consistencia - Despacho Legal
  * Verifica el cumplimiento de estándares de diseño y código
  */
 

@@ -23,11 +23,11 @@ export default function Navbar() {
             <a href="/" className="flex items-center space-x-3">
               <img 
                 src={logo.src} 
-                alt="MGM Abogados" 
+                alt="Logo Despacho" 
                 className="h-10 w-auto"
               />
               <span className="font-bold text-xl text-foreground">
-                MGM Abogados
+                Tu Despacho Legal
               </span>
             </a>
           </div>
@@ -49,8 +49,8 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-sm text-muted-foreground">
               <Phone className="h-4 w-4" />
-              <a href="tel:+56323428987" className="hover:text-primary-600 transition-colors">
-                +56 32 3428987
+              <a href="tel:+000000000000" className="hover:text-primary-600 transition-colors">
+                +00 000 0000000
               </a>
             </div>
             <Button asChild className="btn-primary">
@@ -75,10 +75,10 @@ export default function Navbar() {
                   <div className="flex items-center justify-between py-4 border-b">
                     <div className="flex items-center space-x-2">
                       <div className="h-8 w-8 bg-primary-600 rounded-md flex items-center justify-center">
-                        <span className="text-white font-bold text-lg">J</span>
+                        <span className="text-white font-bold text-lg">D</span>
                       </div>
                       <span className="font-bold text-xl text-foreground">
-                        MGM Abogados
+                        Tu Despacho Legal
                       </span>
                     </div>
                   </div>
@@ -105,19 +105,19 @@ export default function Navbar() {
                       <div className="flex items-center space-x-3 text-sm">
                         <Phone className="h-4 w-4 text-primary-600" />
                         <a 
-                          href="tel:+56323428987" 
+                          href="tel:+000000000000" 
                           className="text-foreground hover:text-primary-600 transition-colors"
                         >
-                          +56 32 3428987
+                          +00 000 0000000
                         </a>
                       </div>
                       <div className="flex items-center space-x-3 text-sm">
                         <Mail className="h-4 w-4 text-primary-600" />
                         <a 
-                          href="mailto:contacto@mgm-abogados.cl" 
+                          href="mailto:contacto@tu-despacho.com" 
                           className="text-foreground hover:text-primary-600 transition-colors"
                         >
-                          contacto@mgm-abogados.cl
+                          contacto@tu-despacho.com
                         </a>
                       </div>
                     </div>

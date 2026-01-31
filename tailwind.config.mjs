@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Paleta profesional MGM Abogados
+        // Paleta profesional despacho legal
         primary: {
           50: '#f0f4f8',
           100: '#d9e6f2',

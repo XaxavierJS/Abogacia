@@ -1,7 +1,10 @@
 {
-  "name": "proyecto",
+  "name": "template-despacho-legal",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Template de sitio web para despachos legales - Astro + React + TailwindCSS",
+  "author": "Tu Nombre",
+  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
