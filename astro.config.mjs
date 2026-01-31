@@ -11,8 +11,8 @@ const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 export default defineConfig({
   integrations: [react(), tailwind()],
   output: 'static',
-  site: isGitHubPages ? 'https://tu-usuario.github.io' : 'http://localhost:4321',
-  base: isGitHubPages ? '/tu-repositorio' : '/',
+  site: isGitHubPages ? 'https://xaxavierjs.github.io' : 'http://localhost:4321',
+  base: isGitHubPages ? '/Abogacia' : '/',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'
