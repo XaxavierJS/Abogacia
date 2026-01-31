@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CONTACT_INFO, PRACTICE_AREAS, LEGAL_PAGES } from '../../lib/constants';
+import { CONTACT_INFO, PRACTICE_AREAS, LEGAL_PAGES, BASE_URL } from '../../lib/constants';
 import Disclaimer from '../legal/Disclaimer';
 
 const urgencyLevels = [
@@ -349,11 +349,11 @@ export default function ContactFormSimple() {
                   />
                   <label htmlFor="privacy" className="text-sm text-slate-600">
                     Acepto la{' '}
-                    <a href={LEGAL_PAGES.find(p => p.name === 'Política de Privacidad')?.href || '/legal/privacidad'} className="text-primary-600 hover:underline">
+                    <a href={LEGAL_PAGES.find(p => p.name === 'Política de Privacidad')?.href || `${BASE_URL}legal/privacidad`} className="text-primary-600 hover:underline">
                       Política de Privacidad
                     </a>{' '}
                     y los{' '}
-                    <a href={LEGAL_PAGES.find(p => p.name === 'Términos de Servicio')?.href || '/legal/terminos'} className="text-primary-600 hover:underline">
+                    <a href={LEGAL_PAGES.find(p => p.name === 'Términos de Servicio')?.href || `${BASE_URL}legal/terminos`} className="text-primary-600 hover:underline">
                       Términos de Servicio
                     </a>
                     . Entiendo que esta consulta no constituye asesoría legal hasta firmar un contrato de representación. *

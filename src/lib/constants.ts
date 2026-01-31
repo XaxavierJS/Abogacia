@@ -1,12 +1,8 @@
 // Get base URL for proper path resolution
-const getBaseUrl = () => {
-  if (typeof import.meta !== 'undefined' && import.meta.env) {
-    return import.meta.env.BASE_URL || '/';
-  }
-  return '/';
-};
+const BASE_URL = import.meta.env.BASE_URL || '/';
 
-const BASE_URL = getBaseUrl();
+// Export BASE_URL for use in other components
+export { BASE_URL };
 
 // Site Configuration
 export const SITE_CONFIG = {
