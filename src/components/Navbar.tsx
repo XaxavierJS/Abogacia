@@ -3,8 +3,11 @@ import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { Menu, Phone, Mail } from 'lucide-react';
 
+// Get the base URL from the environment
+const BASE_URL = import.meta.env.BASE_URL;
+
 const navigation = [
-  { name: 'Inicio', href: '/' },
+  { name: 'Inicio', href: BASE_URL },
   { name: 'Sobre Nosotros', href: '#sobre-nosotros' },
   { name: 'Servicios', href: '#servicios' },
   { name: 'Contacto', href: '#contacto' },
@@ -19,7 +22,7 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2">
+            <a href={BASE_URL} className="flex items-center space-x-2">
               <div className="h-9 w-9 bg-primary-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">D</span>
               </div>
