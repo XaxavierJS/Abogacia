@@ -1,3 +1,13 @@
+// Get base URL for proper path resolution
+const getBaseUrl = () => {
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    return import.meta.env.BASE_URL || '/';
+  }
+  return '/';
+};
+
+const BASE_URL = getBaseUrl();
+
 // Site Configuration
 export const SITE_CONFIG = {
   name: "Tu Despacho Legal",
@@ -37,7 +47,7 @@ export const PRACTICE_AREAS = [
     name: "Derecho de Familia",
     description: "Divorcios, custodia, pensión alimenticia, violencia intrafamiliar y mediación familiar.",
     icon: "users",
-    slug: "/derecho-familiar",
+    slug: `${BASE_URL}derecho-familiar`,
     services: [
       "Divorcios de Común Acuerdo",
       "Divorcios Unilaterales", 
@@ -69,7 +79,7 @@ export const PRACTICE_AREAS = [
     name: "Derecho Penal",
     description: "Defensa penal especializada en delitos económicos, sexuales, violentos y tráfico de drogas.",
     icon: "shield",
-    slug: "/derecho-penal",
+    slug: `${BASE_URL}derecho-penal`,
     services: [
       "Delitos económicos",
       "Delitos sexuales",
@@ -83,7 +93,7 @@ export const PRACTICE_AREAS = [
     name: "Derecho del Trabajo",
     description: "Protección de derechos laborales, despidos injustificados y asesoría empresarial.",
     icon: "briefcase",
-    slug: "/derecho-laboral",
+    slug: `${BASE_URL}derecho-laboral`,
     services: [
       "Audiencias de conciliación laboral ante la Inspección del Trabajo",
       "Tutela por vulneración de derechos fundamentales del trabajador",
@@ -110,7 +120,7 @@ export const PRACTICE_AREAS = [
     name: "Derecho Civil",
     description: "Contratos, responsabilidad civil, sucesiones, arrendamientos y cobranzas.",
     icon: "file-text",
-    slug: "/derecho-civil",
+    slug: `${BASE_URL}derecho-civil`,
     services: [
       "Juicios de arrendamiento",
       "Juicios ejecutivos y cobranzas de pagaré, letras de cambio, cheques, facturas y otros documentos mercantiles",
@@ -137,7 +147,7 @@ export const PRACTICE_AREAS = [
     name: "Derecho Empresarial",
     description: "Constitución de sociedades, contratos comerciales y asesoría empresarial integral.",
     icon: "building",
-    slug: "/derecho-empresarial",
+    slug: `${BASE_URL}derecho-empresarial`,
     services: [
       "Constitución y modificación de sociedades",
       "Confección y revisión de contratos mercantiles",
@@ -152,7 +162,7 @@ export const PRACTICE_AREAS = [
     name: "Justicia Local",
     description: "Accidentes de tránsito, derechos del consumidor, ley de copropiedad y multas municipales.",
     icon: "home",
-    slug: "/justicia-local",
+    slug: `${BASE_URL}justicia-local`,
     services: [
       "Accidentes de tránsito",
       "Derechos del consumidor",
@@ -168,17 +178,17 @@ export const PRACTICE_AREAS = [
 
 // Navigation Menu
 export const NAVIGATION = [
-  { name: "Inicio", href: "/" },
+  { name: "Inicio", href: BASE_URL },
   { name: "Sobre Nosotros", href: "#sobre-nosotros" },
   { name: "Contacto", href: "#contacto" }
 ] as const;
 
 // Legal Pages
 export const LEGAL_PAGES = [
-  { name: "Política de Privacidad", href: "/legal/privacidad" },
-  { name: "Términos de Servicio", href: "/legal/terminos" },
-  { name: "Aviso Legal", href: "/legal/aviso-legal" },
-  { name: "Política de Cookies", href: "/legal/cookies" }
+  { name: "Política de Privacidad", href: `${BASE_URL}legal/privacidad` },
+  { name: "Términos de Servicio", href: `${BASE_URL}legal/terminos` },
+  { name: "Aviso Legal", href: `${BASE_URL}legal/aviso-legal` },
+  { name: "Política de Cookies", href: `${BASE_URL}legal/cookies` }
 ] as const;
 
 // Time Slots for Appointments

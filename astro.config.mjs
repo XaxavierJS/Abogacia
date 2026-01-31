@@ -12,7 +12,7 @@ export default defineConfig({
   integrations: [react(), tailwind()],
   output: 'static',
   site: isGitHubPages ? 'https://xaxavierjs.github.io' : 'http://localhost:4321',
-  base: isGitHubPages ? '/Abogacia' : '/',
+  base: isGitHubPages ? '/Abogacia/' : '/',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'
