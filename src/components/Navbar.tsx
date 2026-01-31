@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { Menu, Phone, Mail } from 'lucide-react';
-import logo from '../assets/images/logo.png';
 
 const navigation = [
   { name: 'Inicio', href: '/' },
   { name: 'Sobre Nosotros', href: '#sobre-nosotros' },
-  { name: 'Nuestros Servicios Legales', href: '#servicios' },
+  { name: 'Servicios', href: '#servicios' },
   { name: 'Contacto', href: '#contacto' },
 ];
 
@@ -20,12 +19,10 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-3">
-              <img 
-                src={logo.src} 
-                alt="Logo Despacho" 
-                className="h-10 w-auto"
-              />
+            <a href="/" className="flex items-center space-x-2">
+              <div className="h-9 w-9 bg-primary-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">D</span>
+              </div>
               <span className="font-bold text-xl text-foreground">
                 Tu Despacho Legal
               </span>

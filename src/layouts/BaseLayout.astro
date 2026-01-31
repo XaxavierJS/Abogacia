@@ -3,7 +3,6 @@ import '../styles/globals.css';
 import Seo from '../components/Seo.astro';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer.astro';
-import CookieConsent from '../components/legal/CookieConsent';
 import ChatbotWidget from '../components/ChatbotWidget';
 
 export interface Props {
@@ -204,10 +203,7 @@ const canonicalURL = canonical || Astro.url.href;
     
     <!-- Footer -->
     <Footer />
-    
-    <!-- Legal Components -->
-    <CookieConsent client:idle />
-    
+
     <!-- Chatbot Anchor + Widget -->
     <div id="n8n-chat" class="chatbot-slot" aria-live="polite" aria-label="Asistente virtual"></div>
     <ChatbotWidget client:idle />

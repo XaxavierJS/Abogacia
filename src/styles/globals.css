@@ -87,15 +87,33 @@
   --ring: #1FA5B8;
 }
 
-/* Improved link contrast for accessibility */
+/* Links base styles - only underline in content areas */
 a {
+  @apply transition-colors duration-200;
+}
+
+/* Content links (inside paragraphs, articles) */
+article a,
+.prose a,
+main p a,
+section p a {
   @apply text-primary-600 hover:text-primary-800 focus:text-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-a:hover {
+article a:hover,
+.prose a:hover,
+main p a:hover,
+section p a:hover {
   text-decoration-thickness: 2px;
+}
+
+/* Navbar and navigation links - no underline */
+nav a,
+header a,
+footer a {
+  text-decoration: none !important;
 }
 
 /* Ensure sufficient contrast for all text */
@@ -126,12 +144,19 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:bg-primary-600 hover:border-primary-700 transition-all duration-300 cursor-pointer;
 }
 
-.service-card h3 {
-  @apply group-hover:text-white transition-colors;
+.service-card:hover h3,
+.service-card:hover p,
+.service-card:hover a,
+.service-card:hover span {
+  color: white !important;
 }
 
-.service-card p {
-  @apply group-hover:text-white/90 transition-colors;
+.service-card:hover .bg-primary-100 {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.service-card:hover svg {
+  color: white !important;
 }
 
 /* Estilos personalizados para el sitio de abogados */
@@ -265,14 +290,6 @@ textarea.form-input {
   .section-padding {
     @apply py-12;
   }
-}
-
-/* Hero background image */
-.hero-bg-image {
-  background-image: url('/src/assets/images/a.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /* Botones con hover de color contrario */

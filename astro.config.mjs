@@ -4,12 +4,15 @@ import { fileURLToPath, URL } from 'node:url';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
+// Detectar si estamos en GitHub Actions para usar base path
+const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), tailwind()],
   output: 'static',
-  site: 'https://tu-usuario.github.io',
-  base: '/tu-repositorio',
+  site: isGitHubPages ? 'https://tu-usuario.github.io' : 'http://localhost:4321',
+  base: isGitHubPages ? '/tu-repositorio' : '/',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'

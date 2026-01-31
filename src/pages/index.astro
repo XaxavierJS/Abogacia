@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { PRACTICE_AREAS, CONTACT_INFO } from '../lib/constants';
 import ContactFormSimple from '../components/business/ContactFormSimple';
@@ -16,11 +17,9 @@ import imageA from '../assets/images/a.jpg';
   description="Despacho jurídico especializado con amplia experiencia. Consulta en derecho familiar, penal, laboral, civil y empresarial. Experiencia, Eficiencia y Confianza garantizada."
 >
   <!-- Hero Section Minimalista -->
-  <section class="min-h-screen flex items-center relative overflow-hidden hero-bg-image">
+  <section class="min-h-screen flex items-center relative overflow-hidden" style={`background-image: url(${imageA.src}); background-size: cover; background-position: center;`}>
     <!-- Dark gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 to-slate-800/70"></div>
-    <!-- Background pattern overlay -->
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/85 to-slate-800/75"></div>
     
     <div class="container-custom py-20 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
@@ -165,66 +164,84 @@ import imageA from '../assets/images/a.jpg';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         <div class="group">
           <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-            <img 
-              src={image1.src} 
+            <Image 
+              src={image1} 
               alt="Oficina principal del despacho"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              width={400}
+              height={400}
+              quality={80}
             />
           </div>
         </div>
         
         <div class="group">
           <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-            <img 
-              src={image2.src} 
+            <Image 
+              src={image2} 
               alt="Sala de reuniones y consultas"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              width={400}
+              height={400}
+              quality={80}
             />
           </div>
         </div>
         
         <div class="group">
           <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-            <img 
-              src={image3.src} 
+            <Image 
+              src={image3} 
               alt="Área de trabajo y archivo"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              width={400}
+              height={400}
+              quality={80}
             />
           </div>
         </div>
         
         <div class="group">
           <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-            <img 
-              src={image4.src} 
+            <Image 
+              src={image4} 
               alt="Recepción y atención al cliente"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              width={400}
+              height={400}
+              quality={80}
             />
           </div>
         </div>
         
         <div class="group">
           <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-            <img 
-              src={image5.src} 
+            <Image 
+              src={image5} 
               alt="Biblioteca jurídica y recursos"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              width={400}
+              height={400}
+              quality={80}
             />
           </div>
         </div>
         
         <div class="group">
           <div class="aspect-square overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-            <img 
-              src={image6.src} 
+            <Image 
+              src={image6} 
               alt="Espacio de trabajo colaborativo"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              width={400}
+              height={400}
+              quality={80}
             />
           </div>
         </div>
